@@ -60,6 +60,17 @@ var app = (function () {
     function space() {
         return text(' ');
     }
+    function listen(node, event, handler, options) {
+        node.addEventListener(event, handler, options);
+        return () => node.removeEventListener(event, handler, options);
+    }
+    function prevent_default(fn) {
+        return function (event) {
+            event.preventDefault();
+            // @ts-ignore
+            return fn.call(this, event);
+        };
+    }
     function attr(node, attribute, value) {
         if (value == null)
             node.removeAttribute(attribute);
@@ -68,6 +79,9 @@ var app = (function () {
     }
     function children(element) {
         return Array.from(element.childNodes);
+    }
+    function set_input_value(input, value) {
+        input.value = value == null ? '' : value;
     }
     function custom_event(type, detail, bubbles = false) {
         const e = document.createEvent('CustomEvent');
@@ -153,6 +167,19 @@ var app = (function () {
     }
     const outroing = new Set();
     let outros;
+    function group_outros() {
+        outros = {
+            r: 0,
+            c: [],
+            p: outros // parent group
+        };
+    }
+    function check_outros() {
+        if (!outros.r) {
+            run_all(outros.c);
+        }
+        outros = outros.p;
+    }
     function transition_in(block, local) {
         if (block && block.i) {
             outroing.delete(block);
@@ -325,12 +352,29 @@ var app = (function () {
         dispatch_dev('SvelteDOMRemove', { node });
         detach(node);
     }
+    function listen_dev(node, event, handler, options, has_prevent_default, has_stop_propagation) {
+        const modifiers = options === true ? ['capture'] : options ? Array.from(Object.keys(options)) : [];
+        if (has_prevent_default)
+            modifiers.push('preventDefault');
+        if (has_stop_propagation)
+            modifiers.push('stopPropagation');
+        dispatch_dev('SvelteDOMAddEventListener', { node, event, handler, modifiers });
+        const dispose = listen(node, event, handler, options);
+        return () => {
+            dispatch_dev('SvelteDOMRemoveEventListener', { node, event, handler, modifiers });
+            dispose();
+        };
+    }
     function attr_dev(node, attribute, value) {
         attr(node, attribute, value);
         if (value == null)
             dispatch_dev('SvelteDOMRemoveAttribute', { node, attribute });
         else
             dispatch_dev('SvelteDOMSetAttribute', { node, attribute, value });
+    }
+    function prop_dev(node, property, value) {
+        node[property] = value;
+        dispatch_dev('SvelteDOMSetProperty', { node, property, value });
     }
     function set_data_dev(text, data) {
         data = '' + data;
@@ -3057,114 +3101,328 @@ var app = (function () {
     const { console: console_1 } = globals;
     const file = "src/App.svelte";
 
-    function create_fragment(ctx) {
-    	let main;
-    	let div0;
+    // (173:2) {#if !generate}
+    function create_if_block_1(ctx) {
+    	let form;
+    	let input;
+    	let t0;
+    	let button;
     	let t1;
-    	let div9;
-    	let div1;
+    	let button_disabled_value;
+    	let mounted;
+    	let dispose;
+
+    	const block = {
+    		c: function create() {
+    			form = element("form");
+    			input = element("input");
+    			t0 = space();
+    			button = element("button");
+    			t1 = text("Generate");
+    			attr_dev(input, "type", "text");
+    			attr_dev(input, "autocomplete", "off");
+    			add_location(input, file, 174, 3, 4230);
+    			attr_dev(button, "type", "submit");
+    			button.disabled = button_disabled_value = !/*eggNumber*/ ctx[1];
+    			attr_dev(button, "class", "btn btn__primary btn__lg");
+    			add_location(button, file, 175, 3, 4296);
+    			add_location(form, file, 173, 2, 4130);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, form, anchor);
+    			append_dev(form, input);
+    			set_input_value(input, /*eggNumber*/ ctx[1]);
+    			append_dev(form, t0);
+    			append_dev(form, button);
+    			append_dev(button, t1);
+
+    			if (!mounted) {
+    				dispose = [
+    					listen_dev(input, "input", /*input_input_handler*/ ctx[8]),
+    					listen_dev(form, "submit", prevent_default(/*generateEgg*/ ctx[7]), false, true, false),
+    					listen_dev(form, "keydown", /*keydown_handler*/ ctx[9], false, false, false)
+    				];
+
+    				mounted = true;
+    			}
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*eggNumber*/ 2 && input.value !== /*eggNumber*/ ctx[1]) {
+    				set_input_value(input, /*eggNumber*/ ctx[1]);
+    			}
+
+    			if (dirty & /*eggNumber*/ 2 && button_disabled_value !== (button_disabled_value = !/*eggNumber*/ ctx[1])) {
+    				prop_dev(button, "disabled", button_disabled_value);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(form);
+    			mounted = false;
+    			run_all(dispose);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_1.name,
+    		type: "if",
+    		source: "(173:2) {#if !generate}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (180:1) {#if generate}
+    function create_if_block(ctx) {
+    	let div11;
+    	let div0;
     	let img;
     	let img_src_value;
-    	let t2;
-    	let div8;
-    	let div7;
-    	let div4;
-    	let div2;
-    	let t3;
-    	let t4;
-    	let div3;
-    	let t6;
-    	let div5;
-    	let qrcode;
-    	let t7;
+    	let t0;
+    	let div10;
     	let div6;
+    	let div3;
+    	let div1;
+    	let t1;
+    	let t2;
+    	let div2;
+    	let t4;
+    	let div4;
+    	let qrcode;
+    	let t5;
+    	let div5;
+    	let t6;
+    	let t7;
+    	let t8;
+    	let div9;
+    	let div7;
+    	let p;
+    	let t10;
+    	let div8;
+    	let table;
+    	let tr0;
+    	let th0;
+    	let t12;
+    	let td0;
+    	let t14;
+    	let tr1;
+    	let th1;
+    	let t16;
+    	let td1;
+    	let t17;
+    	let t18;
+    	let tr2;
+    	let th2;
+    	let t20;
+    	let td2;
+    	let t21;
+    	let t22;
+    	let tr3;
+    	let th3;
+    	let t24;
+    	let td3;
+    	let t26;
+    	let tr4;
+    	let th4;
+    	let t28;
+    	let td4;
     	let current;
 
     	qrcode = new Lib({
-    			props: { value: /*qrSrc*/ ctx[2], size: "70" },
+    			props: { value: /*qrSrc*/ ctx[3], size: "70" },
     			$$inline: true
     		});
 
     	const block = {
     		c: function create() {
-    			main = element("main");
+    			div11 = element("div");
     			div0 = element("div");
-    			div0.textContent = "Top Section";
-    			t1 = space();
-    			div9 = element("div");
-    			div1 = element("div");
     			img = element("img");
-    			t2 = space();
-    			div8 = element("div");
-    			div7 = element("div");
-    			div4 = element("div");
-    			div2 = element("div");
-    			t3 = text(/*series*/ ctx[1]);
-    			t4 = space();
-    			div3 = element("div");
-    			div3.textContent = `${/*collectionName*/ ctx[3]}`;
-    			t6 = space();
-    			div5 = element("div");
-    			create_component(qrcode.$$.fragment);
-    			t7 = space();
+    			t0 = space();
+    			div10 = element("div");
     			div6 = element("div");
-    			div6.textContent = `#${/*eggNumber*/ ctx[4]}`;
-    			attr_dev(div0, "class", "topSection svelte-h6wz6j");
-    			add_location(div0, file, 30, 1, 987);
-    			attr_dev(img, "class", "eggImage svelte-h6wz6j");
+    			div3 = element("div");
+    			div1 = element("div");
+    			t1 = text(/*series*/ ctx[2]);
+    			t2 = space();
+    			div2 = element("div");
+    			div2.textContent = `${/*collectionName*/ ctx[5]}`;
+    			t4 = space();
+    			div4 = element("div");
+    			create_component(qrcode.$$.fragment);
+    			t5 = space();
+    			div5 = element("div");
+    			t6 = text("#");
+    			t7 = text(/*eggNumber*/ ctx[1]);
+    			t8 = space();
+    			div9 = element("div");
+    			div7 = element("div");
+    			p = element("p");
+    			p.textContent = "(Art)ificial is an art studio that explores the boundaries of technology and art. Our first project is Galaxy Eggs - a generative collection of 9,999 Eggs of the metaverse that live on the Ethereum Blockchain. Our Art Director, Gal Barkan, has been creating futuristic and sci-fi art for the past 20 years - this collection is the culmination of a lifetime of work on one hand, and the beginning of a new chapter in taking part in the creation of the metaverse.";
+    			t10 = space();
+    			div8 = element("div");
+    			table = element("table");
+    			tr0 = element("tr");
+    			th0 = element("th");
+    			th0.textContent = "Collection";
+    			t12 = space();
+    			td0 = element("td");
+    			td0.textContent = `${/*collectionNamePlural*/ ctx[6]}`;
+    			t14 = space();
+    			tr1 = element("tr");
+    			th1 = element("th");
+    			th1.textContent = "Series";
+    			t16 = space();
+    			td1 = element("td");
+    			t17 = text(/*series*/ ctx[2]);
+    			t18 = space();
+    			tr2 = element("tr");
+    			th2 = element("th");
+    			th2.textContent = "Token ID";
+    			t20 = space();
+    			td2 = element("td");
+    			t21 = text(/*eggNumber*/ ctx[1]);
+    			t22 = space();
+    			tr3 = element("tr");
+    			th3 = element("th");
+    			th3.textContent = "Token Standard";
+    			t24 = space();
+    			td3 = element("td");
+    			td3.textContent = "ERC-721";
+    			t26 = space();
+    			tr4 = element("tr");
+    			th4 = element("th");
+    			th4.textContent = "Blockchain";
+    			t28 = space();
+    			td4 = element("td");
+    			td4.textContent = "Ethereum";
+    			attr_dev(img, "class", "eggImage svelte-178h5if");
     			if (!src_url_equal(img.src, img_src_value = /*imgSrc*/ ctx[0])) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "egg image");
-    			add_location(img, file, 34, 7, 1067);
-    			add_location(div1, file, 34, 2, 1062);
-    			attr_dev(div2, "class", "collectionName svelte-h6wz6j");
-    			add_location(div2, file, 38, 5, 1223);
-    			attr_dev(div3, "class", "series svelte-h6wz6j");
-    			add_location(div3, file, 39, 5, 1271);
-    			attr_dev(div4, "class", "collectionSeries svelte-h6wz6j");
-    			add_location(div4, file, 37, 4, 1187);
-    			attr_dev(div5, "class", "qrCode svelte-h6wz6j");
-    			add_location(div5, file, 41, 4, 1329);
-    			attr_dev(div6, "class", "eggNum svelte-h6wz6j");
-    			add_location(div6, file, 44, 4, 1405);
-    			attr_dev(div7, "class", "row1 svelte-h6wz6j");
-    			add_location(div7, file, 36, 3, 1164);
-    			attr_dev(div8, "class", "descriptionSection svelte-h6wz6j");
-    			add_location(div8, file, 35, 2, 1128);
-    			attr_dev(div9, "class", "displaybox svelte-h6wz6j");
-    			add_location(div9, file, 33, 1, 1035);
-    			add_location(main, file, 29, 0, 979);
-    		},
-    		l: function claim(nodes) {
-    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    			add_location(img, file, 181, 7, 4466);
+    			add_location(div0, file, 181, 2, 4461);
+    			attr_dev(div1, "class", "collectionName svelte-178h5if");
+    			add_location(div1, file, 185, 5, 4622);
+    			attr_dev(div2, "class", "series svelte-178h5if");
+    			add_location(div2, file, 186, 5, 4670);
+    			attr_dev(div3, "class", "collectionSeries svelte-178h5if");
+    			add_location(div3, file, 184, 4, 4586);
+    			attr_dev(div4, "class", "qrCode svelte-178h5if");
+    			add_location(div4, file, 188, 4, 4728);
+    			attr_dev(div5, "class", "eggNum svelte-178h5if");
+    			add_location(div5, file, 191, 4, 4804);
+    			attr_dev(div6, "class", "row1 svelte-178h5if");
+    			add_location(div6, file, 183, 3, 4563);
+    			attr_dev(p, "class", "svelte-178h5if");
+    			add_location(p, file, 197, 5, 4921);
+    			attr_dev(div7, "class", "description svelte-178h5if");
+    			add_location(div7, file, 196, 4, 4890);
+    			attr_dev(th0, "class", "svelte-178h5if");
+    			add_location(th0, file, 204, 7, 5504);
+    			attr_dev(td0, "class", "svelte-178h5if");
+    			add_location(td0, file, 205, 7, 5531);
+    			add_location(tr0, file, 203, 6, 5492);
+    			attr_dev(th1, "class", "svelte-178h5if");
+    			add_location(th1, file, 208, 7, 5593);
+    			attr_dev(td1, "class", "svelte-178h5if");
+    			add_location(td1, file, 209, 7, 5616);
+    			add_location(tr1, file, 207, 6, 5581);
+    			attr_dev(th2, "class", "svelte-178h5if");
+    			add_location(th2, file, 212, 7, 5664);
+    			attr_dev(td2, "class", "svelte-178h5if");
+    			add_location(td2, file, 213, 7, 5689);
+    			add_location(tr2, file, 211, 6, 5652);
+    			attr_dev(th3, "class", "svelte-178h5if");
+    			add_location(th3, file, 216, 7, 5740);
+    			attr_dev(td3, "class", "svelte-178h5if");
+    			add_location(td3, file, 217, 7, 5771);
+    			add_location(tr3, file, 215, 6, 5728);
+    			attr_dev(th4, "class", "svelte-178h5if");
+    			add_location(th4, file, 220, 7, 5818);
+    			attr_dev(td4, "class", "svelte-178h5if");
+    			add_location(td4, file, 221, 7, 5845);
+    			add_location(tr4, file, 219, 6, 5806);
+    			attr_dev(table, "border", "1");
+    			attr_dev(table, "frame", "void");
+    			attr_dev(table, "rules", "rows");
+    			attr_dev(table, "class", "svelte-178h5if");
+    			add_location(table, file, 202, 5, 5447);
+    			attr_dev(div8, "class", "tableData svelte-178h5if");
+    			add_location(div8, file, 201, 4, 5418);
+    			attr_dev(div9, "class", "row2 svelte-178h5if");
+    			add_location(div9, file, 195, 3, 4867);
+    			attr_dev(div10, "class", "descriptionSection svelte-178h5if");
+    			add_location(div10, file, 182, 2, 4527);
+    			attr_dev(div11, "class", "displaybox svelte-178h5if");
+    			add_location(div11, file, 180, 1, 4434);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, main, anchor);
-    			append_dev(main, div0);
-    			append_dev(main, t1);
-    			append_dev(main, div9);
-    			append_dev(div9, div1);
-    			append_dev(div1, img);
-    			append_dev(div9, t2);
+    			insert_dev(target, div11, anchor);
+    			append_dev(div11, div0);
+    			append_dev(div0, img);
+    			append_dev(div11, t0);
+    			append_dev(div11, div10);
+    			append_dev(div10, div6);
+    			append_dev(div6, div3);
+    			append_dev(div3, div1);
+    			append_dev(div1, t1);
+    			append_dev(div3, t2);
+    			append_dev(div3, div2);
+    			append_dev(div6, t4);
+    			append_dev(div6, div4);
+    			mount_component(qrcode, div4, null);
+    			append_dev(div6, t5);
+    			append_dev(div6, div5);
+    			append_dev(div5, t6);
+    			append_dev(div5, t7);
+    			append_dev(div10, t8);
+    			append_dev(div10, div9);
+    			append_dev(div9, div7);
+    			append_dev(div7, p);
+    			append_dev(div9, t10);
     			append_dev(div9, div8);
-    			append_dev(div8, div7);
-    			append_dev(div7, div4);
-    			append_dev(div4, div2);
-    			append_dev(div2, t3);
-    			append_dev(div4, t4);
-    			append_dev(div4, div3);
-    			append_dev(div7, t6);
-    			append_dev(div7, div5);
-    			mount_component(qrcode, div5, null);
-    			append_dev(div7, t7);
-    			append_dev(div7, div6);
+    			append_dev(div8, table);
+    			append_dev(table, tr0);
+    			append_dev(tr0, th0);
+    			append_dev(tr0, t12);
+    			append_dev(tr0, td0);
+    			append_dev(table, t14);
+    			append_dev(table, tr1);
+    			append_dev(tr1, th1);
+    			append_dev(tr1, t16);
+    			append_dev(tr1, td1);
+    			append_dev(td1, t17);
+    			append_dev(table, t18);
+    			append_dev(table, tr2);
+    			append_dev(tr2, th2);
+    			append_dev(tr2, t20);
+    			append_dev(tr2, td2);
+    			append_dev(td2, t21);
+    			append_dev(table, t22);
+    			append_dev(table, tr3);
+    			append_dev(tr3, th3);
+    			append_dev(tr3, t24);
+    			append_dev(tr3, td3);
+    			append_dev(table, t26);
+    			append_dev(table, tr4);
+    			append_dev(tr4, th4);
+    			append_dev(tr4, t28);
+    			append_dev(tr4, td4);
     			current = true;
     		},
-    		p: function update(ctx, [dirty]) {
+    		p: function update(ctx, dirty) {
     			if (!current || dirty & /*imgSrc*/ 1 && !src_url_equal(img.src, img_src_value = /*imgSrc*/ ctx[0])) {
     				attr_dev(img, "src", img_src_value);
     			}
 
-    			if (!current || dirty & /*series*/ 2) set_data_dev(t3, /*series*/ ctx[1]);
+    			if (!current || dirty & /*series*/ 4) set_data_dev(t1, /*series*/ ctx[2]);
+    			const qrcode_changes = {};
+    			if (dirty & /*qrSrc*/ 8) qrcode_changes.value = /*qrSrc*/ ctx[3];
+    			qrcode.$set(qrcode_changes);
+    			if (!current || dirty & /*eggNumber*/ 2) set_data_dev(t7, /*eggNumber*/ ctx[1]);
+    			if (!current || dirty & /*series*/ 4) set_data_dev(t17, /*series*/ ctx[2]);
+    			if (!current || dirty & /*eggNumber*/ 2) set_data_dev(t21, /*eggNumber*/ ctx[1]);
     		},
     		i: function intro(local) {
     			if (current) return;
@@ -3176,8 +3434,105 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(main);
+    			if (detaching) detach_dev(div11);
     			destroy_component(qrcode);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block.name,
+    		type: "if",
+    		source: "(180:1) {#if generate}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment(ctx) {
+    	let main;
+    	let div;
+    	let t0;
+    	let t1;
+    	let current;
+    	let if_block0 = !/*generate*/ ctx[4] && create_if_block_1(ctx);
+    	let if_block1 = /*generate*/ ctx[4] && create_if_block(ctx);
+
+    	const block = {
+    		c: function create() {
+    			main = element("main");
+    			div = element("div");
+    			t0 = text("Turn your Galaxy Eggs into a nice printable PDF!\n\t\t");
+    			if (if_block0) if_block0.c();
+    			t1 = space();
+    			if (if_block1) if_block1.c();
+    			attr_dev(div, "class", "topSection svelte-178h5if");
+    			add_location(div, file, 170, 1, 4034);
+    			add_location(main, file, 169, 0, 4026);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, main, anchor);
+    			append_dev(main, div);
+    			append_dev(div, t0);
+    			if (if_block0) if_block0.m(div, null);
+    			append_dev(main, t1);
+    			if (if_block1) if_block1.m(main, null);
+    			current = true;
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (!/*generate*/ ctx[4]) {
+    				if (if_block0) {
+    					if_block0.p(ctx, dirty);
+    				} else {
+    					if_block0 = create_if_block_1(ctx);
+    					if_block0.c();
+    					if_block0.m(div, null);
+    				}
+    			} else if (if_block0) {
+    				if_block0.d(1);
+    				if_block0 = null;
+    			}
+
+    			if (/*generate*/ ctx[4]) {
+    				if (if_block1) {
+    					if_block1.p(ctx, dirty);
+
+    					if (dirty & /*generate*/ 16) {
+    						transition_in(if_block1, 1);
+    					}
+    				} else {
+    					if_block1 = create_if_block(ctx);
+    					if_block1.c();
+    					transition_in(if_block1, 1);
+    					if_block1.m(main, null);
+    				}
+    			} else if (if_block1) {
+    				group_outros();
+
+    				transition_out(if_block1, 1, 1, () => {
+    					if_block1 = null;
+    				});
+
+    				check_outros();
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(if_block1);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(if_block1);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(main);
+    			if (if_block0) if_block0.d();
+    			if (if_block1) if_block1.d();
     		}
     	};
 
@@ -3196,24 +3551,167 @@ var app = (function () {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('App', slots, []);
     	let imgSrc = "https://galaxy-eggs-images.s3.amazonaws.com/2k/jpg/3621.jpg";
-    	let qrSrc = 'https://opensea.io/assets/0xa08126f5e1ed91a635987071e6ff5eb2aeb67c48/1136';
     	let description = "collection description";
-    	let collectionName = "Galaxy Eggs"; // hardcoded because name=GalaxyEggs
-    	let eggNumber = 1136;
-    	let series = "series";
+    	let collectionName = "Galaxy Egg"; // hardcoded because name=GalaxyEggs
+    	let collectionNamePlural = "Galaxy Eggs"; // hardcoded because name=GalaxyEggs
 
-    	onMount(async () => {
+    	//let eggNumber = 6201;
+    	let eggNumber = "";
+
+    	let series = "series";
+    	let qrSrc = `https://opensea.io/assets/0xa08126f5e1ed91a635987071e6ff5eb2aeb67c48/`;
+    	let generate = false;
+
+    	let htmlOutput = `<main>
+		<div class="displaybox">
+			<div><img class="eggImage" src=${imgSrc} alt="egg image"/></div>
+			<div class="descriptionSection">
+				<div class="row1">
+					<div class="collectionSeries">
+						<div class="collectionName">${series}</div>
+						<div class="series">${collectionName}</div>
+					</div>
+					<div class="qrCode">
+						<QrCode value=${qrSrc} size="70" />
+					</div>
+					<div class="eggNum">
+						#${eggNumber}
+					</div>
+				</div>
+				<div class="row2">
+					<div class="description">
+						<p>
+							(Art)ificial is an art studio that explores the boundaries of technology and art. Our first project is Galaxy Eggs - a generative collection of 9,999 Eggs of the metaverse that live on the Ethereum Blockchain. Our Art Director, Gal Barkan, has been creating futuristic and sci-fi art for the past 20 years - this collection is the culmination of a lifetime of work on one hand, and the beginning of a new chapter in taking part in the creation of the metaverse.
+						</p>
+					</div>
+					<div class="tableData">
+						<table border=1 frame=void rules=rows>
+							<tr>
+								<th>Collection</th>
+								<td>${collectionNamePlural}</td>
+							</tr>
+							<tr>
+								<th>Series</th>
+								<td>${series}</td>
+							</tr>
+							<tr>
+								<th>Token ID</th>
+								<td>${eggNumber}</td>
+							</tr>
+							<tr>
+								<th>Token Standard</th>
+								<td>ERC-721</td>
+							</tr>
+							<tr>
+								<th>Blockchain</th>
+								<td>Ethereum</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		</main>
+
+		<style>
+			.topSection {
+				height: 5em;
+			}
+			.displaybox {
+				height: 842px;
+				width: 595px;
+			}
+			.eggImage {
+				max-width:100%;
+				max-height:100%;
+			}
+			.descriptionSection {
+				height: 247px;
+				width: 595px;
+			}
+			.row1 {
+				display: flex;
+			}
+			.row2 {
+				display: flex;
+				padding-top: 0px;
+			}
+			.collectionSeries {
+				border-left: 4px solid #AFAFAF;
+				flex: 1.18;
+				margin-top: 25px;
+			}
+
+			.collectionSeries > .collectionName {
+				padding-left: 12px;
+				font-weight: 400;
+				font-size: 1.2em;
+			}
+			.collectionSeries > .series {
+				padding-left: 12px;
+				font-weight: 600;
+				font-size: 2.5em;
+			}
+			.qrCode {
+				flex: 0.4;
+				margin-top: 25px;
+			}
+			.eggNum {
+				margin-top: 10px;
+				flex: 0.4;
+				font-weight: 550;
+				font-size: 4.5em;
+			}
+			.longDescription {
+				flex: 0.4;
+				font-weight: 550;
+				font-size: 4em;
+			}
+			.description {
+				flex: 0.7
+			}
+			p {
+				text-align: justify;
+				text-justify: inter-word;
+				font-size: 0.86em;
+			}
+			.tableData {
+				flex: 0.4;
+				margin-left: 27px;
+			}
+			table {
+				margin-top: 12px;
+				font-size: 0.8em;
+			}
+			table td {
+			    padding: 5px 0;
+			}
+			th {
+				text-align: left;
+				width: 110px;
+				padding-top: 2px;
+			}
+			.mainRowBorder {
+
+			}
+		</style>
+	`;
+
+    	const generateEgg = async () => {
     		fetch(`https://api.opensea.io/api/v1/assets?token_ids=${eggNumber}&order_direction=desc&offset=0&limit=1&collection=galaxyeggs9999`).then(response => response.json()).then(data => {
     			console.log(data);
+    			$$invalidate(3, qrSrc += eggNumber);
     			$$invalidate(0, imgSrc = data.assets[0].image_original_url);
     			description = data.assets[0].collection.description;
-    			$$invalidate(1, series = data.assets[0].traits[0].value);
+    			$$invalidate(2, series = data.assets[0].traits[0].value);
     			apiData.set(data);
+    			$$invalidate(4, generate = true);
+    			console.log(htmlOutput);
     		}).catch(error => {
     			console.log(error);
     			return [];
     		});
-    	});
+    	};
 
     	const writable_props = [];
 
@@ -3221,33 +3719,58 @@ var app = (function () {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console_1.warn(`<App> was created with unknown prop '${key}'`);
     	});
 
+    	function input_input_handler() {
+    		eggNumber = this.value;
+    		$$invalidate(1, eggNumber);
+    	}
+
+    	const keydown_handler = e => e.key === 'Escape' && onCancel();
+
     	$$self.$capture_state = () => ({
     		onMount,
     		QrCode: Lib,
     		apiData,
     		drinkNames,
     		imgSrc,
-    		qrSrc,
     		description,
     		collectionName,
+    		collectionNamePlural,
     		eggNumber,
-    		series
+    		series,
+    		qrSrc,
+    		generate,
+    		htmlOutput,
+    		generateEgg
     	});
 
     	$$self.$inject_state = $$props => {
     		if ('imgSrc' in $$props) $$invalidate(0, imgSrc = $$props.imgSrc);
-    		if ('qrSrc' in $$props) $$invalidate(2, qrSrc = $$props.qrSrc);
     		if ('description' in $$props) description = $$props.description;
-    		if ('collectionName' in $$props) $$invalidate(3, collectionName = $$props.collectionName);
-    		if ('eggNumber' in $$props) $$invalidate(4, eggNumber = $$props.eggNumber);
-    		if ('series' in $$props) $$invalidate(1, series = $$props.series);
+    		if ('collectionName' in $$props) $$invalidate(5, collectionName = $$props.collectionName);
+    		if ('collectionNamePlural' in $$props) $$invalidate(6, collectionNamePlural = $$props.collectionNamePlural);
+    		if ('eggNumber' in $$props) $$invalidate(1, eggNumber = $$props.eggNumber);
+    		if ('series' in $$props) $$invalidate(2, series = $$props.series);
+    		if ('qrSrc' in $$props) $$invalidate(3, qrSrc = $$props.qrSrc);
+    		if ('generate' in $$props) $$invalidate(4, generate = $$props.generate);
+    		if ('htmlOutput' in $$props) htmlOutput = $$props.htmlOutput;
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [imgSrc, series, qrSrc, collectionName, eggNumber];
+    	return [
+    		imgSrc,
+    		eggNumber,
+    		series,
+    		qrSrc,
+    		generate,
+    		collectionName,
+    		collectionNamePlural,
+    		generateEgg,
+    		input_input_handler,
+    		keydown_handler
+    	];
     }
 
     class App extends SvelteComponentDev {
