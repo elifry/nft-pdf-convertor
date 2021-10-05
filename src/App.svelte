@@ -3,19 +3,24 @@ import { onMount } from "svelte";
 import QrCode from "svelte-qrcode";
 import { apiData, drinkNames } from './store.js';
 
-// Default styles
+// Default styles (macOS)
 let mainWidth = '719px';
+let eggNumSize = '4.35em';
 
 
 // determine the OS, fine tune the css to match
 let os = "Unknown";
 let appV = "";
-if (navigator.appVersion.indexOf("Win") != -1) os = "Windows";
+if (navigator.appVersion.indexOf("Win") != -1) {
+	os = "Windows";
+	eggNumSize = '4.6em';
+}
 if (navigator.appVersion.indexOf("Mac") != -1) {
 	os = "MacOS";
 	if (navigator.appVersion.indexOf("iPhone") != -1) {
 		os = "iPhone";
-		mainWidth = '350px';
+		//mainWidth = '350px';
+		eggNumSize = '4.6em';
 	}
 }
 if (navigator.appVersion.indexOf("X11") != -1) os = "UNIX";
