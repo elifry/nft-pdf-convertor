@@ -1,7 +1,14 @@
 <script>
-import { onMount } from "svelte";
-import QrCode from "svelte-qrcode";
-import { apiData, drinkNames } from './store.js';
+	import { onMount } from "svelte";
+	import QrCode from "svelte-qrcode";
+	import { apiData, drinkNames } from './store.js';
+	
+	// determine the OS, fine tune the css to match
+	let os = "Unknown";
+	if (navigator.appVersion.indexOf("Win") != -1) os = "Windows";
+	if (navigator.appVersion.indexOf("Mac") != -1) os = "MacOS";
+	if (navigator.appVersion.indexOf("X11") != -1) os = "UNIX";
+	if (navigator.appVersion.indexOf("Linux") != -1) os = "Linux";
 
 	let imgSrc = "https://galaxy-eggs-images.s3.amazonaws.com/2k/jpg/3621.jpg";
 	let description = "collection description";
@@ -45,6 +52,8 @@ import { apiData, drinkNames } from './store.js';
 		<div class="topSection">
 			<div class="intro">
 				Turn your Galaxy Eggs into a nice printable PDF!
+				<br>
+				{os}
 			</div>
 			<form on:submit|preventDefault={generateEgg}>
 				<input id="textboxid" bind:value={eggNumber} type=number placeholder='#' autoComplete="off"/>
@@ -125,7 +134,7 @@ import { apiData, drinkNames } from './store.js';
 <style>
 	@media print {
 	    @page {
-			size: auto;
+		size: auto;
 	        margin-top: 160;
 	        margin-bottom: 0;
 	    }
