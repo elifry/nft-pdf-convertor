@@ -8,12 +8,9 @@
 	let appV = "";
 	if (navigator.appVersion.indexOf("Win") != -1) os = "Windows";
 	if (navigator.appVersion.indexOf("Mac") != -1) {
-		console.log(navigator.appVersion);
-		appV = navigator.appVersion;
-		if (navigator.appVersion.indexOf("ontouchend") != -1) {
+		os = "MacOS";
+		if (navigator.appVersion.indexOf("iPhone") != -1) {
 			os = "iPhone";
-		} else {
-			os = "MacOS";
 		}
 	}
 	if (navigator.appVersion.indexOf("X11") != -1) os = "UNIX";
