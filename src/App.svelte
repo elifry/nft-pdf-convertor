@@ -68,10 +68,6 @@ function pad(num) {
 	<div class="topSection">
 		<div class="intro">
 			Turn your Galaxy Eggs into a nice printable PDF!
-			<br>
-			{os}
-			<br>
-			{appV}
 		</div>
 		<form on:submit|preventDefault={generateEgg}>
 			<input id="textboxid" bind:value={eggNumber} type=number placeholder='#' autoComplete="off"/>
