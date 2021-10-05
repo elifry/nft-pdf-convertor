@@ -8,7 +8,7 @@ let mainWidth = '719px';
 let eggNumSize = '4.35em';
 
 
-// determine the OS, fine tune the css to match
+// Determine the OS, fine tune the css to match
 let os = "Unknown";
 let appV = "";
 if (navigator.appVersion.indexOf("Win") != -1) {
@@ -19,7 +19,6 @@ if (navigator.appVersion.indexOf("Mac") != -1) {
 	os = "MacOS";
 	if (navigator.appVersion.indexOf("iPhone") != -1) {
 		os = "iPhone";
-		//mainWidth = '350px';
 		eggNumSize = '4.6em';
 	}
 }
@@ -35,13 +34,15 @@ let series = "series";
 let qrSrc = `https://opensea.io/assets/0xa08126f5e1ed91a635987071e6ff5eb2aeb67c48/`
 let generate = false;
 document.title = 'Print your egg!';
+let ethAddress = '0x51f01329d318ED23b78E47eFa336C943BFC7Bf22';
+let web3Address = 'elifry.eth';
+let descriptionLong = '(Art)ificial is an art studio that explores the boundaries of technology and art. Our first project is Galaxy Eggs - a generative collection of 9,999 Eggs of the metaverse that live on the Ethereum Blockchain. Our Art Director, Gal Barkan, has been creating futuristic and sci-fi art for the past 20 years - this collection is the culmination of a lifetime of work on one hand, and the beginning of a new chapter in taking part in the creation of the metaverse.';
 
-
+// When generate button clicked, call the opensea API for details on the egg
 const generateEgg = (async () => {
 	fetch(`https://api.opensea.io/api/v1/assets?token_ids=${eggNumber}&order_direction=desc&offset=0&limit=1&collection=galaxyeggs9999`)
 	.then(response => response.json())
 	.then(data => {
-		// console.log(data);
 		document.title = eggNumber;
 		qrSrc += eggNumber;
 		imgSrc = data.assets[0].image_original_url;
@@ -49,13 +50,13 @@ const generateEgg = (async () => {
 		series = data.assets[0].traits[0].value;
 		apiData.set(data);
 		generate = true;
-	// console.log(htmlOutput);
 	}).catch(error => {
-	console.log(error);
-	return [];
+		console.log(error);
+		return [];
 	});
 });
 
+// Pad the number to 4 digits, puting zeroes in front as needed
 function pad(num) {
     var s = "000" + num;
     return s.substr(s.length-4);
@@ -86,8 +87,8 @@ function pad(num) {
 		</div>
 		<div class="shill">
 			<div class="shilllinefirst">Like this tool? Here's my eth address:</div>
-			<div class="shillline">elifry.eth</div>
-			<div class="shillline">0x51f01329d318ED23b78E47eFa336C943BFC7Bf22</div>
+			<div class="shillline">{web3Address}</div>
+			<div class="shillline">{ethAddress}</div>
 			<a href="https://twitter.com/acuriousother?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @acuriousother</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 		</div>
 	</div>
@@ -111,9 +112,7 @@ function pad(num) {
 		</div>
 		<div class="row2">
 			<div class="description">
-				<p>
-					(Art)ificial is an art studio that explores the boundaries of technology and art. Our first project is Galaxy Eggs - a generative collection of 9,999 Eggs of the metaverse that live on the Ethereum Blockchain. Our Art Director, Gal Barkan, has been creating futuristic and sci-fi art for the past 20 years - this collection is the culmination of a lifetime of work on one hand, and the beginning of a new chapter in taking part in the creation of the metaverse.
-				</p>
+				<p>{descriptionLong}</p>
 			</div>
 			<div class="tableData">
 				<table border=1 frame=void rules=rows>
