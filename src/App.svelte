@@ -33,9 +33,9 @@ document.title = 'Print your egg!';
 
 
 const generateEgg = (async () => {
-  fetch(`https://api.opensea.io/api/v1/assets?token_ids=${eggNumber}&order_direction=desc&offset=0&limit=1&collection=galaxyeggs9999`)
-  .then(response => response.json())
-  .then(data => {
+	fetch(`https://api.opensea.io/api/v1/assets?token_ids=${eggNumber}&order_direction=desc&offset=0&limit=1&collection=galaxyeggs9999`)
+	.then(response => response.json())
+	.then(data => {
 		// console.log(data);
 		document.title = eggNumber;
 		qrSrc += eggNumber;
@@ -44,11 +44,11 @@ const generateEgg = (async () => {
 		series = data.assets[0].traits[0].value;
 		apiData.set(data);
 		generate = true;
-		// console.log(htmlOutput);
-  }).catch(error => {
-    console.log(error);
-    return [];
-  });
+	// console.log(htmlOutput);
+	}).catch(error => {
+	console.log(error);
+	return [];
+	});
 });
 
 function pad(num) {
@@ -95,7 +95,7 @@ function pad(num) {
 {#if generate}
 <div class="displaybox" style="--main-width: {mainWidth}">
 	<div><img class="eggImage" src={imgSrc} alt="galaxy egg"/></div>
-	<div class="descriptionSection" style="--main-width: {mainWidth}>
+	<div class="descriptionSection" style="--main-width: {mainWidth}">
 		<div class="row1">
 			<div class="collectionSeries">
 				<div class="collectionName">{series}</div>
