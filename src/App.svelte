@@ -3,6 +3,10 @@ import { onMount } from "svelte";
 import QrCode from "svelte-qrcode";
 import { apiData, drinkNames } from './store.js';
 
+// Default styles
+let mainWidth = '719px';
+
+
 // determine the OS, fine tune the css to match
 let os = "Unknown";
 let appV = "";
@@ -11,11 +15,12 @@ if (navigator.appVersion.indexOf("Mac") != -1) {
 	os = "MacOS";
 	if (navigator.appVersion.indexOf("iPhone") != -1) {
 		os = "iPhone";
+		mainWidth = '650px';
 	}
 }
 if (navigator.appVersion.indexOf("X11") != -1) os = "UNIX";
 if (navigator.appVersion.indexOf("Linux") != -1) os = "Linux";
-
+	
 let imgSrc = "https://galaxy-eggs-images.s3.amazonaws.com/2k/jpg/3621.jpg";
 let description = "collection description";
 let collectionName = "Galaxy Egg"; // hardcoded because name=GalaxyEggs
@@ -88,9 +93,9 @@ function pad(num) {
 </div>
 {/if}
 {#if generate}
-<div class="displaybox">
+<div class="displaybox" style="--main-width: {mainWidth}">
 	<div><img class="eggImage" src={imgSrc} alt="galaxy egg"/></div>
-	<div class="descriptionSection">
+	<div class="descriptionSection" style="--main-width: {mainWidth}>
 		<div class="row1">
 			<div class="collectionSeries">
 				<div class="collectionName">{series}</div>
@@ -184,7 +189,7 @@ function pad(num) {
 }
 .displaybox {
 	height: 842px;
-	width: 719px;
+	width: var(--main-width);
 }
 .eggImage {
 	max-width:100%;
@@ -192,7 +197,7 @@ function pad(num) {
 }
 .descriptionSection {
 	height: 247px;
-	width: 719px;
+	width: var(--main-width);
 }
 .row1 {
 	display: flex;
