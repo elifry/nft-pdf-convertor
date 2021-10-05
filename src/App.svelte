@@ -109,7 +109,7 @@ function pad(num) {
 			<div class="qrCode">
 				<QrCode value={qrSrc} size="75" />
 			</div>
-			<div class="eggNum">
+			<div class="eggNum" style="--egg-num-size: {eggNumSize}">
 				#{pad(eggNumber)}
 			</div>
 		</div>
@@ -235,7 +235,7 @@ function pad(num) {
 	margin-top: 12px;
 	flex: 0.4;
 	font-weight: 550;
-	font-size: 4.35em;
+	font-size: var(--egg-num-size);
 	font-family: Monaco, sans-serif;
 }
 .description {
