@@ -5,8 +5,11 @@
 	
 	// determine the OS, fine tune the css to match
 	let os = "Unknown";
+	let appV = "";
 	if (navigator.appVersion.indexOf("Win") != -1) os = "Windows";
 	if (navigator.appVersion.indexOf("Mac") != -1) {
+		console.log(navigator.appVersion);
+		appV = navigator.appVersion;
 		if (navigator.appVersion.indexOf("ontouchend") != -1) {
 			os = "iPhone";
 		} else {
@@ -60,6 +63,8 @@
 				Turn your Galaxy Eggs into a nice printable PDF!
 				<br>
 				{os}
+				<br>
+				{appV}
 			</div>
 			<form on:submit|preventDefault={generateEgg}>
 				<input id="textboxid" bind:value={eggNumber} type=number placeholder='#' autoComplete="off"/>
