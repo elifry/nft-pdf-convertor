@@ -13,7 +13,7 @@ let os = "Unknown";
 let appV = "";
 if (navigator.appVersion.indexOf("Win") != -1) {
 	os = "Windows";
-	eggNumSize = '4.6em';
+	eggNumSize = '4.65em';
 }
 if (navigator.appVersion.indexOf("Mac") != -1) {
 	os = "MacOS";
