@@ -14,24 +14,29 @@ import { apiData, drinkNames } from './store.js';
 	document.title = 'Print your egg!';
 
 
-const generateEgg = (async () => {
-  fetch(`https://api.opensea.io/api/v1/assets?token_ids=${eggNumber}&order_direction=desc&offset=0&limit=1&collection=galaxyeggs9999`)
-  .then(response => response.json())
-  .then(data => {
-		// console.log(data);
-		document.title = eggNumber;
-		qrSrc += eggNumber;
-		imgSrc = data.assets[0].image_original_url;
-		description = data.assets[0].collection.description;
-		series = data.assets[0].traits[0].value;
-		apiData.set(data);
-		generate = true;
-		// console.log(htmlOutput);
-  }).catch(error => {
-    console.log(error);
-    return [];
-  });
-});
+	const generateEgg = (async () => {
+	  fetch(`https://api.opensea.io/api/v1/assets?token_ids=${eggNumber}&order_direction=desc&offset=0&limit=1&collection=galaxyeggs9999`)
+	  .then(response => response.json())
+	  .then(data => {
+			// console.log(data);
+			document.title = eggNumber;
+			qrSrc += eggNumber;
+			imgSrc = data.assets[0].image_original_url;
+			description = data.assets[0].collection.description;
+			series = data.assets[0].traits[0].value;
+			apiData.set(data);
+			generate = true;
+			// console.log(htmlOutput);
+	  }).catch(error => {
+	    console.log(error);
+	    return [];
+	  });
+	});
+
+	function pad(num) {
+	    var s = "000" + num;
+	    return s.substr(s.length-4);
+	}
 </script>
 
 <main>
@@ -78,7 +83,7 @@ const generateEgg = (async () => {
 					<QrCode value={qrSrc} size="75" />
 				</div>
 				<div class="eggNum">
-					#{eggNumber}
+					#{pad(eggNumber)}
 				</div>
 			</div>
 			<div class="row2">
