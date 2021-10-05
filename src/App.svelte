@@ -67,7 +67,7 @@ const generateEgg = (async () => {
 	{/if}
 	{#if generate}
 	<div class="displaybox">
-		<div><img class="eggImage" src={imgSrc} alt="egg image"/></div>
+		<div><img class="eggImage" src={imgSrc} alt="galaxy egg"/></div>
 		<div class="descriptionSection">
 			<div class="row1">
 				<div class="collectionSeries">
@@ -123,10 +123,6 @@ const generateEgg = (async () => {
 			size: auto;
 	        margin-top: 160;
 	        margin-bottom: 0;
-	    }
-	    body {
-	        padding-top: 72px;
-	        padding-bottom: 72px ;
 	    }
 	}
 	.container {
@@ -210,11 +206,6 @@ const generateEgg = (async () => {
 		font-size: 4.35em;
 		font-family: Monaco, sans-serif;
 	}
-	.longDescription {
-		flex: 0.4;
-		font-weight: 550;
-		font-size: 4em;
-	}
 	.description {
 		margin-top: 2px;
 		flex: 1.32
@@ -239,8 +230,5 @@ const generateEgg = (async () => {
 		text-align: left;
 		width: 125px;
 		padding-top: 2px;
-	}
-	.mainRowBorder {
-
 	}
 </style>
