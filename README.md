@@ -1,6 +1,8 @@
 # nft-pdf-convertor
 Converts NFTs to a nice printable format as a PDF
 
+Site is live: https://nft-pdf-convertor.vercel.app/
+
 ## Run
 ```
 npm run dev
