@@ -15,7 +15,7 @@ if (navigator.appVersion.indexOf("Mac") != -1) {
 	os = "MacOS";
 	if (navigator.appVersion.indexOf("iPhone") != -1) {
 		os = "iPhone";
-		mainWidth = '650px';
+		mainWidth = '350px';
 	}
 }
 if (navigator.appVersion.indexOf("X11") != -1) os = "UNIX";
