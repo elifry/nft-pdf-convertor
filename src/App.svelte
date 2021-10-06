@@ -24,7 +24,7 @@ if (navigator.appVersion.indexOf("Mac") != -1) {
 }
 if (navigator.appVersion.indexOf("X11") != -1) os = "UNIX";
 if (navigator.appVersion.indexOf("Linux") != -1) os = "Linux";
-	
+
 let imgSrc = "https://galaxy-eggs-images.s3.amazonaws.com/2k/jpg/3621.jpg";
 let description = "collection description";
 let collectionName = "Galaxy Egg"; // hardcoded because name=GalaxyEggs
@@ -43,7 +43,7 @@ const generateEgg = (async () => {
 	fetch(`https://api.opensea.io/api/v1/assets?token_ids=${eggNumber}&order_direction=desc&offset=0&limit=1&collection=galaxyeggs9999`)
 	.then(response => response.json())
 	.then(data => {
-		document.title = eggNumber;
+		document.title = {pad(eggNumber)};
 		qrSrc += eggNumber;
 		imgSrc = data.assets[0].image_original_url;
 		description = data.assets[0].collection.description;
@@ -126,7 +126,7 @@ function pad(num) {
 					</tr>
 					<tr>
 						<th>Token ID</th>
-						<td>{eggNumber}</td>
+						<td>{pad(eggNumber)}</td>
 					</tr>
 					<tr>
 						<th>Token Standard</th>
