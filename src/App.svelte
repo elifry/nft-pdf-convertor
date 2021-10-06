@@ -40,7 +40,7 @@ let ethAddress = '0x51f01329d318ED23b78E47eFa336C943BFC7Bf22';
 	
 function colorCallback(rgba) {
 	console.log(rgba);
-	bgColor = `rgb(${rgba.r},${rgba.g},${rgba.b})`;
+	bgColor = `rgb(${rgba.detail.r},${rgba.detail.g},${rgba.detail.b})`;
 	console.log(bgColor);
 }
 
