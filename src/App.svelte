@@ -158,6 +158,9 @@ function pad(num) {
 	margin-bottom: 0;
     }
 }
+* {
+	background-color: var(--bg-color);
+}
 .container {
 	display: flex;
 	justify-content: center;
@@ -196,7 +199,6 @@ function pad(num) {
 .displaybox {
 	height: 842px;
 	width: var(--main-width);
-	background-color: var(--bg-color);
 }
 .eggImage {
 	max-width:100%;
