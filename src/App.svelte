@@ -1,47 +1,46 @@
 <script>
 import { onMount } from "svelte";
 import QrCode from "svelte-qrcode";
-import { apiData, drinkNames } from './store.js';
 
 // Default styles (macOS)
-let mainWidth = '719px';
+let mainWidth = '718px';
 let eggNumSize = '4.35em';
 
 
 // determine the OS, fine tune the css to match
-let os = "Unknown";
+let os = "MacOS"; // default to MacOS
 let appV = "";
 if (navigator.appVersion.indexOf("Win") != -1) {
 	os = "Windows";
 	eggNumSize = '4.65em';
 }
-if (navigator.appVersion.indexOf("Mac") != -1) {
-	os = "MacOS";
-	if (navigator.appVersion.indexOf("iPhone") != -1) {
-		os = "iPhone";
-		//mainWidth = '350px';
-		eggNumSize = '4.6em';
-	}
+if (navigator.appVersion.indexOf("iPhone") != -1) {
+	os = "iPhone";
+	eggNumSize = '4.6em';
 }
-if (navigator.appVersion.indexOf("X11") != -1) os = "UNIX";
-if (navigator.appVersion.indexOf("Linux") != -1) os = "Linux";
+//if (navigator.appVersion.indexOf("X11") != -1) os = "UNIX";
+//if (navigator.appVersion.indexOf("Linux") != -1) os = "Linux";
 	
-let imgSrc = "https://galaxy-eggs-images.s3.amazonaws.com/2k/jpg/3621.jpg";
+let imgSrc = 'https://galaxy-eggs-images.s3.amazonaws.com/2k/jpg/3621.jpg';
 let description = "collection description";
-let collectionName = "Galaxy Egg"; // hardcoded because name=GalaxyEggs
-let collectionNamePlural = "Galaxy Eggs"; // hardcoded because name=GalaxyEggs
-let eggNumber = "";
-let series = "series";
-let qrSrc = `https://opensea.io/assets/0xa08126f5e1ed91a635987071e6ff5eb2aeb67c48/`
+let longDescription = '(Art)ificial is an art studio that explores the boundaries of technology and art. Our first project is Galaxy Eggs - a generative collection of 9,999 Eggs of the metaverse that live on the Ethereum Blockchain. Our Art Director, Gal Barkan, has been creating futuristic and sci-fi art for the past 20 years - this collection is the culmination of a lifetime of work on one hand, and the beginning of a new chapter in taking part in the creation of the metaverse.';
+let collectionName = 'Galaxy Egg'; // hardcoded because name=GalaxyEggs
+let collectionNamePlural = 'Galaxy Eggs'; // hardcoded because name=GalaxyEggs
+let eggNumber = '';
+let series = 'series';
+let qrSrc = 'https://opensea.io/assets/0xa08126f5e1ed91a635987071e6ff5eb2aeb67c48/';
 let generate = false;
+let nftIdentifierLength = 4;
 document.title = 'Print your egg!';
+	
+let web3Address = 'elifry.eth';
+let ethAddress = '0x51f01329d318ED23b78E47eFa336C943BFC7Bf22';
 
 
 const generateEgg = (async () => {
 	fetch(`https://api.opensea.io/api/v1/assets?token_ids=${eggNumber}&order_direction=desc&offset=0&limit=1&collection=galaxyeggs9999`)
 	.then(response => response.json())
 	.then(data => {
-		// console.log(data);
 		document.title = eggNumber;
 		qrSrc += eggNumber;
 		imgSrc = data.assets[0].image_original_url;
@@ -49,16 +48,15 @@ const generateEgg = (async () => {
 		series = data.assets[0].traits[0].value;
 		apiData.set(data);
 		generate = true;
-	// console.log(htmlOutput);
 	}).catch(error => {
-	console.log(error);
-	return [];
+		console.log(error);
+		return [];
 	});
 });
 
 function pad(num) {
-    var s = "000" + num;
-    return s.substr(s.length-4);
+    let s = '0'.repeat(nftIdentifierLength-1) + num;
+    return s.substr(s.length-nftIdentifierLength);
 }
 </script>
 
@@ -86,8 +84,8 @@ function pad(num) {
 		</div>
 		<div class="shill">
 			<div class="shilllinefirst">Like this tool? Here's my eth address:</div>
-			<div class="shillline">elifry.eth</div>
-			<div class="shillline">0x51f01329d318ED23b78E47eFa336C943BFC7Bf22</div>
+			<div class="shillline">{web3Address}</div>
+			<div class="shillline">{ethAddress}</div>
 			<a href="https://twitter.com/acuriousother?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @acuriousother</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 		</div>
 	</div>
@@ -111,9 +109,7 @@ function pad(num) {
 		</div>
 		<div class="row2">
 			<div class="description">
-				<p>
-					(Art)ificial is an art studio that explores the boundaries of technology and art. Our first project is Galaxy Eggs - a generative collection of 9,999 Eggs of the metaverse that live on the Ethereum Blockchain. Our Art Director, Gal Barkan, has been creating futuristic and sci-fi art for the past 20 years - this collection is the culmination of a lifetime of work on one hand, and the beginning of a new chapter in taking part in the creation of the metaverse.
-				</p>
+				<p>{longDescription}</p>
 			</div>
 			<div class="tableData">
 				<table border=1 frame=void rules=rows>
@@ -178,7 +174,7 @@ function pad(num) {
     font-size:2em;
 }
 .shill {
-	margin-top: 8em;
+	margin-top: 7em;
 }
 .shilllinefirst {
 	padding-bottom: 8px;
