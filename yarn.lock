@@ -23,6 +23,11 @@
     "chalk" "^2.0.0"
     "js-tokens" "^4.0.0"
 
+"@polka/url@^0.5.0":
+  "integrity" "sha512-oZLYFEAzUKyi3SKnXvj32ZCEGH6RDnao7COuCVhDydMS9NrCSVXhM79VaKyP5+Zc33m0QXEd2DN3UkU7OsHcfw=="
+  "resolved" "https://registry.npmjs.org/@polka/url/-/url-0.5.0.tgz"
+  "version" "0.5.0"
+
 "@polka/url@^1.0.0-next.20":
   "integrity" "sha512-88p7+M0QGxKpmnkfXjS4V26AnoC/eiqZutE8GLdaI5X12NY75bXSdTY9NkmYb2Xyk1O+MmkuO6Frmsj84V6I8Q=="
   "resolved" "https://registry.npmjs.org/@polka/url/-/url-1.0.0-next.20.tgz"
@@ -510,11 +515,6 @@
   "resolved" "https://registry.npmjs.org/mri/-/mri-1.2.0.tgz"
   "version" "1.2.0"
 
-"node-pandoc@^0.3.0":
-  "integrity" "sha1-1GV3zQpyr0FTU/y4oBF622JC+cg="
-  "resolved" "https://registry.npmjs.org/node-pandoc/-/node-pandoc-0.3.0.tgz"
-  "version" "0.3.0"
-
 "normalize-path@^3.0.0", "normalize-path@~3.0.0":
   "integrity" "sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA=="
   "resolved" "https://registry.npmjs.org/normalize-path/-/normalize-path-3.0.0.tgz"
@@ -672,7 +672,7 @@
   optionalDependencies:
     "fsevents" "~2.3.2"
 
-"sade@^1.6.0":
+"sade@^1.4.0", "sade@^1.6.0":
   "integrity" "sha512-y5yauMD93rX840MwUJr7C1ysLFBgMspsdTo4UVrDg3fXDvtwOyIqykhVAAm6fk/3au77773itJStObgK+LKaiA=="
   "resolved" "https://registry.npmjs.org/sade/-/sade-1.7.4.tgz"
   "version" "1.7.4"
@@ -701,6 +701,19 @@
   "resolved" "https://registry.npmjs.org/set-blocking/-/set-blocking-2.0.0.tgz"
   "version" "2.0.0"
 
+"sirv-cli@^0.4.4":
+  "integrity" "sha512-/Vj85/kBvPL+n9ibgX6FicLE8VjidC1BhlX67PYPBfbBAphzR6i0k0HtU5c2arejfU3uzq8l3SYPCwl1x7z6Ww=="
+  "resolved" "https://registry.npmjs.org/sirv-cli/-/sirv-cli-0.4.6.tgz"
+  "version" "0.4.6"
+  dependencies:
+    "console-clear" "^1.1.0"
+    "get-port" "^3.2.0"
+    "kleur" "^3.0.0"
+    "local-access" "^1.0.1"
+    "sade" "^1.4.0"
+    "sirv" "^0.4.6"
+    "tinydate" "^1.0.0"
+
 "sirv-cli@^1.0.0":
   "integrity" "sha512-yyUTNr984ANKDloqepkYbBSqvx3buwYg2sQKPWjSU+IBia5loaoka2If8N9CMwt8AfP179cdEl7kYJ//iWJHjQ=="
   "resolved" "https://registry.npmjs.org/sirv-cli/-/sirv-cli-1.0.14.tgz"
@@ -714,6 +727,14 @@
     "semiver" "^1.0.0"
     "sirv" "^1.0.13"
     "tinydate" "^1.0.0"
+
+"sirv@^0.4.6":
+  "integrity" "sha512-rYpOXlNbpHiY4nVXxuDf4mXPvKz1reZGap/LkWp9TvcZ84qD/nPBjjH/6GZsgIjVMbOslnY8YYULAyP8jMn1GQ=="
+  "resolved" "https://registry.npmjs.org/sirv/-/sirv-0.4.6.tgz"
+  "version" "0.4.6"
+  dependencies:
+    "@polka/url" "^0.5.0"
+    "mime" "^2.3.1"
 
 "sirv@^1.0.13":
   "integrity" "sha512-qx9go5yraB7ekT7bCMqUHJ5jEaOC/GXBxUWv+jeWnb7WzHUFdcQPGWk7YmAwFBaQBrogpuSqd/azbC2lZRqqmw=="
@@ -776,6 +797,13 @@
   "version" "7.2.0"
   dependencies:
     "has-flag" "^4.0.0"
+
+"svelte-color-picker@^1.0.0":
+  "integrity" "sha512-Xu5efoJKPEouO+rSLkbVR/0EI4ewzO2PgtapC7FdvPlYaCykdqm7YvsoTLaTSNdIljoBtHzNaYgtYxc/ThL5+w=="
+  "resolved" "https://registry.npmjs.org/svelte-color-picker/-/svelte-color-picker-1.0.7.tgz"
+  "version" "1.0.7"
+  dependencies:
+    "sirv-cli" "^0.4.4"
 
 "svelte-qrcode@^1.0.0":
   "integrity" "sha512-WrOvyyxtUzu32gVIDxcFMy0A7uUpbl/8yHaTNOsUaI8W5V4wa7AmReCjffhNY2aS42CqCLJ6qdwUoj/KxmeZzA=="
