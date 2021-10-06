@@ -1,10 +1,12 @@
 <script>
 import { onMount } from "svelte";
 import QrCode from "svelte-qrcode";
+import {HsvPicker} from 'svelte-color-picker';
 
 // Default styles (macOS)
 let mainWidth = '718px';
 let eggNumSize = '4.35em';
+let bgColor = 'white';
 
 
 // determine the OS, fine tune the css to match
@@ -35,6 +37,11 @@ document.title = 'Print your egg!';
 
 let web3Address = 'elifry.eth';
 let ethAddress = '0x51f01329d318ED23b78E47eFa336C943BFC7Bf22';
+	
+function colorCallback(rgba) {
+	bgColor = rgba;
+	console.log(rgba.detail);
+}
 
 // When generate button clicked, call the opensea API for details on the egg
 const generateEgg = (async () => {
@@ -71,6 +78,7 @@ function pad(num) {
 			<input id="textboxid" bind:value={eggNumber} type=number placeholder='#' autoComplete="off"/>
 			<button id="buttonid" type="submit" disabled={!eggNumber} class="btn btn__primary btn__lg">Generate</button>
 		</form>
+		<HsvPicker on:colorChange={colorCallback} startColor={"#FBFBFB"}/>
 		<div class="howto">
 			How it works:
 			<br><br>
@@ -92,7 +100,7 @@ function pad(num) {
 </div>
 {/if}
 {#if generate}
-<div class="displaybox" style="--main-width: {mainWidth}">
+<div class="displaybox" style="--main-width: {mainWidth}; --bg-color: {bgColor}">
 	<div><img class="eggImage" src={imgSrc} alt="galaxy egg"/></div>
 	<div class="descriptionSection" style="--main-width: {mainWidth}">
 		<div class="row1">
@@ -187,6 +195,7 @@ function pad(num) {
 .displaybox {
 	height: 842px;
 	width: var(--main-width);
+	background-color: var(--bg-color);
 }
 .eggImage {
 	max-width:100%;
