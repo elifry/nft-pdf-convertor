@@ -157,6 +157,7 @@ function pad(num) {
 	margin-top: 160;
 	margin-bottom: 0;
 	background-color: var(--bg-color);
+	-webkit-print-color-adjust: exact !important;
     }
 }
 * {
