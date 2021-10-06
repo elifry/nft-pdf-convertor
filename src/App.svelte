@@ -156,6 +156,7 @@ function pad(num) {
 	size: auto;
 	margin-top: 160;
 	margin-bottom: 0;
+	background-color: var(--bg-color);
     }
 }
 * {
