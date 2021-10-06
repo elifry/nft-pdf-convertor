@@ -39,7 +39,7 @@ let web3Address = 'elifry.eth';
 let ethAddress = '0x51f01329d318ED23b78E47eFa336C943BFC7Bf22';
 	
 function colorCallback(rgba) {
-	bgColor = `rgb({rgba.r},{rgba.g},{rgba.b})`;
+	bgColor = `rgb(${rgba.r},${rgba.g},${rgba.b})`;
 	console.log(bgColor);
 }
 
