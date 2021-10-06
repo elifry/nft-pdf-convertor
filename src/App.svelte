@@ -43,7 +43,7 @@ const generateEgg = (async () => {
 	fetch(`https://api.opensea.io/api/v1/assets?token_ids=${eggNumber}&order_direction=desc&offset=0&limit=1&collection=galaxyeggs9999`)
 	.then(response => response.json())
 	.then(data => {
-		document.title = {pad(eggNumber)};
+		document.title = pad(eggNumber);
 		qrSrc += eggNumber;
 		imgSrc = data.assets[0].image_original_url;
 		description = data.assets[0].collection.description;
