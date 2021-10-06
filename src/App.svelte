@@ -46,7 +46,6 @@ const generateEgg = (async () => {
 		imgSrc = data.assets[0].image_original_url;
 		description = data.assets[0].collection.description;
 		series = data.assets[0].traits[0].value;
-		apiData.set(data);
 		generate = true;
 	}).catch(error => {
 		console.log(error);
