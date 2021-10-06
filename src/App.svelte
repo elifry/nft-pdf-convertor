@@ -40,7 +40,7 @@ let ethAddress = '0x51f01329d318ED23b78E47eFa336C943BFC7Bf22';
 	
 function colorCallback(rgba) {
 	bgColor = `rgb({rgba.r},{rgba.g},{rgba.b})`;
-	console.log(rgba.detail);
+	console.log(bgColor);
 }
 
 // When generate button clicked, call the opensea API for details on the egg
@@ -100,7 +100,7 @@ function pad(num) {
 </div>
 {/if}
 {#if generate}
-<div class="displaybox" style="--main-width: {mainWidth}; --bg-color: {bgColor}">
+<div class="displaybox" style="--main-width: {mainWidth};--bg-color: {bgColor}">
 	<div><img class="eggImage" src={imgSrc} alt="galaxy egg"/></div>
 	<div class="descriptionSection" style="--main-width: {mainWidth}">
 		<div class="row1">
