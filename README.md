@@ -8,7 +8,7 @@ Site is live: https://nft-pdf-convertor.vercel.app/
 npm run dev
 ```
 
-& go to http://localhost:3000/
+& go to http://localhost:5000/
 
 ## Build for release
 ```
