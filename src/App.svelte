@@ -1,10 +1,13 @@
 <script>
 import { onMount } from "svelte";
 import QrCode from "svelte-qrcode";
+import {HsvPicker} from 'svelte-color-picker';
 
 // Default styles (macOS)
 let mainWidth = '718px';
 let eggNumSize = '4.35em';
+let txtColor = '#0d0c0d';
+let collSeriesBorder = '#AFAFAF';
 
 
 // determine the OS, fine tune the css to match
@@ -35,6 +38,11 @@ document.title = 'Print your egg!';
 
 let web3Address = 'elifry.eth';
 let ethAddress = '0x51f01329d318ED23b78E47eFa336C943BFC7Bf22';
+
+function txtColorCallback(rgba) {
+	txtColor = `rgb(${rgba.detail.r},${rgba.detail.g},${rgba.detail.b},${rgba.detail.a})`;
+	collSeriesBorder = `rgb(${rgba.detail.r},${rgba.detail.g},${rgba.detail.b},${rgba.detail.a - 0.5})`;
+}
 
 // When generate button clicked, call the opensea API for details on the egg
 const generateEgg = (async () => {
@@ -92,11 +100,14 @@ function pad(num) {
 </div>
 {/if}
 {#if generate}
-<div class="displaybox" style="--main-width: {mainWidth}">
+<div class="no-print">
+	<HsvPicker on:colorChange={txtColorCallback} startColor={"#0d0c0d"}/>
+</div>
+<div class="displaybox" style="--main-width: {mainWidth};--txt-color: {txtColor}">
 	<div><img class="eggImage" src={imgSrc} alt="galaxy egg"/></div>
 	<div class="descriptionSection" style="--main-width: {mainWidth}">
 		<div class="row1">
-			<div class="collectionSeries">
+			<div class="collectionSeries" style="--coll-seriesborder: {collSeriesBorder}">
 				<div class="collectionName">{series}</div>
 				<div class="series">{collectionName}</div>
 			</div>
@@ -144,10 +155,17 @@ function pad(num) {
 <style>
 @media print {
     @page {
-	size: auto;
-	margin-top: 160;
-	margin-bottom: 0;
+		size: auto;
+		margin-top: 160;
+		margin-bottom: 0;
     }
+	.no-print, .no-print *
+    {
+        display: none !important;
+    }
+}
+* {
+	color: var(--txt-color);
 }
 .container {
 	display: flex;
@@ -191,6 +209,7 @@ function pad(num) {
 .eggImage {
 	max-width:100%;
 	max-height:100%;
+	cursor: crosshair;
 }
 .descriptionSection {
 	height: 247px;
@@ -204,7 +223,7 @@ function pad(num) {
 	padding-top: 4px;
 }
 .collectionSeries {
-	border-left: 4px solid #AFAFAF;
+	border-left: 4px solid var(--coll-seriesborder);
 	flex: 1.33;
 	margin-top: 25px;
 }
