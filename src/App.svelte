@@ -10,6 +10,8 @@ let txtColor = '#0d0c0d';
 let newTextColor = false;
 let collSeriesBorder = '#AFAFAF';
 
+let showReal = false;
+
 
 // determine the OS, fine tune the css to match
 let os = "MacOS"; // default to MacOS
@@ -69,45 +71,97 @@ function pad(num) {
 </script>
 
 <main>
-{#if !generate}
-<div class="container">
-	<div class="topSection">
-		<div class="intro">
-			Turn your Galaxy Eggs into a nice printable PDF!
-		</div>
-		<form on:submit|preventDefault={generateEgg}>
-			<input id="textboxid" bind:value={eggNumber} type=number placeholder='#' autoComplete="off"/>
-			<button id="buttonid" type="submit" disabled={!eggNumber} class="btn btn__primary btn__lg">Generate</button>
-		</form>
-		<div class="howto">
-			How it works:
-			<br><br>
-			Put in your egg number and hit "Generate".
-			<br>
-			Once it is generated, right-click to print, and save as PDF.
-			<br><br>
-			NOTE: Make sure you have Headers and Footers turned off
-			<br>
-			(Chrome: More Settings > Options > Headers and footers)
-		</div>
-		<div class="shill">
-			<div class="shilllinefirst">Like this tool? Here's my eth address:</div>
-			<div class="shillline">{web3Address}</div>
-			<div class="shillline">{ethAddress}</div>
-			<a href="https://twitter.com/acuriousother?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @acuriousother</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<div class='top-container no-print'>
+	<div class="settings-box">
+		<div class="">
+			<div class="topSection">
+				<div class="intro">
+					Turn your Galaxy Eggs into a nice printable PDF!
+				</div>
+				<form on:submit|preventDefault={generateEgg}>
+					<input id="textboxid" bind:value={eggNumber} type=number placeholder='#' autoComplete="off"/>
+					<button id="buttonid" type="submit" disabled={!eggNumber} class="btn btn__primary btn__lg">Generate</button>
+					<!-- want another button, for download -->
+					<!-- <button id="buttonid" type="submit" disabled={!eggNumber} class="btn btn__primary btn__lg">Generate</button> -->
+				</form>
+				<HsvPicker on:colorChange={txtColorCallback} startColor={"#0d0c0d"}/>
+				<div class="howto">
+					How it works:
+					<br><br>
+					Put in your egg number and hit "Generate".
+					<br>
+					Once it is generated, right-click to print, and save as PDF.
+					<br><br>
+					NOTE: Make sure you have Headers and Footers turned off
+					<br>
+					(Chrome: More Settings > Options > Headers and footers)
+				</div>
+				<div class="shill">
+					<div class="shilllinefirst">Like this tool? Here's my eth address:</div>
+					<div class="shillline">{web3Address}</div>
+					<div class="shillline">{ethAddress}</div>
+					<a href="https://twitter.com/acuriousother?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @acuriousother</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+				</div>
+			</div>
 		</div>
 	</div>
+	{#if generate}
+	<div class="display-box shrink" style="--main-width: {mainWidth};--txt-color: {txtColor}">
+		<div><img class="egg-image" src={imgSrc} alt="galaxy egg"/></div>
+		<div class="descriptionSection" style="--main-width: {mainWidth}">
+			<div class="row1">
+				<div class="qr-code">
+					<QRCode codeValue={qrSrc} squareSize="80" color={txtColor}/>
+				</div>
+				<div class="collectionSeries" style="--coll-seriesborder: {collSeriesBorder}">
+					<div class="collectionName">{series}</div>
+					<div class="series">{collectionName}</div>
+				</div>
+				<div class="eggNum" style="--egg-num-size: {eggNumSize}">
+					#{pad(eggNumber)}
+				</div>
+			</div>
+			<div class="row2">
+				<div class="description">
+					<p>{longDescription}</p>
+				</div>
+				<div class="tableData">
+					<table border=1 frame=void rules=rows>
+						<tr>
+							<th>Collection</th>
+							<td>{collectionNamePlural}</td>
+						</tr>
+						<tr>
+							<th>Series</th>
+							<td>{series}</td>
+						</tr>
+						<tr>
+							<th>Token ID</th>
+							<td>{pad(eggNumber)}</td>
+						</tr>
+						<tr>
+							<th>Token Standard</th>
+							<td>ERC-721</td>
+						</tr>
+						<tr>
+							<th>Blockchain</th>
+							<td>Ethereum</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	{/if}
 </div>
-{/if}
-{#if generate}
-<div class="no-print">
-	<HsvPicker on:colorChange={txtColorCallback} startColor={"#0d0c0d"}/>
-</div>
-<div class="displaybox" style="--main-width: {mainWidth};--txt-color: {txtColor}">
-	<div><img class="eggImage" src={imgSrc} alt="galaxy egg"/></div>
+
+<!-- {#if !generate} -->
+<!-- A version of it that is only for printing -->
+<div class="display-box hidden" style="--main-width: {mainWidth};--txt-color: {txtColor}">
+	<div><img class="egg-image" src={imgSrc} alt="galaxy egg"/></div>
 	<div class="descriptionSection" style="--main-width: {mainWidth}">
 		<div class="row1">
-			<div class="qrCode">
+			<div class="qr-code">
 				<QRCode codeValue={qrSrc} squareSize="80" color={txtColor}/>
 			</div>
 			<div class="collectionSeries" style="--coll-seriesborder: {collSeriesBorder}">
@@ -149,7 +203,7 @@ function pad(num) {
 		</div>
 	</div>
 </div>
-{/if}
+<!-- {/if} -->
 </main>
 
 <style>
@@ -162,15 +216,29 @@ function pad(num) {
 	.no-print {
         display: none !important;
     }
+	.hidden {
+	  visibility: visible !important;
+	}
 }
 * {
 	color: var(--txt-color);
 }
+.hidden {
+  visibility: hidden;
+}
 .shrink {
-	-webkit-transform:scale(0.5);
-	-moz-transform:scale(0.5);
-	-ms-transform:scale(0.5);
-	transform:scale(0.5);
+	-webkit-transform:scale(0.6);
+	-moz-transform:scale(0.6);
+	-ms-transform:scale(0.6);
+	transform:scale(0.6);
+}
+.top-container {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+.settings-box {
+	flex: 1.33;
 }
 .container {
 	display: flex;
@@ -207,11 +275,12 @@ function pad(num) {
 	padding-bottom: 8px;
 	font-weight: 600;
 }
-.displaybox {
+.display-box {
 	height: 842px;
 	width: var(--main-width);
+	flex: 1.33;
 }
-.eggImage {
+.egg-image {
 	max-width:100%;
 	max-height:100%;
 	cursor: crosshair;
@@ -243,7 +312,7 @@ function pad(num) {
 	font-weight: 600;
 	font-size: 2.5em;
 }
-.qrCode {
+.qr-code {
 	flex: 0.3;
 	margin-top: 25px;
 }
