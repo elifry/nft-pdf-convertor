@@ -159,8 +159,7 @@ function pad(num) {
 		margin-top: 160;
 		margin-bottom: 0;
     }
-	.no-print, .no-print *
-    {
+	.no-print {
         display: none !important;
     }
 }
@@ -265,6 +264,7 @@ p {
 table {
 	margin-top: 12px;
 	font-size: 0.8em;
+	border-color: var(--coll-seriesborder);
 }
 table td {
     padding: 5px 0;
