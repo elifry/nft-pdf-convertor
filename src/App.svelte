@@ -1,10 +1,16 @@
 <script>
 import { onMount } from "svelte";
-import QrCode from "svelte-qrcode";
+import QRCode from "./QRJS.svelte"
+import {HsvPicker} from 'svelte-color-picker';
 
 // Default styles (macOS)
 let mainWidth = '718px';
 let eggNumSize = '4.35em';
+let txtColor = '#0d0c0d';
+let newTextColor = false;
+let collSeriesBorder = '#AFAFAF';
+
+let showReal = false;
 
 
 // determine the OS, fine tune the css to match
@@ -18,8 +24,6 @@ if (navigator.appVersion.indexOf("iPhone") != -1) {
 	os = "iPhone";
 	eggNumSize = '4.6em';
 }
-//if (navigator.appVersion.indexOf("X11") != -1) os = "UNIX";
-//if (navigator.appVersion.indexOf("Linux") != -1) os = "Linux";
 
 let imgSrc = 'https://galaxy-eggs-images.s3.amazonaws.com/2k/jpg/3621.jpg';
 let description = "collection description";
@@ -35,6 +39,12 @@ document.title = 'Print your egg!';
 
 let web3Address = 'elifry.eth';
 let ethAddress = '0x51f01329d318ED23b78E47eFa336C943BFC7Bf22';
+
+function txtColorCallback(rgba) {
+	let [r, g, b, a] = [rgba.detail.r, rgba.detail.g, rgba.detail.b, rgba.detail.a];
+	txtColor = `rgb(${r},${g},${b},${a})`;
+	collSeriesBorder = `rgb(${r},${g},${b},${a * 0.5})`;
+}
 
 // When generate button clicked, call the opensea API for details on the egg
 const generateEgg = (async () => {
@@ -61,47 +71,102 @@ function pad(num) {
 </script>
 
 <main>
-{#if !generate}
-<div class="container">
-	<div class="topSection">
-		<div class="intro">
-			Turn your Galaxy Eggs into a nice printable PDF!
-		</div>
-		<form on:submit|preventDefault={generateEgg}>
-			<input id="textboxid" bind:value={eggNumber} type=number placeholder='#' autoComplete="off"/>
-			<button id="buttonid" type="submit" disabled={!eggNumber} class="btn btn__primary btn__lg">Generate</button>
-		</form>
-		<div class="howto">
-			How it works:
-			<br><br>
-			Put in your egg number and hit "Generate".
-			<br>
-			Once it is generated, right-click to print, and save as PDF.
-			<br><br>
-			NOTE: Make sure you have Headers and Footers turned off
-			<br>
-			(Chrome: More Settings > Options > Headers and footers)
-		</div>
-		<div class="shill">
-			<div class="shilllinefirst">Like this tool? Here's my eth address:</div>
-			<div class="shillline">{web3Address}</div>
-			<div class="shillline">{ethAddress}</div>
-			<a href="https://twitter.com/acuriousother?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @acuriousother</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<div class='top-container no-print'>
+	<div class="settings-box">
+		<div class="">
+			<div class="topSection">
+				<div class="intro">
+					Turn your Galaxy Eggs into a nice printable PDF!
+				</div>
+				<form on:submit|preventDefault={generateEgg}>
+					<input id="textboxid" bind:value={eggNumber} type=number placeholder='#' autoComplete="off"/>
+					<button id="buttonid" type="submit" disabled={!eggNumber} class="btn btn__primary btn__lg">Generate</button>
+					<!-- want another button, for download -->
+					<!-- <button id="buttonid" type="submit" disabled={!eggNumber} class="btn btn__primary btn__lg">Generate</button> -->
+				</form>
+				<HsvPicker on:colorChange={txtColorCallback} startColor={"#0d0c0d"}/>
+				<div class="howto">
+					How it works:
+					<br><br>
+					Put in your egg number and hit "Generate".
+					<br>
+					Once it is generated, right-click to print, and save as PDF.
+					<br><br>
+					NOTE: Make sure you have Headers and Footers turned off
+					<br>
+					(Chrome: More Settings > Options > Headers and footers)
+				</div>
+				<div class="shill">
+					<div class="shilllinefirst">Like this tool? Here's my eth address:</div>
+					<div class="shillline">{web3Address}</div>
+					<div class="shillline">{ethAddress}</div>
+					<a href="https://twitter.com/acuriousother?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @acuriousother</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+				</div>
+			</div>
 		</div>
 	</div>
+	{#if generate}
+	<div class="display-box shrink" style="--main-width: {mainWidth};--txt-color: {txtColor}">
+		<div><img class="egg-image" src={imgSrc} alt="galaxy egg"/></div>
+		<div class="descriptionSection" style="--main-width: {mainWidth}">
+			<div class="row1">
+				<div class="qr-code">
+					<QRCode codeValue={qrSrc} squareSize="80" color={txtColor}/>
+				</div>
+				<div class="collectionSeries" style="--coll-seriesborder: {collSeriesBorder}">
+					<div class="collectionName">{series}</div>
+					<div class="series">{collectionName}</div>
+				</div>
+				<div class="eggNum" style="--egg-num-size: {eggNumSize}">
+					#{pad(eggNumber)}
+				</div>
+			</div>
+			<div class="row2">
+				<div class="description">
+					<p>{longDescription}</p>
+				</div>
+				<div class="tableData">
+					<table border=1 frame=void rules=rows>
+						<tr>
+							<th>Collection</th>
+							<td>{collectionNamePlural}</td>
+						</tr>
+						<tr>
+							<th>Series</th>
+							<td>{series}</td>
+						</tr>
+						<tr>
+							<th>Token ID</th>
+							<td>{pad(eggNumber)}</td>
+						</tr>
+						<tr>
+							<th>Token Standard</th>
+							<td>ERC-721</td>
+						</tr>
+						<tr>
+							<th>Blockchain</th>
+							<td>Ethereum</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	{/if}
 </div>
-{/if}
-{#if generate}
-<div class="displaybox" style="--main-width: {mainWidth}">
-	<div><img class="eggImage" src={imgSrc} alt="galaxy egg"/></div>
+
+<!-- {#if !generate} -->
+<!-- A version of it that is only for printing -->
+<div class="display-box hidden" style="--main-width: {mainWidth};--txt-color: {txtColor}">
+	<div><img class="egg-image" src={imgSrc} alt="galaxy egg"/></div>
 	<div class="descriptionSection" style="--main-width: {mainWidth}">
 		<div class="row1">
-			<div class="collectionSeries">
+			<div class="qr-code">
+				<QRCode codeValue={qrSrc} squareSize="80" color={txtColor}/>
+			</div>
+			<div class="collectionSeries" style="--coll-seriesborder: {collSeriesBorder}">
 				<div class="collectionName">{series}</div>
 				<div class="series">{collectionName}</div>
-			</div>
-			<div class="qrCode">
-				<QrCode value={qrSrc} size="75" />
 			</div>
 			<div class="eggNum" style="--egg-num-size: {eggNumSize}">
 				#{pad(eggNumber)}
@@ -138,16 +203,42 @@ function pad(num) {
 		</div>
 	</div>
 </div>
-{/if}
+<!-- {/if} -->
 </main>
 
 <style>
 @media print {
     @page {
-	size: auto;
-	margin-top: 160;
-	margin-bottom: 0;
+		size: auto;
+		margin-top: 160;
+		margin-bottom: 0;
     }
+	.no-print {
+        display: none !important;
+    }
+	.hidden {
+	  visibility: visible !important;
+	}
+}
+* {
+	color: var(--txt-color);
+}
+.hidden {
+  visibility: hidden;
+}
+.shrink {
+	-webkit-transform:scale(0.6);
+	-moz-transform:scale(0.6);
+	-ms-transform:scale(0.6);
+	transform:scale(0.6);
+}
+.top-container {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+.settings-box {
+	flex: 1.33;
 }
 .container {
 	display: flex;
@@ -184,13 +275,15 @@ function pad(num) {
 	padding-bottom: 8px;
 	font-weight: 600;
 }
-.displaybox {
+.display-box {
 	height: 842px;
 	width: var(--main-width);
+	flex: 1.33;
 }
-.eggImage {
+.egg-image {
 	max-width:100%;
 	max-height:100%;
+	cursor: crosshair;
 }
 .descriptionSection {
 	height: 247px;
@@ -204,7 +297,7 @@ function pad(num) {
 	padding-top: 4px;
 }
 .collectionSeries {
-	border-left: 4px solid #AFAFAF;
+	border-left: 4px solid var(--coll-seriesborder);
 	flex: 1.33;
 	margin-top: 25px;
 }
@@ -219,8 +312,8 @@ function pad(num) {
 	font-weight: 600;
 	font-size: 2.5em;
 }
-.qrCode {
-	flex: 0.4;
+.qr-code {
+	flex: 0.3;
 	margin-top: 25px;
 }
 .eggNum {
@@ -246,6 +339,7 @@ p {
 table {
 	margin-top: 12px;
 	font-size: 0.8em;
+	border-color: var(--coll-seriesborder);
 }
 table td {
     padding: 5px 0;
