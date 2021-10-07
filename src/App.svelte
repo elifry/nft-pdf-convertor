@@ -1,12 +1,13 @@
 <script>
 import { onMount } from "svelte";
-import QrCode from "svelte-qrcode";
+import QRCode from "./QRJS.svelte"
 import {HsvPicker} from 'svelte-color-picker';
 
 // Default styles (macOS)
 let mainWidth = '718px';
 let eggNumSize = '4.35em';
 let txtColor = '#0d0c0d';
+let newTextColor = false;
 let collSeriesBorder = '#AFAFAF';
 
 
@@ -21,8 +22,6 @@ if (navigator.appVersion.indexOf("iPhone") != -1) {
 	os = "iPhone";
 	eggNumSize = '4.6em';
 }
-//if (navigator.appVersion.indexOf("X11") != -1) os = "UNIX";
-//if (navigator.appVersion.indexOf("Linux") != -1) os = "Linux";
 
 let imgSrc = 'https://galaxy-eggs-images.s3.amazonaws.com/2k/jpg/3621.jpg';
 let description = "collection description";
@@ -40,8 +39,9 @@ let web3Address = 'elifry.eth';
 let ethAddress = '0x51f01329d318ED23b78E47eFa336C943BFC7Bf22';
 
 function txtColorCallback(rgba) {
-	txtColor = `rgb(${rgba.detail.r},${rgba.detail.g},${rgba.detail.b},${rgba.detail.a})`;
-	collSeriesBorder = `rgb(${rgba.detail.r},${rgba.detail.g},${rgba.detail.b},${rgba.detail.a - 0.5})`;
+	let [r, g, b, a] = [rgba.detail.r, rgba.detail.g, rgba.detail.b, rgba.detail.a];
+	txtColor = `rgb(${r},${g},${b},${a})`;
+	collSeriesBorder = `rgb(${r},${g},${b},${a * 0.5})`;
 }
 
 // When generate button clicked, call the opensea API for details on the egg
@@ -107,12 +107,12 @@ function pad(num) {
 	<div><img class="eggImage" src={imgSrc} alt="galaxy egg"/></div>
 	<div class="descriptionSection" style="--main-width: {mainWidth}">
 		<div class="row1">
+			<div class="qrCode">
+				<QRCode codeValue={qrSrc} squareSize="80" color={txtColor}/>
+			</div>
 			<div class="collectionSeries" style="--coll-seriesborder: {collSeriesBorder}">
 				<div class="collectionName">{series}</div>
 				<div class="series">{collectionName}</div>
-			</div>
-			<div class="qrCode">
-				<QrCode value={qrSrc} size="75" />
 			</div>
 			<div class="eggNum" style="--egg-num-size: {eggNumSize}">
 				#{pad(eggNumber)}
@@ -165,6 +165,12 @@ function pad(num) {
 }
 * {
 	color: var(--txt-color);
+}
+.shrink {
+	-webkit-transform:scale(0.5);
+	-moz-transform:scale(0.5);
+	-ms-transform:scale(0.5);
+	transform:scale(0.5);
 }
 .container {
 	display: flex;
@@ -238,7 +244,7 @@ function pad(num) {
 	font-size: 2.5em;
 }
 .qrCode {
-	flex: 0.4;
+	flex: 0.3;
 	margin-top: 25px;
 }
 .eggNum {
