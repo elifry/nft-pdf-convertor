@@ -1,11 +1,11 @@
 <script>
-import { onMount } from "svelte";
+import onMount from "svelte";
 import QRCode from "./QRJS.svelte"
-import {HsvPicker} from 'svelte-color-picker';
+import HsvPicker from 'svelte-color-picker';
 
 // Default styles (macOS)
-let mainWidth = '718px';
-let eggNumSize = '4.35em';
+let mainWidth = '718px'; // preview only
+let eggNumSize = '4.35em'; // preview only
 let txtColor = '#0d0c0d';
 let newTextColor = false;
 let collSeriesBorder = '#AFAFAF';
@@ -18,11 +18,11 @@ let os = "MacOS"; // default to MacOS
 let appV = "";
 if (navigator.appVersion.indexOf("Win") != -1) {
 	os = "Windows";
-	eggNumSize = '4.65em';
+	eggNumSize = '4.65em'; // preview only
 }
 if (navigator.appVersion.indexOf("iPhone") != -1) {
 	os = "iPhone";
-	eggNumSize = '4.6em';
+	eggNumSize = '4.6em'; // preview only
 }
 
 let imgSrc = 'https://galaxy-eggs-images.s3.amazonaws.com/2k/jpg/3621.jpg';
@@ -71,7 +71,7 @@ function pad(num) {
 </script>
 
 <main>
-<div class='top-container no-print'>
+<div class='top-container'>
 	<div class="settings-box">
 		<div class="">
 			<div class="topSection">
@@ -105,123 +105,65 @@ function pad(num) {
 			</div>
 		</div>
 	</div>
-	{#if generate}
-	<div class="display-box shrink" style="--main-width: {mainWidth};--txt-color: {txtColor}">
-		<div><img class="egg-image" src={imgSrc} alt="galaxy egg"/></div>
-		<div class="descriptionSection" style="--main-width: {mainWidth}">
-			<div class="row1">
-				<div class="qr-code">
-					<QRCode codeValue={qrSrc} squareSize="80" color={txtColor}/>
+	<!-- {#if generate} -->
+	<div id="right-side">
+		<div id="display-box" class="shrink" style="--main-width: {mainWidth};--txt-color: {txtColor}">
+			<div><img class="egg-image" src={imgSrc} alt="galaxy egg"/></div>
+			<div class="descriptionSection" style="--main-width: {mainWidth}">
+				<div class="row1">
+					<div class="qr-code">
+						<QRCode codeValue={qrSrc} squareSize="80" color={txtColor}/>
+					</div>
+					<div class="collectionSeries" style="--coll-seriesborder: {collSeriesBorder}">
+						<div class="collectionName">{series}</div>
+						<div class="series">{collectionName}</div>
+					</div>
+					<div class="eggNum" style="--egg-num-size: {eggNumSize}">
+						#{pad(eggNumber)}
+					</div>
 				</div>
-				<div class="collectionSeries" style="--coll-seriesborder: {collSeriesBorder}">
-					<div class="collectionName">{series}</div>
-					<div class="series">{collectionName}</div>
-				</div>
-				<div class="eggNum" style="--egg-num-size: {eggNumSize}">
-					#{pad(eggNumber)}
-				</div>
-			</div>
-			<div class="row2">
-				<div class="description">
-					<p>{longDescription}</p>
-				</div>
-				<div class="tableData">
-					<table border=1 frame=void rules=rows>
-						<tr>
-							<th>Collection</th>
-							<td>{collectionNamePlural}</td>
-						</tr>
-						<tr>
-							<th>Series</th>
-							<td>{series}</td>
-						</tr>
-						<tr>
-							<th>Token ID</th>
-							<td>{pad(eggNumber)}</td>
-						</tr>
-						<tr>
-							<th>Token Standard</th>
-							<td>ERC-721</td>
-						</tr>
-						<tr>
-							<th>Blockchain</th>
-							<td>Ethereum</td>
-						</tr>
-					</table>
+				<div class="row2">
+					<div class="description">
+						<p>{longDescription}</p>
+					</div>
+					<div class="tableData">
+						<table border=1 frame=void rules=rows>
+							<tr>
+								<th>Collection</th>
+								<td>{collectionNamePlural}</td>
+							</tr>
+							<tr>
+								<th>Series</th>
+								<td>{series}</td>
+							</tr>
+							<tr>
+								<th>Token ID</th>
+								<td>{pad(eggNumber)}</td>
+							</tr>
+							<tr>
+								<th>Token Standard</th>
+								<td>ERC-721</td>
+							</tr>
+							<tr>
+								<th>Blockchain</th>
+								<td>Ethereum</td>
+							</tr>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	{/if}
+	<!-- {/if} -->
 </div>
-
-<!-- {#if !generate} -->
-<!-- A version of it that is only for printing -->
-<div class="display-box hidden" style="--main-width: {mainWidth};--txt-color: {txtColor}">
-	<div><img class="egg-image" src={imgSrc} alt="galaxy egg"/></div>
-	<div class="descriptionSection" style="--main-width: {mainWidth}">
-		<div class="row1">
-			<div class="qr-code">
-				<QRCode codeValue={qrSrc} squareSize="80" color={txtColor}/>
-			</div>
-			<div class="collectionSeries" style="--coll-seriesborder: {collSeriesBorder}">
-				<div class="collectionName">{series}</div>
-				<div class="series">{collectionName}</div>
-			</div>
-			<div class="eggNum" style="--egg-num-size: {eggNumSize}">
-				#{pad(eggNumber)}
-			</div>
-		</div>
-		<div class="row2">
-			<div class="description">
-				<p>{longDescription}</p>
-			</div>
-			<div class="tableData">
-				<table border=1 frame=void rules=rows>
-					<tr>
-						<th>Collection</th>
-						<td>{collectionNamePlural}</td>
-					</tr>
-					<tr>
-						<th>Series</th>
-						<td>{series}</td>
-					</tr>
-					<tr>
-						<th>Token ID</th>
-						<td>{pad(eggNumber)}</td>
-					</tr>
-					<tr>
-						<th>Token Standard</th>
-						<td>ERC-721</td>
-					</tr>
-					<tr>
-						<th>Blockchain</th>
-						<td>Ethereum</td>
-					</tr>
-				</table>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- {/if} -->
 </main>
 
 <style>
-@media print {
-    @page {
-		size: auto;
-		margin-top: 160;
-		margin-bottom: 0;
-    }
-	.no-print {
-        display: none !important;
-    }
-	.hidden {
-	  visibility: visible !important;
-	}
-}
 * {
 	color: var(--txt-color);
+}
+#right-side {
+
 }
 .hidden {
   visibility: hidden;
@@ -275,7 +217,7 @@ function pad(num) {
 	padding-bottom: 8px;
 	font-weight: 600;
 }
-.display-box {
+#display-box {
 	height: 842px;
 	width: var(--main-width);
 	flex: 1.33;
@@ -313,7 +255,7 @@ function pad(num) {
 	font-size: 2.5em;
 }
 .qr-code {
-	flex: 0.3;
+	flex: 0.31;
 	margin-top: 25px;
 }
 .eggNum {
