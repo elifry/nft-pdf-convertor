@@ -51,10 +51,11 @@ let addEgg = () => {
 }
 
 let items = [];
-
+let numberOfEggsToPrint = 0;
 let name = "";
 
 const addItem = () => {
+	numberOfEggsToPrint++;
 	items = [
 		...items,
 		{
@@ -67,6 +68,7 @@ const addItem = () => {
 };
 
 const remove = item => {
+	numberOfEggsToPrint--;
 	items = items.filter(i => i !== item);
 };
 
@@ -102,7 +104,7 @@ function pad(num) {
 			<div class="wrap-1">
 				<input class="invisible-input" type="radio" id="tab-1" name="tabs">
 				<label for="tab-1">
-					<div>eggs to print</div>
+					<div>eggs to print {#if numberOfEggsToPrint>0}({numberOfEggsToPrint}){/if}</div>
 					<div class="cross"></div>
 				</label>
 				<div class="content">
@@ -223,7 +225,7 @@ function pad(num) {
 	box-sizing: border-box;
 	font-family: 'Space Mono', monospace;
 	color: #3E474F;
-	flex: 2;
+	flex: 3;
 }
 
 body {

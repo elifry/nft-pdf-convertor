@@ -1340,15 +1340,53 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[30] = list[i];
+    	child_ctx[31] = list[i];
     	return child_ctx;
     }
 
-    // (114:6) {#each items as item}
+    // (107:24) {#if numberOfEggsToPrint>0}
+    function create_if_block(ctx) {
+    	let t0;
+    	let t1;
+    	let t2;
+
+    	const block = {
+    		c: function create() {
+    			t0 = text("(");
+    			t1 = text(/*numberOfEggsToPrint*/ ctx[7]);
+    			t2 = text(")");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, t1, anchor);
+    			insert_dev(target, t2, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty[0] & /*numberOfEggsToPrint*/ 128) set_data_dev(t1, /*numberOfEggsToPrint*/ ctx[7]);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(t1);
+    			if (detaching) detach_dev(t2);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block.name,
+    		type: "if",
+    		source: "(107:24) {#if numberOfEggsToPrint>0}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (116:6) {#each items as item}
     function create_each_block(ctx) {
     	let li;
     	let span;
-    	let t0_value = /*item*/ ctx[30].name + "";
+    	let t0_value = /*item*/ ctx[31].name + "";
     	let t0;
     	let t1;
     	let button;
@@ -1357,7 +1395,7 @@ var app = (function () {
     	let dispose;
 
     	function click_handler() {
-    		return /*click_handler*/ ctx[21](/*item*/ ctx[30]);
+    		return /*click_handler*/ ctx[22](/*item*/ ctx[31]);
     	}
 
     	const block = {
@@ -1369,13 +1407,13 @@ var app = (function () {
     			button = element("button");
     			button.textContent = "×";
     			t3 = space();
-    			attr_dev(span, "class", "svelte-1ccc17b");
-    			add_location(span, file, 115, 7, 3701);
-    			attr_dev(button, "class", "svelte-1ccc17b");
-    			add_location(button, file, 116, 7, 3733);
-    			attr_dev(li, "class", "svelte-1ccc17b");
-    			toggle_class(li, "done", /*item*/ ctx[30].done);
-    			add_location(li, file, 114, 6, 3666);
+    			attr_dev(span, "class", "svelte-el72s0");
+    			add_location(span, file, 117, 7, 3833);
+    			attr_dev(button, "class", "svelte-el72s0");
+    			add_location(button, file, 118, 7, 3865);
+    			attr_dev(li, "class", "svelte-el72s0");
+    			toggle_class(li, "done", /*item*/ ctx[31].done);
+    			add_location(li, file, 116, 6, 3798);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -1392,10 +1430,10 @@ var app = (function () {
     		},
     		p: function update(new_ctx, dirty) {
     			ctx = new_ctx;
-    			if (dirty[0] & /*items*/ 64 && t0_value !== (t0_value = /*item*/ ctx[30].name + "")) set_data_dev(t0, t0_value);
+    			if (dirty[0] & /*items*/ 64 && t0_value !== (t0_value = /*item*/ ctx[31].name + "")) set_data_dev(t0, t0_value);
 
     			if (dirty[0] & /*items*/ 64) {
-    				toggle_class(li, "done", /*item*/ ctx[30].done);
+    				toggle_class(li, "done", /*item*/ ctx[31].done);
     			}
     		},
     		d: function destroy(detaching) {
@@ -1409,7 +1447,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(114:6) {#each items as item}",
+    		source: "(116:6) {#each items as item}",
     		ctx
     	});
 
@@ -1428,6 +1466,7 @@ var app = (function () {
     	let t2;
     	let label0;
     	let div0;
+    	let t3;
     	let t4;
     	let div1;
     	let t5;
@@ -1515,7 +1554,7 @@ var app = (function () {
     	let t46;
     	let div32;
     	let t47;
-    	let t48_value = /*pad*/ ctx[19](/*eggNumber*/ ctx[12]) + "";
+    	let t48_value = /*pad*/ ctx[20](/*eggNumber*/ ctx[13]) + "";
     	let t48;
     	let t49;
     	let div36;
@@ -1552,6 +1591,7 @@ var app = (function () {
     	let current;
     	let mounted;
     	let dispose;
+    	let if_block = /*numberOfEggsToPrint*/ ctx[7] > 0 && create_if_block(ctx);
     	let each_value = /*items*/ ctx[6];
     	validate_each_argument(each_value);
     	let each_blocks = [];
@@ -1565,7 +1605,7 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	hsvpicker.$on("colorChange", /*txtColorCallback*/ ctx[15]);
+    	hsvpicker.$on("colorChange", /*txtColorCallback*/ ctx[16]);
 
     	qrcode = new QRJS({
     			props: {
@@ -1590,7 +1630,8 @@ var app = (function () {
     			t2 = space();
     			label0 = element("label");
     			div0 = element("div");
-    			div0.textContent = "eggs to print";
+    			t3 = text("eggs to print ");
+    			if (if_block) if_block.c();
     			t4 = space();
     			div1 = element("div");
     			t5 = space();
@@ -1661,10 +1702,10 @@ var app = (function () {
     			div20.textContent = "Like this tool? Here's my eth address:";
     			t32 = space();
     			div21 = element("div");
-    			div21.textContent = `${/*web3Address*/ ctx[13]}`;
+    			div21.textContent = `${/*web3Address*/ ctx[14]}`;
     			t34 = space();
     			div22 = element("div");
-    			div22.textContent = `${/*ethAddress*/ ctx[14]}`;
+    			div22.textContent = `${/*ethAddress*/ ctx[15]}`;
     			t36 = space();
     			a = element("a");
     			a.textContent = "Follow @acuriousother";
@@ -1688,7 +1729,7 @@ var app = (function () {
     			t43 = text(/*series*/ ctx[4]);
     			t44 = space();
     			div30 = element("div");
-    			div30.textContent = `${/*collectionName*/ ctx[10]}`;
+    			div30.textContent = `${/*collectionName*/ ctx[11]}`;
     			t46 = space();
     			div32 = element("div");
     			t47 = text("#");
@@ -1697,7 +1738,7 @@ var app = (function () {
     			div36 = element("div");
     			div34 = element("div");
     			p = element("p");
-    			p.textContent = `${/*longDescription*/ ctx[9]}`;
+    			p.textContent = `${/*longDescription*/ ctx[10]}`;
     			t51 = space();
     			div35 = element("div");
     			table = element("table");
@@ -1706,7 +1747,7 @@ var app = (function () {
     			th0.textContent = "Collection";
     			t53 = space();
     			td0 = element("td");
-    			td0.textContent = `${/*collectionNamePlural*/ ctx[11]}`;
+    			td0.textContent = `${/*collectionNamePlural*/ ctx[12]}`;
     			t55 = space();
     			tr1 = element("tr");
     			th1 = element("th");
@@ -1720,7 +1761,7 @@ var app = (function () {
     			th2.textContent = "Token ID";
     			t61 = space();
     			td2 = element("td");
-    			td2.textContent = `${/*pad*/ ctx[19](/*eggNumber*/ ctx[12])}`;
+    			td2.textContent = `${/*pad*/ ctx[20](/*eggNumber*/ ctx[13])}`;
     			t63 = space();
     			tr3 = element("tr");
     			th3 = element("th");
@@ -1735,213 +1776,213 @@ var app = (function () {
     			t69 = space();
     			td4 = element("td");
     			td4.textContent = "Ethereum";
-    			attr_dev(h1, "class", "svelte-1ccc17b");
-    			add_location(h1, file, 100, 3, 3091);
-    			attr_dev(input0, "class", "invisible-input svelte-1ccc17b");
+    			attr_dev(h1, "class", "svelte-el72s0");
+    			add_location(h1, file, 102, 3, 3167);
+    			attr_dev(input0, "class", "invisible-input svelte-el72s0");
     			attr_dev(input0, "type", "radio");
     			attr_dev(input0, "id", "tab-1");
     			attr_dev(input0, "name", "tabs");
-    			add_location(input0, file, 102, 4, 3149);
-    			attr_dev(div0, "class", "svelte-1ccc17b");
-    			add_location(div0, file, 104, 5, 3246);
-    			attr_dev(div1, "class", "cross svelte-1ccc17b");
-    			add_location(div1, file, 105, 5, 3276);
+    			add_location(input0, file, 104, 4, 3225);
+    			attr_dev(div0, "class", "svelte-el72s0");
+    			add_location(div0, file, 106, 5, 3322);
+    			attr_dev(div1, "class", "cross svelte-el72s0");
+    			add_location(div1, file, 107, 5, 3408);
     			attr_dev(label0, "for", "tab-1");
-    			attr_dev(label0, "class", "svelte-1ccc17b");
-    			add_location(label0, file, 103, 4, 3221);
+    			attr_dev(label0, "class", "svelte-el72s0");
+    			add_location(label0, file, 105, 4, 3297);
     			attr_dev(input1, "id", "textboxid");
     			attr_dev(input1, "type", "number");
     			attr_dev(input1, "placeholder", "#");
     			attr_dev(input1, "autocomplete", "off");
-    			attr_dev(input1, "class", "svelte-1ccc17b");
-    			add_location(input1, file, 109, 6, 3394);
+    			attr_dev(input1, "class", "svelte-el72s0");
+    			add_location(input1, file, 111, 6, 3526);
     			attr_dev(button0, "id", "buttonid");
     			attr_dev(button0, "type", "submit");
-    			button0.disabled = button0_disabled_value = !/*name*/ ctx[7];
-    			attr_dev(button0, "class", "btn btn__primary btn__lg svelte-1ccc17b");
-    			add_location(button0, file, 110, 6, 3489);
-    			attr_dev(form0, "class", "svelte-1ccc17b");
-    			add_location(form0, file, 108, 5, 3346);
-    			attr_dev(ul, "class", "egg-list svelte-1ccc17b");
-    			add_location(ul, file, 112, 5, 3610);
-    			attr_dev(div2, "class", "content svelte-1ccc17b");
-    			add_location(div2, file, 107, 4, 3319);
-    			attr_dev(div3, "class", "wrap-1 svelte-1ccc17b");
-    			add_location(div3, file, 101, 3, 3124);
-    			attr_dev(input2, "class", "invisible-input svelte-1ccc17b");
+    			button0.disabled = button0_disabled_value = !/*name*/ ctx[8];
+    			attr_dev(button0, "class", "btn btn__primary btn__lg svelte-el72s0");
+    			add_location(button0, file, 112, 6, 3621);
+    			attr_dev(form0, "class", "svelte-el72s0");
+    			add_location(form0, file, 110, 5, 3478);
+    			attr_dev(ul, "class", "egg-list svelte-el72s0");
+    			add_location(ul, file, 114, 5, 3742);
+    			attr_dev(div2, "class", "content svelte-el72s0");
+    			add_location(div2, file, 109, 4, 3451);
+    			attr_dev(div3, "class", "wrap-1 svelte-el72s0");
+    			add_location(div3, file, 103, 3, 3200);
+    			attr_dev(input2, "class", "invisible-input svelte-el72s0");
     			attr_dev(input2, "type", "radio");
     			attr_dev(input2, "id", "tab-2");
     			attr_dev(input2, "name", "tabs");
-    			add_location(input2, file, 123, 4, 3874);
-    			attr_dev(div4, "class", "svelte-1ccc17b");
-    			add_location(div4, file, 124, 23, 3965);
-    			attr_dev(div5, "class", "cross svelte-1ccc17b");
-    			add_location(div5, file, 124, 40, 3982);
+    			add_location(input2, file, 125, 4, 4006);
+    			attr_dev(div4, "class", "svelte-el72s0");
+    			add_location(div4, file, 126, 23, 4097);
+    			attr_dev(div5, "class", "cross svelte-el72s0");
+    			add_location(div5, file, 126, 40, 4114);
     			attr_dev(label1, "for", "tab-2");
-    			attr_dev(label1, "class", "svelte-1ccc17b");
-    			add_location(label1, file, 124, 4, 3946);
-    			attr_dev(input3, "class", "invisible-input svelte-1ccc17b");
+    			attr_dev(label1, "class", "svelte-el72s0");
+    			add_location(label1, file, 126, 4, 4078);
+    			attr_dev(input3, "class", "invisible-input svelte-el72s0");
     			attr_dev(input3, "type", "radio");
     			attr_dev(input3, "id", "question-3");
     			attr_dev(input3, "name", "question");
-    			add_location(input3, file, 127, 6, 4083);
-    			attr_dev(div6, "class", "svelte-1ccc17b");
-    			add_location(div6, file, 128, 30, 4190);
-    			attr_dev(div7, "class", "cross svelte-1ccc17b");
-    			add_location(div7, file, 128, 52, 4212);
+    			add_location(input3, file, 129, 6, 4215);
+    			attr_dev(div6, "class", "svelte-el72s0");
+    			add_location(div6, file, 130, 30, 4322);
+    			attr_dev(div7, "class", "cross svelte-el72s0");
+    			add_location(div7, file, 130, 52, 4344);
     			attr_dev(label2, "for", "question-3");
-    			attr_dev(label2, "class", "svelte-1ccc17b");
-    			add_location(label2, file, 128, 6, 4166);
-    			attr_dev(div8, "class", "content svelte-1ccc17b");
-    			add_location(div8, file, 129, 6, 4252);
-    			attr_dev(div9, "class", "question-wrap svelte-1ccc17b");
-    			add_location(div9, file, 126, 5, 4049);
-    			attr_dev(input4, "class", "invisible-input svelte-1ccc17b");
+    			attr_dev(label2, "class", "svelte-el72s0");
+    			add_location(label2, file, 130, 6, 4298);
+    			attr_dev(div8, "class", "content svelte-el72s0");
+    			add_location(div8, file, 131, 6, 4384);
+    			attr_dev(div9, "class", "question-wrap svelte-el72s0");
+    			add_location(div9, file, 128, 5, 4181);
+    			attr_dev(input4, "class", "invisible-input svelte-el72s0");
     			attr_dev(input4, "type", "radio");
     			attr_dev(input4, "id", "question-4");
     			attr_dev(input4, "name", "question");
-    			add_location(input4, file, 134, 6, 4415);
-    			attr_dev(div10, "class", "svelte-1ccc17b");
-    			add_location(div10, file, 135, 30, 4522);
-    			attr_dev(div11, "class", "cross svelte-1ccc17b");
-    			add_location(div11, file, 135, 58, 4550);
+    			add_location(input4, file, 136, 6, 4547);
+    			attr_dev(div10, "class", "svelte-el72s0");
+    			add_location(div10, file, 137, 30, 4654);
+    			attr_dev(div11, "class", "cross svelte-el72s0");
+    			add_location(div11, file, 137, 58, 4682);
     			attr_dev(label3, "for", "question-4");
-    			attr_dev(label3, "class", "svelte-1ccc17b");
-    			add_location(label3, file, 135, 6, 4498);
-    			attr_dev(div12, "class", "content svelte-1ccc17b");
-    			add_location(div12, file, 136, 6, 4590);
-    			attr_dev(div13, "class", "question-wrap svelte-1ccc17b");
-    			add_location(div13, file, 133, 5, 4381);
-    			attr_dev(div14, "class", "questions svelte-1ccc17b");
-    			add_location(div14, file, 125, 4, 4020);
-    			attr_dev(div15, "class", "wrap-2 svelte-1ccc17b");
-    			add_location(div15, file, 122, 3, 3849);
-    			attr_dev(input5, "class", "invisible-input svelte-1ccc17b");
+    			attr_dev(label3, "class", "svelte-el72s0");
+    			add_location(label3, file, 137, 6, 4630);
+    			attr_dev(div12, "class", "content svelte-el72s0");
+    			add_location(div12, file, 138, 6, 4722);
+    			attr_dev(div13, "class", "question-wrap svelte-el72s0");
+    			add_location(div13, file, 135, 5, 4513);
+    			attr_dev(div14, "class", "questions svelte-el72s0");
+    			add_location(div14, file, 127, 4, 4152);
+    			attr_dev(div15, "class", "wrap-2 svelte-el72s0");
+    			add_location(div15, file, 124, 3, 3981);
+    			attr_dev(input5, "class", "invisible-input svelte-el72s0");
     			attr_dev(input5, "type", "radio");
     			attr_dev(input5, "id", "tab-3");
     			attr_dev(input5, "name", "tabs");
-    			add_location(input5, file, 143, 4, 4706);
-    			attr_dev(div16, "class", "svelte-1ccc17b");
-    			add_location(div16, file, 144, 23, 4797);
-    			attr_dev(div17, "class", "cross svelte-1ccc17b");
-    			add_location(div17, file, 144, 40, 4814);
+    			add_location(input5, file, 145, 4, 4838);
+    			attr_dev(div16, "class", "svelte-el72s0");
+    			add_location(div16, file, 146, 23, 4929);
+    			attr_dev(div17, "class", "cross svelte-el72s0");
+    			add_location(div17, file, 146, 40, 4946);
     			attr_dev(label4, "for", "tab-3");
-    			attr_dev(label4, "class", "svelte-1ccc17b");
-    			add_location(label4, file, 144, 4, 4778);
-    			attr_dev(div18, "class", "questions svelte-1ccc17b");
-    			add_location(div18, file, 145, 4, 4852);
-    			attr_dev(div19, "class", "wrap-3 svelte-1ccc17b");
-    			add_location(div19, file, 142, 3, 4681);
+    			attr_dev(label4, "class", "svelte-el72s0");
+    			add_location(label4, file, 146, 4, 4910);
+    			attr_dev(div18, "class", "questions svelte-el72s0");
+    			add_location(div18, file, 147, 4, 4984);
+    			attr_dev(div19, "class", "wrap-3 svelte-el72s0");
+    			add_location(div19, file, 144, 3, 4813);
     			attr_dev(button1, "id", "buttonid");
     			attr_dev(button1, "type", "submit");
-    			button1.disabled = !/*eggNumber*/ ctx[12];
-    			attr_dev(button1, "class", "btn btn__primary btn__lg svelte-1ccc17b");
-    			add_location(button1, file, 150, 4, 4968);
-    			attr_dev(form1, "class", "svelte-1ccc17b");
-    			add_location(form1, file, 149, 3, 4918);
-    			attr_dev(div20, "class", "shilllinefirst svelte-1ccc17b");
-    			add_location(div20, file, 153, 4, 5115);
-    			attr_dev(div21, "class", "shillline svelte-1ccc17b");
-    			add_location(div21, file, 154, 4, 5192);
-    			attr_dev(div22, "class", "shillline svelte-1ccc17b");
-    			add_location(div22, file, 155, 4, 5239);
+    			button1.disabled = !/*eggNumber*/ ctx[13];
+    			attr_dev(button1, "class", "btn btn__primary btn__lg svelte-el72s0");
+    			add_location(button1, file, 152, 4, 5100);
+    			attr_dev(form1, "class", "svelte-el72s0");
+    			add_location(form1, file, 151, 3, 5050);
+    			attr_dev(div20, "class", "shilllinefirst svelte-el72s0");
+    			add_location(div20, file, 155, 4, 5247);
+    			attr_dev(div21, "class", "shillline svelte-el72s0");
+    			add_location(div21, file, 156, 4, 5324);
+    			attr_dev(div22, "class", "shillline svelte-el72s0");
+    			add_location(div22, file, 157, 4, 5371);
     			attr_dev(a, "href", "https://twitter.com/acuriousother?ref_src=twsrc%5Etfw");
-    			attr_dev(a, "class", "twitter-follow-button svelte-1ccc17b");
+    			attr_dev(a, "class", "twitter-follow-button svelte-el72s0");
     			attr_dev(a, "data-show-count", "false");
-    			add_location(a, file, 156, 4, 5285);
+    			add_location(a, file, 158, 4, 5417);
     			script.async = true;
     			if (!src_url_equal(script.src, script_src_value = "https://platform.twitter.com/widgets.js")) attr_dev(script, "src", script_src_value);
     			attr_dev(script, "charset", "utf-8");
-    			attr_dev(script, "class", "svelte-1ccc17b");
-    			add_location(script, file, 156, 147, 5428);
-    			attr_dev(div23, "class", "shill svelte-1ccc17b");
-    			add_location(div23, file, 152, 3, 5091);
-    			attr_dev(div24, "class", "wrapper svelte-1ccc17b");
-    			add_location(div24, file, 99, 2, 3066);
+    			attr_dev(script, "class", "svelte-el72s0");
+    			add_location(script, file, 158, 147, 5560);
+    			attr_dev(div23, "class", "shill svelte-el72s0");
+    			add_location(div23, file, 154, 3, 5223);
+    			attr_dev(div24, "class", "wrapper svelte-el72s0");
+    			add_location(div24, file, 101, 2, 3142);
     			attr_dev(div25, "id", "left-side");
-    			attr_dev(div25, "class", "svelte-1ccc17b");
-    			add_location(div25, file, 98, 1, 3043);
+    			attr_dev(div25, "class", "svelte-el72s0");
+    			add_location(div25, file, 100, 1, 3119);
     			attr_dev(div26, "id", "preview-title");
-    			attr_dev(div26, "class", "svelte-1ccc17b");
-    			add_location(div26, file, 161, 2, 5566);
-    			attr_dev(img, "class", "egg-image svelte-1ccc17b");
+    			attr_dev(div26, "class", "svelte-el72s0");
+    			add_location(div26, file, 163, 2, 5698);
+    			attr_dev(img, "class", "egg-image svelte-el72s0");
     			if (!src_url_equal(img.src, img_src_value = /*imgSrc*/ ctx[3])) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "galaxy egg");
-    			add_location(img, file, 166, 8, 5837);
-    			attr_dev(div27, "class", "svelte-1ccc17b");
-    			add_location(div27, file, 166, 3, 5832);
-    			attr_dev(div28, "class", "qr-code svelte-1ccc17b");
-    			add_location(div28, file, 169, 5, 5996);
-    			attr_dev(div29, "class", "collectionName svelte-1ccc17b");
-    			add_location(div29, file, 173, 6, 6187);
-    			attr_dev(div30, "class", "series svelte-1ccc17b");
-    			add_location(div30, file, 174, 6, 6236);
-    			attr_dev(div31, "class", "collectionSeries svelte-1ccc17b");
+    			add_location(img, file, 168, 8, 5969);
+    			attr_dev(div27, "class", "svelte-el72s0");
+    			add_location(div27, file, 168, 3, 5964);
+    			attr_dev(div28, "class", "qr-code svelte-el72s0");
+    			add_location(div28, file, 171, 5, 6128);
+    			attr_dev(div29, "class", "collectionName svelte-el72s0");
+    			add_location(div29, file, 175, 6, 6319);
+    			attr_dev(div30, "class", "series svelte-el72s0");
+    			add_location(div30, file, 176, 6, 6368);
+    			attr_dev(div31, "class", "collectionSeries svelte-el72s0");
     			set_style(div31, "--coll-seriesborder", /*collSeriesBorder*/ ctx[2]);
-    			add_location(div31, file, 172, 5, 6102);
-    			attr_dev(div32, "class", "eggNum svelte-1ccc17b");
+    			add_location(div31, file, 174, 5, 6234);
+    			attr_dev(div32, "class", "eggNum svelte-el72s0");
     			set_style(div32, "--egg-num-size", /*eggNumSize*/ ctx[0]);
-    			add_location(div32, file, 176, 5, 6296);
-    			attr_dev(div33, "class", "row1 svelte-1ccc17b");
-    			add_location(div33, file, 168, 4, 5972);
-    			attr_dev(p, "class", "svelte-1ccc17b");
-    			add_location(p, file, 182, 6, 6461);
-    			attr_dev(div34, "class", "description svelte-1ccc17b");
-    			add_location(div34, file, 181, 5, 6429);
-    			attr_dev(th0, "class", "svelte-1ccc17b");
-    			add_location(th0, file, 187, 8, 6592);
-    			attr_dev(td0, "class", "svelte-1ccc17b");
-    			add_location(td0, file, 188, 8, 6620);
-    			attr_dev(tr0, "class", "svelte-1ccc17b");
-    			add_location(tr0, file, 186, 7, 6579);
-    			attr_dev(th1, "class", "svelte-1ccc17b");
-    			add_location(th1, file, 191, 8, 6685);
-    			attr_dev(td1, "class", "svelte-1ccc17b");
-    			add_location(td1, file, 192, 8, 6709);
-    			attr_dev(tr1, "class", "svelte-1ccc17b");
-    			add_location(tr1, file, 190, 7, 6672);
-    			attr_dev(th2, "class", "svelte-1ccc17b");
-    			add_location(th2, file, 195, 8, 6760);
-    			attr_dev(td2, "class", "svelte-1ccc17b");
-    			add_location(td2, file, 196, 8, 6786);
-    			attr_dev(tr2, "class", "svelte-1ccc17b");
-    			add_location(tr2, file, 194, 7, 6747);
-    			attr_dev(th3, "class", "svelte-1ccc17b");
-    			add_location(th3, file, 199, 8, 6845);
-    			attr_dev(td3, "class", "svelte-1ccc17b");
-    			add_location(td3, file, 200, 8, 6877);
-    			attr_dev(tr3, "class", "svelte-1ccc17b");
-    			add_location(tr3, file, 198, 7, 6832);
-    			attr_dev(th4, "class", "svelte-1ccc17b");
-    			add_location(th4, file, 203, 8, 6927);
-    			attr_dev(td4, "class", "svelte-1ccc17b");
-    			add_location(td4, file, 204, 8, 6955);
-    			attr_dev(tr4, "class", "svelte-1ccc17b");
-    			add_location(tr4, file, 202, 7, 6914);
+    			add_location(div32, file, 178, 5, 6428);
+    			attr_dev(div33, "class", "row1 svelte-el72s0");
+    			add_location(div33, file, 170, 4, 6104);
+    			attr_dev(p, "class", "svelte-el72s0");
+    			add_location(p, file, 184, 6, 6593);
+    			attr_dev(div34, "class", "description svelte-el72s0");
+    			add_location(div34, file, 183, 5, 6561);
+    			attr_dev(th0, "class", "svelte-el72s0");
+    			add_location(th0, file, 189, 8, 6724);
+    			attr_dev(td0, "class", "svelte-el72s0");
+    			add_location(td0, file, 190, 8, 6752);
+    			attr_dev(tr0, "class", "svelte-el72s0");
+    			add_location(tr0, file, 188, 7, 6711);
+    			attr_dev(th1, "class", "svelte-el72s0");
+    			add_location(th1, file, 193, 8, 6817);
+    			attr_dev(td1, "class", "svelte-el72s0");
+    			add_location(td1, file, 194, 8, 6841);
+    			attr_dev(tr1, "class", "svelte-el72s0");
+    			add_location(tr1, file, 192, 7, 6804);
+    			attr_dev(th2, "class", "svelte-el72s0");
+    			add_location(th2, file, 197, 8, 6892);
+    			attr_dev(td2, "class", "svelte-el72s0");
+    			add_location(td2, file, 198, 8, 6918);
+    			attr_dev(tr2, "class", "svelte-el72s0");
+    			add_location(tr2, file, 196, 7, 6879);
+    			attr_dev(th3, "class", "svelte-el72s0");
+    			add_location(th3, file, 201, 8, 6977);
+    			attr_dev(td3, "class", "svelte-el72s0");
+    			add_location(td3, file, 202, 8, 7009);
+    			attr_dev(tr3, "class", "svelte-el72s0");
+    			add_location(tr3, file, 200, 7, 6964);
+    			attr_dev(th4, "class", "svelte-el72s0");
+    			add_location(th4, file, 205, 8, 7059);
+    			attr_dev(td4, "class", "svelte-el72s0");
+    			add_location(td4, file, 206, 8, 7087);
+    			attr_dev(tr4, "class", "svelte-el72s0");
+    			add_location(tr4, file, 204, 7, 7046);
     			attr_dev(table, "border", "1");
     			attr_dev(table, "frame", "void");
     			attr_dev(table, "rules", "rows");
-    			attr_dev(table, "class", "svelte-1ccc17b");
-    			add_location(table, file, 185, 6, 6533);
-    			attr_dev(div35, "class", "tableData svelte-1ccc17b");
-    			add_location(div35, file, 184, 5, 6503);
-    			attr_dev(div36, "class", "row2 svelte-1ccc17b");
-    			add_location(div36, file, 180, 4, 6405);
-    			attr_dev(div37, "class", "descriptionSection svelte-1ccc17b");
-    			set_style(div37, "--main-width", /*mainWidth*/ ctx[8]);
-    			add_location(div37, file, 167, 3, 5901);
+    			attr_dev(table, "class", "svelte-el72s0");
+    			add_location(table, file, 187, 6, 6665);
+    			attr_dev(div35, "class", "tableData svelte-el72s0");
+    			add_location(div35, file, 186, 5, 6635);
+    			attr_dev(div36, "class", "row2 svelte-el72s0");
+    			add_location(div36, file, 182, 4, 6537);
+    			attr_dev(div37, "class", "descriptionSection svelte-el72s0");
+    			set_style(div37, "--main-width", /*mainWidth*/ ctx[9]);
+    			add_location(div37, file, 169, 3, 6033);
     			attr_dev(div38, "id", "display-box");
-    			attr_dev(div38, "class", "shrink svelte-1ccc17b");
-    			set_style(div38, "--main-width", /*mainWidth*/ ctx[8]);
+    			attr_dev(div38, "class", "shrink svelte-el72s0");
+    			set_style(div38, "--main-width", /*mainWidth*/ ctx[9]);
     			set_style(div38, "--txt-color", /*txtColor*/ ctx[1]);
-    			add_location(div38, file, 165, 2, 5733);
+    			add_location(div38, file, 167, 2, 5865);
     			attr_dev(div39, "id", "right-side");
-    			attr_dev(div39, "class", "svelte-1ccc17b");
-    			add_location(div39, file, 160, 1, 5542);
-    			attr_dev(div40, "class", "top-container svelte-1ccc17b");
-    			add_location(div40, file, 97, 0, 3014);
-    			attr_dev(main, "class", "svelte-1ccc17b");
-    			add_location(main, file, 96, 0, 3007);
+    			attr_dev(div39, "class", "svelte-el72s0");
+    			add_location(div39, file, 162, 1, 5674);
+    			attr_dev(div40, "class", "top-container svelte-el72s0");
+    			add_location(div40, file, 99, 0, 3090);
+    			attr_dev(main, "class", "svelte-el72s0");
+    			add_location(main, file, 98, 0, 3083);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1958,13 +1999,15 @@ var app = (function () {
     			append_dev(div3, t2);
     			append_dev(div3, label0);
     			append_dev(label0, div0);
+    			append_dev(div0, t3);
+    			if (if_block) if_block.m(div0, null);
     			append_dev(label0, t4);
     			append_dev(label0, div1);
     			append_dev(div3, t5);
     			append_dev(div3, div2);
     			append_dev(div2, form0);
     			append_dev(form0, input1);
-    			set_input_value(input1, /*name*/ ctx[7]);
+    			set_input_value(input1, /*name*/ ctx[8]);
     			append_dev(form0, t6);
     			append_dev(form0, button0);
     			append_dev(button0, t7);
@@ -2085,24 +2128,37 @@ var app = (function () {
 
     			if (!mounted) {
     				dispose = [
-    					listen_dev(input1, "input", /*input1_input_handler*/ ctx[20]),
-    					listen_dev(form0, "submit", prevent_default(/*addItem*/ ctx[16]), false, true, false),
-    					listen_dev(form1, "submit", prevent_default(/*generateEgg*/ ctx[18]), false, true, false)
+    					listen_dev(input1, "input", /*input1_input_handler*/ ctx[21]),
+    					listen_dev(form0, "submit", prevent_default(/*addItem*/ ctx[17]), false, true, false),
+    					listen_dev(form1, "submit", prevent_default(/*generateEgg*/ ctx[19]), false, true, false)
     				];
 
     				mounted = true;
     			}
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*name*/ 128 && to_number(input1.value) !== /*name*/ ctx[7]) {
-    				set_input_value(input1, /*name*/ ctx[7]);
+    			if (/*numberOfEggsToPrint*/ ctx[7] > 0) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+    				} else {
+    					if_block = create_if_block(ctx);
+    					if_block.c();
+    					if_block.m(div0, null);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
     			}
 
-    			if (!current || dirty[0] & /*name*/ 128 && button0_disabled_value !== (button0_disabled_value = !/*name*/ ctx[7])) {
+    			if (dirty[0] & /*name*/ 256 && to_number(input1.value) !== /*name*/ ctx[8]) {
+    				set_input_value(input1, /*name*/ ctx[8]);
+    			}
+
+    			if (!current || dirty[0] & /*name*/ 256 && button0_disabled_value !== (button0_disabled_value = !/*name*/ ctx[8])) {
     				prop_dev(button0, "disabled", button0_disabled_value);
     			}
 
-    			if (dirty[0] & /*items, remove*/ 131136) {
+    			if (dirty[0] & /*items, remove*/ 262208) {
     				each_value = /*items*/ ctx[6];
     				validate_each_argument(each_value);
     				let i;
@@ -2163,6 +2219,7 @@ var app = (function () {
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(main);
+    			if (if_block) if_block.d();
     			destroy_each(each_blocks, detaching);
     			destroy_component(hsvpicker);
     			destroy_component(qrcode);
@@ -2232,9 +2289,12 @@ var app = (function () {
     	};
 
     	let items = [];
+    	let numberOfEggsToPrint = 0;
     	let name = "";
 
     	const addItem = () => {
+    		$$invalidate(7, numberOfEggsToPrint++, numberOfEggsToPrint);
+
     		$$invalidate(6, items = [
     			...items,
     			{
@@ -2244,10 +2304,11 @@ var app = (function () {
     			}
     		]);
 
-    		$$invalidate(7, name = "");
+    		$$invalidate(8, name = "");
     	};
 
     	const remove = item => {
+    		$$invalidate(7, numberOfEggsToPrint--, numberOfEggsToPrint);
     		$$invalidate(6, items = items.filter(i => i !== item));
     	};
 
@@ -2280,7 +2341,7 @@ var app = (function () {
 
     	function input1_input_handler() {
     		name = to_number(this.value);
-    		$$invalidate(7, name);
+    		$$invalidate(8, name);
     	}
 
     	const click_handler = item => remove(item);
@@ -2312,6 +2373,7 @@ var app = (function () {
     		txtColorCallback,
     		addEgg,
     		items,
+    		numberOfEggsToPrint,
     		name,
     		addItem,
     		remove,
@@ -2320,7 +2382,7 @@ var app = (function () {
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ('mainWidth' in $$props) $$invalidate(8, mainWidth = $$props.mainWidth);
+    		if ('mainWidth' in $$props) $$invalidate(9, mainWidth = $$props.mainWidth);
     		if ('eggNumSize' in $$props) $$invalidate(0, eggNumSize = $$props.eggNumSize);
     		if ('txtColor' in $$props) $$invalidate(1, txtColor = $$props.txtColor);
     		if ('newTextColor' in $$props) newTextColor = $$props.newTextColor;
@@ -2330,19 +2392,20 @@ var app = (function () {
     		if ('appV' in $$props) appV = $$props.appV;
     		if ('imgSrc' in $$props) $$invalidate(3, imgSrc = $$props.imgSrc);
     		if ('description' in $$props) description = $$props.description;
-    		if ('longDescription' in $$props) $$invalidate(9, longDescription = $$props.longDescription);
-    		if ('collectionName' in $$props) $$invalidate(10, collectionName = $$props.collectionName);
-    		if ('collectionNamePlural' in $$props) $$invalidate(11, collectionNamePlural = $$props.collectionNamePlural);
-    		if ('eggNumber' in $$props) $$invalidate(12, eggNumber = $$props.eggNumber);
+    		if ('longDescription' in $$props) $$invalidate(10, longDescription = $$props.longDescription);
+    		if ('collectionName' in $$props) $$invalidate(11, collectionName = $$props.collectionName);
+    		if ('collectionNamePlural' in $$props) $$invalidate(12, collectionNamePlural = $$props.collectionNamePlural);
+    		if ('eggNumber' in $$props) $$invalidate(13, eggNumber = $$props.eggNumber);
     		if ('series' in $$props) $$invalidate(4, series = $$props.series);
     		if ('qrSrc' in $$props) $$invalidate(5, qrSrc = $$props.qrSrc);
     		if ('generate' in $$props) generate = $$props.generate;
     		if ('nftIdentifierLength' in $$props) nftIdentifierLength = $$props.nftIdentifierLength;
-    		if ('web3Address' in $$props) $$invalidate(13, web3Address = $$props.web3Address);
-    		if ('ethAddress' in $$props) $$invalidate(14, ethAddress = $$props.ethAddress);
+    		if ('web3Address' in $$props) $$invalidate(14, web3Address = $$props.web3Address);
+    		if ('ethAddress' in $$props) $$invalidate(15, ethAddress = $$props.ethAddress);
     		if ('addEgg' in $$props) addEgg = $$props.addEgg;
     		if ('items' in $$props) $$invalidate(6, items = $$props.items);
-    		if ('name' in $$props) $$invalidate(7, name = $$props.name);
+    		if ('numberOfEggsToPrint' in $$props) $$invalidate(7, numberOfEggsToPrint = $$props.numberOfEggsToPrint);
+    		if ('name' in $$props) $$invalidate(8, name = $$props.name);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -2357,6 +2420,7 @@ var app = (function () {
     		series,
     		qrSrc,
     		items,
+    		numberOfEggsToPrint,
     		name,
     		mainWidth,
     		longDescription,
