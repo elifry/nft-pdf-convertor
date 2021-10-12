@@ -21,6 +21,7 @@ if (navigator.appVersion.indexOf("Win") != -1) {
 	eggNumSize = '4.65em'; // preview only
 }
 if (navigator.appVersion.indexOf("iPhone") != -1) {
+	alert("This site is not supported on mobile yet, please visit on a pc.");
 	os = "iPhone";
 	eggNumSize = '4.6em'; // preview only
 }
@@ -124,7 +125,7 @@ function pad(num) {
 			</div>
 			<div class="wrap-2">
 				<input class="invisible-input" type="radio" id="tab-2" name="tabs">
-				<label for="tab-2"><div>colors</div><div class="cross"></div></label>
+				<label for="tab-2"><div>colors (txt: #0D0C0D; bg: #0D0C0D)</div><div class="cross"></div></label>
 				<div class="questions">
 					<div class="question-wrap">
 						<input class="invisible-input" type="radio" id="question-3" name="question">
@@ -153,7 +154,7 @@ function pad(num) {
 				<button id="buttonid" type="submit" disabled={!eggNumber} class="btn btn__primary btn__lg">Generate</button>
 			</form>
 			<div class="shill">
-				<div class="shilllinefirst">Like this tool? Here's my eth address:</div>
+				<div class="shilllinefirst">Like this tool? Tips are greatly appreciated</div>
 				<div class="shillline">{web3Address}</div>
 				<div class="shillline">{ethAddress}</div>
 				<a href="https://twitter.com/acuriousother?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @acuriousother</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>

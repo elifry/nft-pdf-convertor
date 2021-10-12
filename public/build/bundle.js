@@ -1344,7 +1344,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (107:24) {#if numberOfEggsToPrint>0}
+    // (108:24) {#if numberOfEggsToPrint>0}
     function create_if_block(ctx) {
     	let t0;
     	let t1;
@@ -1375,14 +1375,14 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(107:24) {#if numberOfEggsToPrint>0}",
+    		source: "(108:24) {#if numberOfEggsToPrint>0}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (116:6) {#each items as item}
+    // (117:6) {#each items as item}
     function create_each_block(ctx) {
     	let li;
     	let span;
@@ -1408,12 +1408,12 @@ var app = (function () {
     			button.textContent = "×";
     			t3 = space();
     			attr_dev(span, "class", "svelte-el72s0");
-    			add_location(span, file, 117, 7, 3833);
+    			add_location(span, file, 118, 7, 3908);
     			attr_dev(button, "class", "svelte-el72s0");
-    			add_location(button, file, 118, 7, 3865);
+    			add_location(button, file, 119, 7, 3940);
     			attr_dev(li, "class", "svelte-el72s0");
     			toggle_class(li, "done", /*item*/ ctx[31].done);
-    			add_location(li, file, 116, 6, 3798);
+    			add_location(li, file, 117, 6, 3873);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -1447,7 +1447,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(116:6) {#each items as item}",
+    		source: "(117:6) {#each items as item}",
     		ctx
     	});
 
@@ -1654,7 +1654,7 @@ var app = (function () {
     			t10 = space();
     			label1 = element("label");
     			div4 = element("div");
-    			div4.textContent = "colors";
+    			div4.textContent = "colors (txt: #0D0C0D; bg: #0D0C0D)";
     			div5 = element("div");
     			t12 = space();
     			div14 = element("div");
@@ -1699,7 +1699,7 @@ var app = (function () {
     			t30 = space();
     			div23 = element("div");
     			div20 = element("div");
-    			div20.textContent = "Like this tool? Here's my eth address:";
+    			div20.textContent = "Like this tool? Tips are greatly appreciated";
     			t32 = space();
     			div21 = element("div");
     			div21.textContent = `${/*web3Address*/ ctx[14]}`;
@@ -1777,212 +1777,212 @@ var app = (function () {
     			td4 = element("td");
     			td4.textContent = "Ethereum";
     			attr_dev(h1, "class", "svelte-el72s0");
-    			add_location(h1, file, 102, 3, 3167);
+    			add_location(h1, file, 103, 3, 3242);
     			attr_dev(input0, "class", "invisible-input svelte-el72s0");
     			attr_dev(input0, "type", "radio");
     			attr_dev(input0, "id", "tab-1");
     			attr_dev(input0, "name", "tabs");
-    			add_location(input0, file, 104, 4, 3225);
+    			add_location(input0, file, 105, 4, 3300);
     			attr_dev(div0, "class", "svelte-el72s0");
-    			add_location(div0, file, 106, 5, 3322);
+    			add_location(div0, file, 107, 5, 3397);
     			attr_dev(div1, "class", "cross svelte-el72s0");
-    			add_location(div1, file, 107, 5, 3408);
+    			add_location(div1, file, 108, 5, 3483);
     			attr_dev(label0, "for", "tab-1");
     			attr_dev(label0, "class", "svelte-el72s0");
-    			add_location(label0, file, 105, 4, 3297);
+    			add_location(label0, file, 106, 4, 3372);
     			attr_dev(input1, "id", "textboxid");
     			attr_dev(input1, "type", "number");
     			attr_dev(input1, "placeholder", "#");
     			attr_dev(input1, "autocomplete", "off");
     			attr_dev(input1, "class", "svelte-el72s0");
-    			add_location(input1, file, 111, 6, 3526);
+    			add_location(input1, file, 112, 6, 3601);
     			attr_dev(button0, "id", "buttonid");
     			attr_dev(button0, "type", "submit");
     			button0.disabled = button0_disabled_value = !/*name*/ ctx[8];
     			attr_dev(button0, "class", "btn btn__primary btn__lg svelte-el72s0");
-    			add_location(button0, file, 112, 6, 3621);
+    			add_location(button0, file, 113, 6, 3696);
     			attr_dev(form0, "class", "svelte-el72s0");
-    			add_location(form0, file, 110, 5, 3478);
+    			add_location(form0, file, 111, 5, 3553);
     			attr_dev(ul, "class", "egg-list svelte-el72s0");
-    			add_location(ul, file, 114, 5, 3742);
+    			add_location(ul, file, 115, 5, 3817);
     			attr_dev(div2, "class", "content svelte-el72s0");
-    			add_location(div2, file, 109, 4, 3451);
+    			add_location(div2, file, 110, 4, 3526);
     			attr_dev(div3, "class", "wrap-1 svelte-el72s0");
-    			add_location(div3, file, 103, 3, 3200);
+    			add_location(div3, file, 104, 3, 3275);
     			attr_dev(input2, "class", "invisible-input svelte-el72s0");
     			attr_dev(input2, "type", "radio");
     			attr_dev(input2, "id", "tab-2");
     			attr_dev(input2, "name", "tabs");
-    			add_location(input2, file, 125, 4, 4006);
+    			add_location(input2, file, 126, 4, 4081);
     			attr_dev(div4, "class", "svelte-el72s0");
-    			add_location(div4, file, 126, 23, 4097);
+    			add_location(div4, file, 127, 23, 4172);
     			attr_dev(div5, "class", "cross svelte-el72s0");
-    			add_location(div5, file, 126, 40, 4114);
+    			add_location(div5, file, 127, 68, 4217);
     			attr_dev(label1, "for", "tab-2");
     			attr_dev(label1, "class", "svelte-el72s0");
-    			add_location(label1, file, 126, 4, 4078);
+    			add_location(label1, file, 127, 4, 4153);
     			attr_dev(input3, "class", "invisible-input svelte-el72s0");
     			attr_dev(input3, "type", "radio");
     			attr_dev(input3, "id", "question-3");
     			attr_dev(input3, "name", "question");
-    			add_location(input3, file, 129, 6, 4215);
+    			add_location(input3, file, 130, 6, 4318);
     			attr_dev(div6, "class", "svelte-el72s0");
-    			add_location(div6, file, 130, 30, 4322);
+    			add_location(div6, file, 131, 30, 4425);
     			attr_dev(div7, "class", "cross svelte-el72s0");
-    			add_location(div7, file, 130, 52, 4344);
+    			add_location(div7, file, 131, 52, 4447);
     			attr_dev(label2, "for", "question-3");
     			attr_dev(label2, "class", "svelte-el72s0");
-    			add_location(label2, file, 130, 6, 4298);
+    			add_location(label2, file, 131, 6, 4401);
     			attr_dev(div8, "class", "content svelte-el72s0");
-    			add_location(div8, file, 131, 6, 4384);
+    			add_location(div8, file, 132, 6, 4487);
     			attr_dev(div9, "class", "question-wrap svelte-el72s0");
-    			add_location(div9, file, 128, 5, 4181);
+    			add_location(div9, file, 129, 5, 4284);
     			attr_dev(input4, "class", "invisible-input svelte-el72s0");
     			attr_dev(input4, "type", "radio");
     			attr_dev(input4, "id", "question-4");
     			attr_dev(input4, "name", "question");
-    			add_location(input4, file, 136, 6, 4547);
+    			add_location(input4, file, 137, 6, 4650);
     			attr_dev(div10, "class", "svelte-el72s0");
-    			add_location(div10, file, 137, 30, 4654);
+    			add_location(div10, file, 138, 30, 4757);
     			attr_dev(div11, "class", "cross svelte-el72s0");
-    			add_location(div11, file, 137, 58, 4682);
+    			add_location(div11, file, 138, 58, 4785);
     			attr_dev(label3, "for", "question-4");
     			attr_dev(label3, "class", "svelte-el72s0");
-    			add_location(label3, file, 137, 6, 4630);
+    			add_location(label3, file, 138, 6, 4733);
     			attr_dev(div12, "class", "content svelte-el72s0");
-    			add_location(div12, file, 138, 6, 4722);
+    			add_location(div12, file, 139, 6, 4825);
     			attr_dev(div13, "class", "question-wrap svelte-el72s0");
-    			add_location(div13, file, 135, 5, 4513);
+    			add_location(div13, file, 136, 5, 4616);
     			attr_dev(div14, "class", "questions svelte-el72s0");
-    			add_location(div14, file, 127, 4, 4152);
+    			add_location(div14, file, 128, 4, 4255);
     			attr_dev(div15, "class", "wrap-2 svelte-el72s0");
-    			add_location(div15, file, 124, 3, 3981);
+    			add_location(div15, file, 125, 3, 4056);
     			attr_dev(input5, "class", "invisible-input svelte-el72s0");
     			attr_dev(input5, "type", "radio");
     			attr_dev(input5, "id", "tab-3");
     			attr_dev(input5, "name", "tabs");
-    			add_location(input5, file, 145, 4, 4838);
+    			add_location(input5, file, 146, 4, 4941);
     			attr_dev(div16, "class", "svelte-el72s0");
-    			add_location(div16, file, 146, 23, 4929);
+    			add_location(div16, file, 147, 23, 5032);
     			attr_dev(div17, "class", "cross svelte-el72s0");
-    			add_location(div17, file, 146, 40, 4946);
+    			add_location(div17, file, 147, 40, 5049);
     			attr_dev(label4, "for", "tab-3");
     			attr_dev(label4, "class", "svelte-el72s0");
-    			add_location(label4, file, 146, 4, 4910);
+    			add_location(label4, file, 147, 4, 5013);
     			attr_dev(div18, "class", "questions svelte-el72s0");
-    			add_location(div18, file, 147, 4, 4984);
+    			add_location(div18, file, 148, 4, 5087);
     			attr_dev(div19, "class", "wrap-3 svelte-el72s0");
-    			add_location(div19, file, 144, 3, 4813);
+    			add_location(div19, file, 145, 3, 4916);
     			attr_dev(button1, "id", "buttonid");
     			attr_dev(button1, "type", "submit");
     			button1.disabled = !/*eggNumber*/ ctx[13];
     			attr_dev(button1, "class", "btn btn__primary btn__lg svelte-el72s0");
-    			add_location(button1, file, 152, 4, 5100);
+    			add_location(button1, file, 153, 4, 5203);
     			attr_dev(form1, "class", "svelte-el72s0");
-    			add_location(form1, file, 151, 3, 5050);
+    			add_location(form1, file, 152, 3, 5153);
     			attr_dev(div20, "class", "shilllinefirst svelte-el72s0");
-    			add_location(div20, file, 155, 4, 5247);
+    			add_location(div20, file, 156, 4, 5350);
     			attr_dev(div21, "class", "shillline svelte-el72s0");
-    			add_location(div21, file, 156, 4, 5324);
+    			add_location(div21, file, 157, 4, 5433);
     			attr_dev(div22, "class", "shillline svelte-el72s0");
-    			add_location(div22, file, 157, 4, 5371);
+    			add_location(div22, file, 158, 4, 5480);
     			attr_dev(a, "href", "https://twitter.com/acuriousother?ref_src=twsrc%5Etfw");
     			attr_dev(a, "class", "twitter-follow-button svelte-el72s0");
     			attr_dev(a, "data-show-count", "false");
-    			add_location(a, file, 158, 4, 5417);
+    			add_location(a, file, 159, 4, 5526);
     			script.async = true;
     			if (!src_url_equal(script.src, script_src_value = "https://platform.twitter.com/widgets.js")) attr_dev(script, "src", script_src_value);
     			attr_dev(script, "charset", "utf-8");
     			attr_dev(script, "class", "svelte-el72s0");
-    			add_location(script, file, 158, 147, 5560);
+    			add_location(script, file, 159, 147, 5669);
     			attr_dev(div23, "class", "shill svelte-el72s0");
-    			add_location(div23, file, 154, 3, 5223);
+    			add_location(div23, file, 155, 3, 5326);
     			attr_dev(div24, "class", "wrapper svelte-el72s0");
-    			add_location(div24, file, 101, 2, 3142);
+    			add_location(div24, file, 102, 2, 3217);
     			attr_dev(div25, "id", "left-side");
     			attr_dev(div25, "class", "svelte-el72s0");
-    			add_location(div25, file, 100, 1, 3119);
+    			add_location(div25, file, 101, 1, 3194);
     			attr_dev(div26, "id", "preview-title");
     			attr_dev(div26, "class", "svelte-el72s0");
-    			add_location(div26, file, 163, 2, 5698);
+    			add_location(div26, file, 164, 2, 5807);
     			attr_dev(img, "class", "egg-image svelte-el72s0");
     			if (!src_url_equal(img.src, img_src_value = /*imgSrc*/ ctx[3])) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "galaxy egg");
-    			add_location(img, file, 168, 8, 5969);
+    			add_location(img, file, 169, 8, 6078);
     			attr_dev(div27, "class", "svelte-el72s0");
-    			add_location(div27, file, 168, 3, 5964);
+    			add_location(div27, file, 169, 3, 6073);
     			attr_dev(div28, "class", "qr-code svelte-el72s0");
-    			add_location(div28, file, 171, 5, 6128);
+    			add_location(div28, file, 172, 5, 6237);
     			attr_dev(div29, "class", "collectionName svelte-el72s0");
-    			add_location(div29, file, 175, 6, 6319);
+    			add_location(div29, file, 176, 6, 6428);
     			attr_dev(div30, "class", "series svelte-el72s0");
-    			add_location(div30, file, 176, 6, 6368);
+    			add_location(div30, file, 177, 6, 6477);
     			attr_dev(div31, "class", "collectionSeries svelte-el72s0");
     			set_style(div31, "--coll-seriesborder", /*collSeriesBorder*/ ctx[2]);
-    			add_location(div31, file, 174, 5, 6234);
+    			add_location(div31, file, 175, 5, 6343);
     			attr_dev(div32, "class", "eggNum svelte-el72s0");
     			set_style(div32, "--egg-num-size", /*eggNumSize*/ ctx[0]);
-    			add_location(div32, file, 178, 5, 6428);
+    			add_location(div32, file, 179, 5, 6537);
     			attr_dev(div33, "class", "row1 svelte-el72s0");
-    			add_location(div33, file, 170, 4, 6104);
+    			add_location(div33, file, 171, 4, 6213);
     			attr_dev(p, "class", "svelte-el72s0");
-    			add_location(p, file, 184, 6, 6593);
+    			add_location(p, file, 185, 6, 6702);
     			attr_dev(div34, "class", "description svelte-el72s0");
-    			add_location(div34, file, 183, 5, 6561);
+    			add_location(div34, file, 184, 5, 6670);
     			attr_dev(th0, "class", "svelte-el72s0");
-    			add_location(th0, file, 189, 8, 6724);
+    			add_location(th0, file, 190, 8, 6833);
     			attr_dev(td0, "class", "svelte-el72s0");
-    			add_location(td0, file, 190, 8, 6752);
+    			add_location(td0, file, 191, 8, 6861);
     			attr_dev(tr0, "class", "svelte-el72s0");
-    			add_location(tr0, file, 188, 7, 6711);
+    			add_location(tr0, file, 189, 7, 6820);
     			attr_dev(th1, "class", "svelte-el72s0");
-    			add_location(th1, file, 193, 8, 6817);
+    			add_location(th1, file, 194, 8, 6926);
     			attr_dev(td1, "class", "svelte-el72s0");
-    			add_location(td1, file, 194, 8, 6841);
+    			add_location(td1, file, 195, 8, 6950);
     			attr_dev(tr1, "class", "svelte-el72s0");
-    			add_location(tr1, file, 192, 7, 6804);
+    			add_location(tr1, file, 193, 7, 6913);
     			attr_dev(th2, "class", "svelte-el72s0");
-    			add_location(th2, file, 197, 8, 6892);
+    			add_location(th2, file, 198, 8, 7001);
     			attr_dev(td2, "class", "svelte-el72s0");
-    			add_location(td2, file, 198, 8, 6918);
+    			add_location(td2, file, 199, 8, 7027);
     			attr_dev(tr2, "class", "svelte-el72s0");
-    			add_location(tr2, file, 196, 7, 6879);
+    			add_location(tr2, file, 197, 7, 6988);
     			attr_dev(th3, "class", "svelte-el72s0");
-    			add_location(th3, file, 201, 8, 6977);
+    			add_location(th3, file, 202, 8, 7086);
     			attr_dev(td3, "class", "svelte-el72s0");
-    			add_location(td3, file, 202, 8, 7009);
+    			add_location(td3, file, 203, 8, 7118);
     			attr_dev(tr3, "class", "svelte-el72s0");
-    			add_location(tr3, file, 200, 7, 6964);
+    			add_location(tr3, file, 201, 7, 7073);
     			attr_dev(th4, "class", "svelte-el72s0");
-    			add_location(th4, file, 205, 8, 7059);
+    			add_location(th4, file, 206, 8, 7168);
     			attr_dev(td4, "class", "svelte-el72s0");
-    			add_location(td4, file, 206, 8, 7087);
+    			add_location(td4, file, 207, 8, 7196);
     			attr_dev(tr4, "class", "svelte-el72s0");
-    			add_location(tr4, file, 204, 7, 7046);
+    			add_location(tr4, file, 205, 7, 7155);
     			attr_dev(table, "border", "1");
     			attr_dev(table, "frame", "void");
     			attr_dev(table, "rules", "rows");
     			attr_dev(table, "class", "svelte-el72s0");
-    			add_location(table, file, 187, 6, 6665);
+    			add_location(table, file, 188, 6, 6774);
     			attr_dev(div35, "class", "tableData svelte-el72s0");
-    			add_location(div35, file, 186, 5, 6635);
+    			add_location(div35, file, 187, 5, 6744);
     			attr_dev(div36, "class", "row2 svelte-el72s0");
-    			add_location(div36, file, 182, 4, 6537);
+    			add_location(div36, file, 183, 4, 6646);
     			attr_dev(div37, "class", "descriptionSection svelte-el72s0");
     			set_style(div37, "--main-width", /*mainWidth*/ ctx[9]);
-    			add_location(div37, file, 169, 3, 6033);
+    			add_location(div37, file, 170, 3, 6142);
     			attr_dev(div38, "id", "display-box");
     			attr_dev(div38, "class", "shrink svelte-el72s0");
     			set_style(div38, "--main-width", /*mainWidth*/ ctx[9]);
     			set_style(div38, "--txt-color", /*txtColor*/ ctx[1]);
-    			add_location(div38, file, 167, 2, 5865);
+    			add_location(div38, file, 168, 2, 5974);
     			attr_dev(div39, "id", "right-side");
     			attr_dev(div39, "class", "svelte-el72s0");
-    			add_location(div39, file, 162, 1, 5674);
+    			add_location(div39, file, 163, 1, 5783);
     			attr_dev(div40, "class", "top-container svelte-el72s0");
-    			add_location(div40, file, 99, 0, 3090);
+    			add_location(div40, file, 100, 0, 3165);
     			attr_dev(main, "class", "svelte-el72s0");
-    			add_location(main, file, 98, 0, 3083);
+    			add_location(main, file, 99, 0, 3158);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2260,6 +2260,7 @@ var app = (function () {
     	}
 
     	if (navigator.appVersion.indexOf("iPhone") != -1) {
+    		alert("This site is not supported on mobile yet, please visit on a pc.");
     		os = "iPhone";
     		eggNumSize = '4.6em'; // preview only
     	}
