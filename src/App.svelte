@@ -1,7 +1,7 @@
 <script>
-import onMount from "svelte";
+import {onMount} from "svelte";
 import QRCode from "./QRJS.svelte"
-import HsvPicker from 'svelte-color-picker';
+import {HsvPicker} from 'svelte-color-picker';
 
 // Default styles (macOS)
 let mainWidth = '718px'; // preview only
@@ -65,15 +65,70 @@ const generateEgg = (async () => {
 
 // Pad the number to 4 digits, puting zeroes in front as needed
 function pad(num) {
-    let s = '0'.repeat(nftIdentifierLength-1) + num;
-    return s.substr(s.length-nftIdentifierLength);
+	let s = '0'.repeat(nftIdentifierLength-1) + num;
+	return s.substr(s.length-nftIdentifierLength);
 }
 </script>
 
 <main>
 <div class='top-container'>
-	<div class="settings-box">
-		<div class="">
+	<div id="left-side">
+		<div class="wrapper">
+			<h1>Customize your print</h1>
+			<div class="wrap-1">
+				<input type="radio" id="tab-1" name="tabs">
+				<label for="tab-1"><div>eggs to print</div><div class="cross"></div></label>
+				<div class="content">
+					, soluta doloribus distinctio saepe labore v
+					<form on:submit|preventDefault={generateEgg}>
+						<input id="textboxid" bind:value={eggNumber} type=number placeholder='#' autoComplete="off"/>
+					</form>
+				</div>
+			</div>
+			<div class="wrap-2">
+				<input type="radio" id="tab-2" name="tabs">
+				<label for="tab-2"><div>colors</div><div class="cross"></div></label>
+
+				<div class="questions">
+					<div class="question-wrap">
+						<input type="radio" id="question-3" name="question">
+						<label for="question-3"><div>text color</div> <div class="cross"></div></label>
+						<div class="content">
+							<HsvPicker on:colorChange={txtColorCallback} startColor={"#0d0c0d"}/>
+						</div>
+					</div>
+					<div class="question-wrap">
+						<input type="radio" id="question-4" name="question">
+						<label for="question-4"><div>background color</div> <div class="cross"></div></label>
+						<div class="content">
+							<HsvPicker on:colorChange={txtColorCallback} startColor={"#0d0c0d"}/>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<div class="wrap-3">
+				<input type="radio" id="tab-3" name="tabs">
+				<label for="tab-3"><div>tab three</div><div class="cross"></div></label>
+				<div class="questions">
+					<div class="question-wrap">
+						<input type="radio" id="question-1" name="question">
+						<label for="question-1"><div>question one</div> <div class="cross"></div></label>
+						<div class="content">
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam atque, soluta doloribus distinctio saepe labore voluptates facere illum alias perferendis praesentium quia vel accusamus incidunt corporis veniam sapiente. Voluptate, quasi.
+						</div>
+					</div>
+					<div class="question-wrap">
+						<input type="radio" id="question-2" name="question">
+						<label for="question-2"><div>question two</div> <div class="cross"></div></label>
+						<div class="content">
+						Ipsam atque, soluta doloribus distinctio saepe labore voluptates facere illum alias perferendis praesentium quia vel accusamus incidunt corporis veniam sapiente. Voluptate, quasi.
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="hidden">
 			<div class="topSection">
 				<div class="intro">
 					Turn your Galaxy Eggs into a nice printable PDF!
@@ -107,6 +162,10 @@ function pad(num) {
 	</div>
 	<!-- {#if generate} -->
 	<div id="right-side">
+		<div id="preview-title">
+			PREVIEW
+		</div>
+		<button id="buttonid" type="submit" disabled={!eggNumber} class="btn btn__primary btn__lg">download</button>
 		<div id="display-box" class="shrink" style="--main-width: {mainWidth};--txt-color: {txtColor}">
 			<div><img class="egg-image" src={imgSrc} alt="galaxy egg"/></div>
 			<div class="descriptionSection" style="--main-width: {mainWidth}">
@@ -162,25 +221,188 @@ function pad(num) {
 * {
 	color: var(--txt-color);
 }
-#right-side {
+#left-side {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: 'Space Mono', monospace;
+	color: #3E474F;
+	flex: 2;
+}
 
+body {
+  overflow: hidden;
+}
+
+.wrapper {
+	/* width: 100%; */
+}
+
+h1 {
+	font-size: 2em;
+	margin-bottom: 20px;
+	text-align:center;
+}
+
+input {
+	display: none;
+}
+
+label {
+	display: flex;
+	width: 100%;
+	height: 50px;
+	cursor: pointer;
+	border: 3px solid #3E474F;
+	user-select: none;
+}
+
+label div:first-child {
+	width: 100%;
+	line-height: 45px;
+	margin-left: 10px;
+	font-size: 1.2em;
+}
+
+.cross{
+	margin-right:15px;
+	margin-top:3px;
+}
+
+.cross:before,.cross:after {
+	content: '';
+	border-top: 2px solid #3E474F;
+	width: 15px;
+	display: block;
+	margin-top: 18px;
+	transition: 0.3s;
+}
+
+.cross:after {
+	transform: rotate(90deg);
+	margin-top: -2px;
+}
+
+.content {
+	box-sizing: border-box;
+	font-size: 0.9em;
+	margin: 10px 10px;
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height, .5s;
+}
+
+input:checked ~ .content {
+	max-height: 400px;
+	transition: max-height, 1s;
+}
+
+input:checked ~ label .cross:before {
+	transform: rotate(180deg);
+}
+
+input:checked ~ label .cross:after {
+	transform: rotate(0deg);
+}
+
+.questions {
+	margin-top:20px;
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height, .5s;
+}
+
+.questions label {
+	border:none;
+	box-shadow: none;
+	margin:0;
+}
+
+input:checked ~ .questions {
+	max-height: 400px;
+	border-bottom:2px solid #3E474F;
+	transition: 1s;
+}
+
+/*----------tool-tip------------*/
+
+.tip {
+	color: #f03768;
+	cursor: help;
+	position: relative;
+	overflow: visible;
+	font-family: monospace;
+	font-size: 1.3em;
+}
+
+.tip:before,
+.tip:after {
+	position: absolute;
+	opacity: 0;
+	z-index: -100;
+	transform: translateY(-30%);
+	transition: .4s;
+}
+
+.tip:before {
+	content: '';
+	border-style: solid;
+	border-width: 0.8em 0.5em 0 0.5em;
+	border-color: #3E474F transparent transparent transparent;
+	transform: translateY(-200%);
+	bottom:90%;
+	left:50%;
+}
+
+.tip:after {
+	content: attr(data-tip);
+	background: #3E474F;
+	color: white;
+	width: 100px;
+	padding: 10px;
+	font-size: 0.8em;
+	bottom: 150%;
+	left: -50%;
+}
+
+.tip:hover:before,
+.tip:hover:after {
+	opacity: 1;
+	z-index: 100;
+	transform: scaleY(1);
+}
+
+#accordion-holder {
+	/*width: 100%;
+	margin: 20px;
+	background-color: blue;*/
+}
+#right-side {
+	flex: 3;
+	background-color: black;
+}
+#preview-title {
+	margin-top: 10px;
+	color: green;
+	font-weight: 600;
+	font-size: 3em;
+	text-align: center;
+	background-color: lightgray;
+	opacity: 0.7;
 }
 .hidden {
-  visibility: hidden;
+	visibility: hidden !important;
 }
 .shrink {
-	-webkit-transform:scale(0.6);
-	-moz-transform:scale(0.6);
-	-ms-transform:scale(0.6);
-	transform:scale(0.6);
+	-webkit-transform:scale(0.7);
+	-moz-transform:scale(0.7);
+	-ms-transform:scale(0.7);
+	transform:scale(0.7);
 }
 .top-container {
 	width: 100%;
 	display: flex;
 	justify-content: center;
-}
-.settings-box {
-	flex: 1.33;
 }
 .container {
 	display: flex;
@@ -197,14 +419,12 @@ function pad(num) {
 	margin-bottom: 1em;
 }
 #textboxid {
-    height:100px;
-	width: 240px;
-    font-size:2em;
+	height:100px;
+	font-size:2em;
 }
 #buttonid {
-    height:100px;
-	width: 160px;
-    font-size:2em;
+	height:100px;
+	font-size:2em;
 }
 .shill {
 	margin-top: 7em;
@@ -218,9 +438,10 @@ function pad(num) {
 	font-weight: 600;
 }
 #display-box {
-	height: 842px;
+	padding: 40px;
 	width: var(--main-width);
 	flex: 1.33;
+	background-color: white;
 }
 .egg-image {
 	max-width:100%;
@@ -284,7 +505,7 @@ table {
 	border-color: var(--coll-seriesborder);
 }
 table td {
-    padding: 5px 0;
+	padding: 5px 0;
 }
 th {
 	text-align: left;
