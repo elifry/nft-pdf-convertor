@@ -46,6 +46,30 @@ function txtColorCallback(rgba) {
 	collSeriesBorder = `rgb(${r},${g},${b},${a * 0.5})`;
 }
 
+let addEgg = () => {
+	console.log("add egg");
+}
+
+let items = [];
+
+let name = "";
+
+const addItem = () => {
+	items = [
+		...items,
+		{
+		id: Math.random(),
+		name: pad(name),
+		done: false
+		}
+	];
+	name = "";
+};
+
+const remove = item => {
+	items = items.filter(i => i !== item);
+};
+
 // When generate button clicked, call the opensea API for details on the egg
 const generateEgg = (async () => {
 	fetch(`https://api.opensea.io/api/v1/assets?token_ids=${eggNumber}&order_direction=desc&offset=0&limit=1&collection=galaxyeggs9999`)
@@ -76,29 +100,40 @@ function pad(num) {
 		<div class="wrapper">
 			<h1>Customize your print</h1>
 			<div class="wrap-1">
-				<input type="radio" id="tab-1" name="tabs">
-				<label for="tab-1"><div>eggs to print</div><div class="cross"></div></label>
+				<input class="invisible-input" type="radio" id="tab-1" name="tabs">
+				<label for="tab-1">
+					<div>eggs to print</div>
+					<div class="cross"></div>
+				</label>
 				<div class="content">
-					, soluta doloribus distinctio saepe labore v
-					<form on:submit|preventDefault={generateEgg}>
-						<input id="textboxid" bind:value={eggNumber} type=number placeholder='#' autoComplete="off"/>
+					<form on:submit|preventDefault={addItem}>
+						<input id="textboxid" bind:value={name} type=number placeholder='#' autoComplete="off"/>
+						<button id="buttonid" type="submit" disabled={!name} class="btn btn__primary btn__lg">Add Egg</button>
 					</form>
+					<ul class="egg-list">
+						{#each items as item}
+						<li class:done={item.done}>
+							<span>{item.name}</span>
+							<button on:click={() => remove(item)}>&times;</button>
+						</li>
+						{/each}
+					</ul>
 				</div>
 			</div>
 			<div class="wrap-2">
-				<input type="radio" id="tab-2" name="tabs">
+				<input class="invisible-input" type="radio" id="tab-2" name="tabs">
 				<label for="tab-2"><div>colors</div><div class="cross"></div></label>
 
 				<div class="questions">
 					<div class="question-wrap">
-						<input type="radio" id="question-3" name="question">
+						<input class="invisible-input" type="radio" id="question-3" name="question">
 						<label for="question-3"><div>text color</div> <div class="cross"></div></label>
 						<div class="content">
 							<HsvPicker on:colorChange={txtColorCallback} startColor={"#0d0c0d"}/>
 						</div>
 					</div>
 					<div class="question-wrap">
-						<input type="radio" id="question-4" name="question">
+						<input class="invisible-input" type="radio" id="question-4" name="question">
 						<label for="question-4"><div>background color</div> <div class="cross"></div></label>
 						<div class="content">
 							<HsvPicker on:colorChange={txtColorCallback} startColor={"#0d0c0d"}/>
@@ -108,18 +143,18 @@ function pad(num) {
 
 			</div>
 			<div class="wrap-3">
-				<input type="radio" id="tab-3" name="tabs">
+				<input class="invisible-input" type="radio" id="tab-3" name="tabs">
 				<label for="tab-3"><div>tab three</div><div class="cross"></div></label>
 				<div class="questions">
 					<div class="question-wrap">
-						<input type="radio" id="question-1" name="question">
+						<input class="invisible-input" type="radio" id="question-1" name="question">
 						<label for="question-1"><div>question one</div> <div class="cross"></div></label>
 						<div class="content">
 						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam atque, soluta doloribus distinctio saepe labore voluptates facere illum alias perferendis praesentium quia vel accusamus incidunt corporis veniam sapiente. Voluptate, quasi.
 						</div>
 					</div>
 					<div class="question-wrap">
-						<input type="radio" id="question-2" name="question">
+						<input class="invisible-input" type="radio" id="question-2" name="question">
 						<label for="question-2"><div>question two</div> <div class="cross"></div></label>
 						<div class="content">
 						Ipsam atque, soluta doloribus distinctio saepe labore voluptates facere illum alias perferendis praesentium quia vel accusamus incidunt corporis veniam sapiente. Voluptate, quasi.
@@ -127,17 +162,15 @@ function pad(num) {
 					</div>
 				</div>
 			</div>
+			<form on:submit|preventDefault={generateEgg}>
+				<button id="buttonid" type="submit" disabled={!eggNumber} class="btn btn__primary btn__lg">Generate</button>
+			</form>
 		</div>
 		<div class="hidden">
 			<div class="topSection">
-				<div class="intro">
-					Turn your Galaxy Eggs into a nice printable PDF!
-				</div>
 				<form on:submit|preventDefault={generateEgg}>
 					<input id="textboxid" bind:value={eggNumber} type=number placeholder='#' autoComplete="off"/>
 					<button id="buttonid" type="submit" disabled={!eggNumber} class="btn btn__primary btn__lg">Generate</button>
-					<!-- want another button, for download -->
-					<!-- <button id="buttonid" type="submit" disabled={!eggNumber} class="btn btn__primary btn__lg">Generate</button> -->
 				</form>
 				<HsvPicker on:colorChange={txtColorCallback} startColor={"#0d0c0d"}/>
 				<div class="howto">
@@ -165,7 +198,7 @@ function pad(num) {
 		<div id="preview-title">
 			PREVIEW
 		</div>
-		<button id="buttonid" type="submit" disabled={!eggNumber} class="btn btn__primary btn__lg">download</button>
+		<!-- <button id="buttonid" type="submit" disabled={!eggNumber} class="btn btn__primary btn__lg">download</button> -->
 		<div id="display-box" class="shrink" style="--main-width: {mainWidth};--txt-color: {txtColor}">
 			<div><img class="egg-image" src={imgSrc} alt="galaxy egg"/></div>
 			<div class="descriptionSection" style="--main-width: {mainWidth}">
@@ -235,7 +268,9 @@ body {
 }
 
 .wrapper {
-	/* width: 100%; */
+	margin-left: 5px;
+	margin-right: 5px;
+	width: 95%;
 }
 
 h1 {
@@ -244,7 +279,7 @@ h1 {
 	text-align:center;
 }
 
-input {
+.invisible-input {
 	display: none;
 }
 
@@ -371,12 +406,6 @@ input:checked ~ .questions {
 	z-index: 100;
 	transform: scaleY(1);
 }
-
-#accordion-holder {
-	/*width: 100%;
-	margin: 20px;
-	background-color: blue;*/
-}
 #right-side {
 	flex: 3;
 	background-color: black;
@@ -394,10 +423,10 @@ input:checked ~ .questions {
 	visibility: hidden !important;
 }
 .shrink {
-	-webkit-transform:scale(0.7);
-	-moz-transform:scale(0.7);
-	-ms-transform:scale(0.7);
-	transform:scale(0.7);
+	-webkit-transform:scale(0.95);
+	-moz-transform:scale(0.95);
+	-ms-transform:scale(0.95);
+	transform:scale(0.95);
 }
 .top-container {
 	width: 100%;
@@ -419,12 +448,41 @@ input:checked ~ .questions {
 	margin-bottom: 1em;
 }
 #textboxid {
-	height:100px;
-	font-size:2em;
+	height: 70px;
+	font-size: 2em;
+	width: 50%;
 }
 #buttonid {
-	height:100px;
-	font-size:2em;
+	width: 45%;
+	height: 70px;
+	font-size: 2em;
+}
+.egg-list li button {
+	float: right;
+	border: none;
+	background: transparent;
+	padding: 0;
+	margin: 0;
+	color: #dc4f21;
+	font-size: 18px;
+	cursor: pointer;
+}
+.egg-list li button:hover {
+	transform: scale(2);
+}
+.egg-list li button:focus {
+	outline: #dc4f21;
+}
+.egg-list li:last-child {
+	border-bottom: none;
+}
+.egg-list li {
+	list-style: none;
+	padding: 6px 10px;
+	border-bottom: 1px solid #ddd;
+}
+.egg-list ul {
+	padding-left: 0;
 }
 .shill {
 	margin-top: 7em;
