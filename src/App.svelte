@@ -123,7 +123,6 @@ function pad(num) {
 			<div class="wrap-2">
 				<input class="invisible-input" type="radio" id="tab-2" name="tabs">
 				<label for="tab-2"><div>colors</div><div class="cross"></div></label>
-
 				<div class="questions">
 					<div class="question-wrap">
 						<input class="invisible-input" type="radio" id="question-3" name="question">
@@ -136,64 +135,29 @@ function pad(num) {
 						<input class="invisible-input" type="radio" id="question-4" name="question">
 						<label for="question-4"><div>background color</div> <div class="cross"></div></label>
 						<div class="content">
-							<HsvPicker on:colorChange={txtColorCallback} startColor={"#0d0c0d"}/>
+							Coming Soon!
 						</div>
 					</div>
 				</div>
-
 			</div>
 			<div class="wrap-3">
 				<input class="invisible-input" type="radio" id="tab-3" name="tabs">
-				<label for="tab-3"><div>tab three</div><div class="cross"></div></label>
+				<label for="tab-3"><div>format</div><div class="cross"></div></label>
 				<div class="questions">
-					<div class="question-wrap">
-						<input class="invisible-input" type="radio" id="question-1" name="question">
-						<label for="question-1"><div>question one</div> <div class="cross"></div></label>
-						<div class="content">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam atque, soluta doloribus distinctio saepe labore voluptates facere illum alias perferendis praesentium quia vel accusamus incidunt corporis veniam sapiente. Voluptate, quasi.
-						</div>
-					</div>
-					<div class="question-wrap">
-						<input class="invisible-input" type="radio" id="question-2" name="question">
-						<label for="question-2"><div>question two</div> <div class="cross"></div></label>
-						<div class="content">
-						Ipsam atque, soluta doloribus distinctio saepe labore voluptates facere illum alias perferendis praesentium quia vel accusamus incidunt corporis veniam sapiente. Voluptate, quasi.
-						</div>
-					</div>
+					Coming Soon!
 				</div>
 			</div>
 			<form on:submit|preventDefault={generateEgg}>
 				<button id="buttonid" type="submit" disabled={!eggNumber} class="btn btn__primary btn__lg">Generate</button>
 			</form>
-		</div>
-		<div class="hidden">
-			<div class="topSection">
-				<form on:submit|preventDefault={generateEgg}>
-					<input id="textboxid" bind:value={eggNumber} type=number placeholder='#' autoComplete="off"/>
-					<button id="buttonid" type="submit" disabled={!eggNumber} class="btn btn__primary btn__lg">Generate</button>
-				</form>
-				<HsvPicker on:colorChange={txtColorCallback} startColor={"#0d0c0d"}/>
-				<div class="howto">
-					How it works:
-					<br><br>
-					Put in your egg number and hit "Generate".
-					<br>
-					Once it is generated, right-click to print, and save as PDF.
-					<br><br>
-					NOTE: Make sure you have Headers and Footers turned off
-					<br>
-					(Chrome: More Settings > Options > Headers and footers)
-				</div>
-				<div class="shill">
-					<div class="shilllinefirst">Like this tool? Here's my eth address:</div>
-					<div class="shillline">{web3Address}</div>
-					<div class="shillline">{ethAddress}</div>
-					<a href="https://twitter.com/acuriousother?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @acuriousother</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-				</div>
+			<div class="shill">
+				<div class="shilllinefirst">Like this tool? Here's my eth address:</div>
+				<div class="shillline">{web3Address}</div>
+				<div class="shillline">{ethAddress}</div>
+				<a href="https://twitter.com/acuriousother?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @acuriousother</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 			</div>
 		</div>
 	</div>
-	<!-- {#if generate} -->
 	<div id="right-side">
 		<div id="preview-title">
 			PREVIEW
@@ -246,7 +210,6 @@ function pad(num) {
 			</div>
 		</div>
 	</div>
-	<!-- {/if} -->
 </div>
 </main>
 
@@ -485,7 +448,7 @@ input:checked ~ .questions {
 	padding-left: 0;
 }
 .shill {
-	margin-top: 7em;
+	margin-top: 3em;
 }
 .shilllinefirst {
 	padding-bottom: 8px;

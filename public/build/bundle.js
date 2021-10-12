@@ -1340,7 +1340,7 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[31] = list[i];
+    	child_ctx[30] = list[i];
     	return child_ctx;
     }
 
@@ -1348,7 +1348,7 @@ var app = (function () {
     function create_each_block(ctx) {
     	let li;
     	let span;
-    	let t0_value = /*item*/ ctx[31].name + "";
+    	let t0_value = /*item*/ ctx[30].name + "";
     	let t0;
     	let t1;
     	let button;
@@ -1357,7 +1357,7 @@ var app = (function () {
     	let dispose;
 
     	function click_handler() {
-    		return /*click_handler*/ ctx[21](/*item*/ ctx[31]);
+    		return /*click_handler*/ ctx[21](/*item*/ ctx[30]);
     	}
 
     	const block = {
@@ -1369,12 +1369,12 @@ var app = (function () {
     			button = element("button");
     			button.textContent = "×";
     			t3 = space();
-    			attr_dev(span, "class", "svelte-13ahd8r");
+    			attr_dev(span, "class", "svelte-1ccc17b");
     			add_location(span, file, 115, 7, 3701);
-    			attr_dev(button, "class", "svelte-13ahd8r");
+    			attr_dev(button, "class", "svelte-1ccc17b");
     			add_location(button, file, 116, 7, 3733);
-    			attr_dev(li, "class", "svelte-13ahd8r");
-    			toggle_class(li, "done", /*item*/ ctx[31].done);
+    			attr_dev(li, "class", "svelte-1ccc17b");
+    			toggle_class(li, "done", /*item*/ ctx[30].done);
     			add_location(li, file, 114, 6, 3666);
     		},
     		m: function mount(target, anchor) {
@@ -1392,10 +1392,10 @@ var app = (function () {
     		},
     		p: function update(new_ctx, dirty) {
     			ctx = new_ctx;
-    			if (dirty[0] & /*items*/ 128 && t0_value !== (t0_value = /*item*/ ctx[31].name + "")) set_data_dev(t0, t0_value);
+    			if (dirty[0] & /*items*/ 64 && t0_value !== (t0_value = /*item*/ ctx[30].name + "")) set_data_dev(t0, t0_value);
 
-    			if (dirty[0] & /*items*/ 128) {
-    				toggle_class(li, "done", /*item*/ ctx[31].done);
+    			if (dirty[0] & /*items*/ 64) {
+    				toggle_class(li, "done", /*item*/ ctx[30].done);
     			}
     		},
     		d: function destroy(detaching) {
@@ -1418,9 +1418,9 @@ var app = (function () {
 
     function create_fragment(ctx) {
     	let main;
-    	let div51;
-    	let div36;
-    	let div28;
+    	let div40;
+    	let div25;
+    	let div24;
     	let h1;
     	let t1;
     	let div3;
@@ -1458,7 +1458,7 @@ var app = (function () {
     	let div7;
     	let t16;
     	let div8;
-    	let hsvpicker0;
+    	let hsvpicker;
     	let t17;
     	let div13;
     	let input4;
@@ -1469,137 +1469,90 @@ var app = (function () {
     	let div11;
     	let t21;
     	let div12;
-    	let hsvpicker1;
-    	let t22;
-    	let div27;
-    	let input5;
     	let t23;
+    	let div19;
+    	let input5;
+    	let t24;
     	let label4;
     	let div16;
     	let div17;
-    	let t25;
-    	let div26;
-    	let div21;
-    	let input6;
     	let t26;
-    	let label5;
     	let div18;
     	let t28;
-    	let div19;
-    	let t29;
-    	let div20;
-    	let t31;
-    	let div25;
-    	let input7;
-    	let t32;
-    	let label6;
-    	let div22;
-    	let t34;
-    	let div23;
-    	let t35;
-    	let div24;
-    	let t37;
     	let form1;
     	let button1;
-    	let t38;
-    	let button1_disabled_value;
-    	let t39;
-    	let div35;
-    	let div34;
-    	let form2;
-    	let input8;
-    	let t40;
-    	let button2;
-    	let t41;
-    	let button2_disabled_value;
-    	let t42;
-    	let hsvpicker2;
-    	let t43;
-    	let div29;
-    	let t44;
-    	let br0;
-    	let br1;
-    	let t45;
-    	let br2;
-    	let t46;
-    	let br3;
-    	let br4;
-    	let t47;
-    	let br5;
-    	let t48;
-    	let t49;
-    	let div33;
-    	let div30;
-    	let t51;
-    	let div31;
-    	let t53;
-    	let div32;
-    	let t55;
+    	let t29;
+    	let t30;
+    	let div23;
+    	let div20;
+    	let t32;
+    	let div21;
+    	let t34;
+    	let div22;
+    	let t36;
     	let a;
     	let script;
     	let script_src_value;
-    	let t57;
-    	let div50;
-    	let div37;
-    	let t59;
-    	let div49;
+    	let t38;
+    	let div39;
+    	let div26;
+    	let t40;
     	let div38;
+    	let div27;
     	let img;
     	let img_src_value;
-    	let t60;
-    	let div48;
-    	let div44;
-    	let div39;
+    	let t41;
+    	let div37;
+    	let div33;
+    	let div28;
     	let qrcode;
-    	let t61;
-    	let div42;
-    	let div40;
-    	let t62;
-    	let t63;
-    	let div41;
-    	let t65;
-    	let div43;
-    	let t66;
-    	let t67_value = /*pad*/ ctx[19](/*eggNumber*/ ctx[4]) + "";
-    	let t67;
-    	let t68;
-    	let div47;
-    	let div45;
+    	let t42;
+    	let div31;
+    	let div29;
+    	let t43;
+    	let t44;
+    	let div30;
+    	let t46;
+    	let div32;
+    	let t47;
+    	let t48_value = /*pad*/ ctx[19](/*eggNumber*/ ctx[12]) + "";
+    	let t48;
+    	let t49;
+    	let div36;
+    	let div34;
     	let p;
-    	let t70;
-    	let div46;
+    	let t51;
+    	let div35;
     	let table;
     	let tr0;
     	let th0;
-    	let t72;
+    	let t53;
     	let td0;
-    	let t74;
+    	let t55;
     	let tr1;
     	let th1;
-    	let t76;
+    	let t57;
     	let td1;
-    	let t77;
-    	let t78;
+    	let t58;
+    	let t59;
     	let tr2;
     	let th2;
-    	let t80;
+    	let t61;
     	let td2;
-    	let t81_value = /*pad*/ ctx[19](/*eggNumber*/ ctx[4]) + "";
-    	let t81;
-    	let t82;
+    	let t63;
     	let tr3;
     	let th3;
-    	let t84;
+    	let t65;
     	let td3;
-    	let t86;
+    	let t67;
     	let tr4;
     	let th4;
-    	let t88;
+    	let t69;
     	let td4;
     	let current;
     	let mounted;
     	let dispose;
-    	let each_value = /*items*/ ctx[7];
+    	let each_value = /*items*/ ctx[6];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -1607,30 +1560,16 @@ var app = (function () {
     		each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
     	}
 
-    	hsvpicker0 = new HsvPicker({
+    	hsvpicker = new HsvPicker({
     			props: { startColor: "#0d0c0d" },
     			$$inline: true
     		});
 
-    	hsvpicker0.$on("colorChange", /*txtColorCallback*/ ctx[15]);
-
-    	hsvpicker1 = new HsvPicker({
-    			props: { startColor: "#0d0c0d" },
-    			$$inline: true
-    		});
-
-    	hsvpicker1.$on("colorChange", /*txtColorCallback*/ ctx[15]);
-
-    	hsvpicker2 = new HsvPicker({
-    			props: { startColor: "#0d0c0d" },
-    			$$inline: true
-    		});
-
-    	hsvpicker2.$on("colorChange", /*txtColorCallback*/ ctx[15]);
+    	hsvpicker.$on("colorChange", /*txtColorCallback*/ ctx[15]);
 
     	qrcode = new QRJS({
     			props: {
-    				codeValue: /*qrSrc*/ ctx[6],
+    				codeValue: /*qrSrc*/ ctx[5],
     				squareSize: "80",
     				color: /*txtColor*/ ctx[1]
     			},
@@ -1640,9 +1579,9 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			main = element("main");
-    			div51 = element("div");
-    			div36 = element("div");
-    			div28 = element("div");
+    			div40 = element("div");
+    			div25 = element("div");
+    			div24 = element("div");
     			h1 = element("h1");
     			h1.textContent = "Customize your print";
     			t1 = space();
@@ -1688,7 +1627,7 @@ var app = (function () {
     			div7 = element("div");
     			t16 = space();
     			div8 = element("div");
-    			create_component(hsvpicker0.$$.fragment);
+    			create_component(hsvpicker.$$.fragment);
     			t17 = space();
     			div13 = element("div");
     			input4 = element("input");
@@ -1700,416 +1639,308 @@ var app = (function () {
     			div11 = element("div");
     			t21 = space();
     			div12 = element("div");
-    			create_component(hsvpicker1.$$.fragment);
-    			t22 = space();
-    			div27 = element("div");
-    			input5 = element("input");
+    			div12.textContent = "Coming Soon!";
     			t23 = space();
+    			div19 = element("div");
+    			input5 = element("input");
+    			t24 = space();
     			label4 = element("label");
     			div16 = element("div");
-    			div16.textContent = "tab three";
+    			div16.textContent = "format";
     			div17 = element("div");
-    			t25 = space();
-    			div26 = element("div");
-    			div21 = element("div");
-    			input6 = element("input");
     			t26 = space();
-    			label5 = element("label");
     			div18 = element("div");
-    			div18.textContent = "question one";
+    			div18.textContent = "Coming Soon!";
     			t28 = space();
-    			div19 = element("div");
-    			t29 = space();
-    			div20 = element("div");
-    			div20.textContent = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam atque, soluta doloribus distinctio saepe labore voluptates facere illum alias perferendis praesentium quia vel accusamus incidunt corporis veniam sapiente. Voluptate, quasi.";
-    			t31 = space();
-    			div25 = element("div");
-    			input7 = element("input");
-    			t32 = space();
-    			label6 = element("label");
-    			div22 = element("div");
-    			div22.textContent = "question two";
-    			t34 = space();
-    			div23 = element("div");
-    			t35 = space();
-    			div24 = element("div");
-    			div24.textContent = "Ipsam atque, soluta doloribus distinctio saepe labore voluptates facere illum alias perferendis praesentium quia vel accusamus incidunt corporis veniam sapiente. Voluptate, quasi.";
-    			t37 = space();
     			form1 = element("form");
     			button1 = element("button");
-    			t38 = text("Generate");
-    			t39 = space();
-    			div35 = element("div");
-    			div34 = element("div");
-    			form2 = element("form");
-    			input8 = element("input");
-    			t40 = space();
-    			button2 = element("button");
-    			t41 = text("Generate");
-    			t42 = space();
-    			create_component(hsvpicker2.$$.fragment);
-    			t43 = space();
-    			div29 = element("div");
-    			t44 = text("How it works:\n\t\t\t\t\t");
-    			br0 = element("br");
-    			br1 = element("br");
-    			t45 = text("\n\t\t\t\t\tPut in your egg number and hit \"Generate\".\n\t\t\t\t\t");
-    			br2 = element("br");
-    			t46 = text("\n\t\t\t\t\tOnce it is generated, right-click to print, and save as PDF.\n\t\t\t\t\t");
-    			br3 = element("br");
-    			br4 = element("br");
-    			t47 = text("\n\t\t\t\t\tNOTE: Make sure you have Headers and Footers turned off\n\t\t\t\t\t");
-    			br5 = element("br");
-    			t48 = text("\n\t\t\t\t\t(Chrome: More Settings > Options > Headers and footers)");
-    			t49 = space();
-    			div33 = element("div");
-    			div30 = element("div");
-    			div30.textContent = "Like this tool? Here's my eth address:";
-    			t51 = space();
-    			div31 = element("div");
-    			div31.textContent = `${/*web3Address*/ ctx[13]}`;
-    			t53 = space();
-    			div32 = element("div");
-    			div32.textContent = `${/*ethAddress*/ ctx[14]}`;
-    			t55 = space();
+    			t29 = text("Generate");
+    			t30 = space();
+    			div23 = element("div");
+    			div20 = element("div");
+    			div20.textContent = "Like this tool? Here's my eth address:";
+    			t32 = space();
+    			div21 = element("div");
+    			div21.textContent = `${/*web3Address*/ ctx[13]}`;
+    			t34 = space();
+    			div22 = element("div");
+    			div22.textContent = `${/*ethAddress*/ ctx[14]}`;
+    			t36 = space();
     			a = element("a");
     			a.textContent = "Follow @acuriousother";
     			script = element("script");
-    			t57 = space();
-    			div50 = element("div");
-    			div37 = element("div");
-    			div37.textContent = "PREVIEW";
-    			t59 = space();
-    			div49 = element("div");
-    			div38 = element("div");
-    			img = element("img");
-    			t60 = space();
-    			div48 = element("div");
-    			div44 = element("div");
+    			t38 = space();
     			div39 = element("div");
+    			div26 = element("div");
+    			div26.textContent = "PREVIEW";
+    			t40 = space();
+    			div38 = element("div");
+    			div27 = element("div");
+    			img = element("img");
+    			t41 = space();
+    			div37 = element("div");
+    			div33 = element("div");
+    			div28 = element("div");
     			create_component(qrcode.$$.fragment);
-    			t61 = space();
-    			div42 = element("div");
-    			div40 = element("div");
-    			t62 = text(/*series*/ ctx[5]);
-    			t63 = space();
-    			div41 = element("div");
-    			div41.textContent = `${/*collectionName*/ ctx[11]}`;
-    			t65 = space();
-    			div43 = element("div");
-    			t66 = text("#");
-    			t67 = text(t67_value);
-    			t68 = space();
-    			div47 = element("div");
-    			div45 = element("div");
+    			t42 = space();
+    			div31 = element("div");
+    			div29 = element("div");
+    			t43 = text(/*series*/ ctx[4]);
+    			t44 = space();
+    			div30 = element("div");
+    			div30.textContent = `${/*collectionName*/ ctx[10]}`;
+    			t46 = space();
+    			div32 = element("div");
+    			t47 = text("#");
+    			t48 = text(t48_value);
+    			t49 = space();
+    			div36 = element("div");
+    			div34 = element("div");
     			p = element("p");
-    			p.textContent = `${/*longDescription*/ ctx[10]}`;
-    			t70 = space();
-    			div46 = element("div");
+    			p.textContent = `${/*longDescription*/ ctx[9]}`;
+    			t51 = space();
+    			div35 = element("div");
     			table = element("table");
     			tr0 = element("tr");
     			th0 = element("th");
     			th0.textContent = "Collection";
-    			t72 = space();
+    			t53 = space();
     			td0 = element("td");
-    			td0.textContent = `${/*collectionNamePlural*/ ctx[12]}`;
-    			t74 = space();
+    			td0.textContent = `${/*collectionNamePlural*/ ctx[11]}`;
+    			t55 = space();
     			tr1 = element("tr");
     			th1 = element("th");
     			th1.textContent = "Series";
-    			t76 = space();
+    			t57 = space();
     			td1 = element("td");
-    			t77 = text(/*series*/ ctx[5]);
-    			t78 = space();
+    			t58 = text(/*series*/ ctx[4]);
+    			t59 = space();
     			tr2 = element("tr");
     			th2 = element("th");
     			th2.textContent = "Token ID";
-    			t80 = space();
+    			t61 = space();
     			td2 = element("td");
-    			t81 = text(t81_value);
-    			t82 = space();
+    			td2.textContent = `${/*pad*/ ctx[19](/*eggNumber*/ ctx[12])}`;
+    			t63 = space();
     			tr3 = element("tr");
     			th3 = element("th");
     			th3.textContent = "Token Standard";
-    			t84 = space();
+    			t65 = space();
     			td3 = element("td");
     			td3.textContent = "ERC-721";
-    			t86 = space();
+    			t67 = space();
     			tr4 = element("tr");
     			th4 = element("th");
     			th4.textContent = "Blockchain";
-    			t88 = space();
+    			t69 = space();
     			td4 = element("td");
     			td4.textContent = "Ethereum";
-    			attr_dev(h1, "class", "svelte-13ahd8r");
+    			attr_dev(h1, "class", "svelte-1ccc17b");
     			add_location(h1, file, 100, 3, 3091);
-    			attr_dev(input0, "class", "invisible-input svelte-13ahd8r");
+    			attr_dev(input0, "class", "invisible-input svelte-1ccc17b");
     			attr_dev(input0, "type", "radio");
     			attr_dev(input0, "id", "tab-1");
     			attr_dev(input0, "name", "tabs");
     			add_location(input0, file, 102, 4, 3149);
-    			attr_dev(div0, "class", "svelte-13ahd8r");
+    			attr_dev(div0, "class", "svelte-1ccc17b");
     			add_location(div0, file, 104, 5, 3246);
-    			attr_dev(div1, "class", "cross svelte-13ahd8r");
+    			attr_dev(div1, "class", "cross svelte-1ccc17b");
     			add_location(div1, file, 105, 5, 3276);
     			attr_dev(label0, "for", "tab-1");
-    			attr_dev(label0, "class", "svelte-13ahd8r");
+    			attr_dev(label0, "class", "svelte-1ccc17b");
     			add_location(label0, file, 103, 4, 3221);
     			attr_dev(input1, "id", "textboxid");
     			attr_dev(input1, "type", "number");
     			attr_dev(input1, "placeholder", "#");
     			attr_dev(input1, "autocomplete", "off");
-    			attr_dev(input1, "class", "svelte-13ahd8r");
+    			attr_dev(input1, "class", "svelte-1ccc17b");
     			add_location(input1, file, 109, 6, 3394);
     			attr_dev(button0, "id", "buttonid");
     			attr_dev(button0, "type", "submit");
-    			button0.disabled = button0_disabled_value = !/*name*/ ctx[8];
-    			attr_dev(button0, "class", "btn btn__primary btn__lg svelte-13ahd8r");
+    			button0.disabled = button0_disabled_value = !/*name*/ ctx[7];
+    			attr_dev(button0, "class", "btn btn__primary btn__lg svelte-1ccc17b");
     			add_location(button0, file, 110, 6, 3489);
-    			attr_dev(form0, "class", "svelte-13ahd8r");
+    			attr_dev(form0, "class", "svelte-1ccc17b");
     			add_location(form0, file, 108, 5, 3346);
-    			attr_dev(ul, "class", "egg-list svelte-13ahd8r");
+    			attr_dev(ul, "class", "egg-list svelte-1ccc17b");
     			add_location(ul, file, 112, 5, 3610);
-    			attr_dev(div2, "class", "content svelte-13ahd8r");
+    			attr_dev(div2, "class", "content svelte-1ccc17b");
     			add_location(div2, file, 107, 4, 3319);
-    			attr_dev(div3, "class", "wrap-1 svelte-13ahd8r");
+    			attr_dev(div3, "class", "wrap-1 svelte-1ccc17b");
     			add_location(div3, file, 101, 3, 3124);
-    			attr_dev(input2, "class", "invisible-input svelte-13ahd8r");
+    			attr_dev(input2, "class", "invisible-input svelte-1ccc17b");
     			attr_dev(input2, "type", "radio");
     			attr_dev(input2, "id", "tab-2");
     			attr_dev(input2, "name", "tabs");
     			add_location(input2, file, 123, 4, 3874);
-    			attr_dev(div4, "class", "svelte-13ahd8r");
+    			attr_dev(div4, "class", "svelte-1ccc17b");
     			add_location(div4, file, 124, 23, 3965);
-    			attr_dev(div5, "class", "cross svelte-13ahd8r");
+    			attr_dev(div5, "class", "cross svelte-1ccc17b");
     			add_location(div5, file, 124, 40, 3982);
     			attr_dev(label1, "for", "tab-2");
-    			attr_dev(label1, "class", "svelte-13ahd8r");
+    			attr_dev(label1, "class", "svelte-1ccc17b");
     			add_location(label1, file, 124, 4, 3946);
-    			attr_dev(input3, "class", "invisible-input svelte-13ahd8r");
+    			attr_dev(input3, "class", "invisible-input svelte-1ccc17b");
     			attr_dev(input3, "type", "radio");
     			attr_dev(input3, "id", "question-3");
     			attr_dev(input3, "name", "question");
-    			add_location(input3, file, 128, 6, 4084);
-    			attr_dev(div6, "class", "svelte-13ahd8r");
-    			add_location(div6, file, 129, 30, 4191);
-    			attr_dev(div7, "class", "cross svelte-13ahd8r");
-    			add_location(div7, file, 129, 52, 4213);
+    			add_location(input3, file, 127, 6, 4083);
+    			attr_dev(div6, "class", "svelte-1ccc17b");
+    			add_location(div6, file, 128, 30, 4190);
+    			attr_dev(div7, "class", "cross svelte-1ccc17b");
+    			add_location(div7, file, 128, 52, 4212);
     			attr_dev(label2, "for", "question-3");
-    			attr_dev(label2, "class", "svelte-13ahd8r");
-    			add_location(label2, file, 129, 6, 4167);
-    			attr_dev(div8, "class", "content svelte-13ahd8r");
-    			add_location(div8, file, 130, 6, 4253);
-    			attr_dev(div9, "class", "question-wrap svelte-13ahd8r");
-    			add_location(div9, file, 127, 5, 4050);
-    			attr_dev(input4, "class", "invisible-input svelte-13ahd8r");
+    			attr_dev(label2, "class", "svelte-1ccc17b");
+    			add_location(label2, file, 128, 6, 4166);
+    			attr_dev(div8, "class", "content svelte-1ccc17b");
+    			add_location(div8, file, 129, 6, 4252);
+    			attr_dev(div9, "class", "question-wrap svelte-1ccc17b");
+    			add_location(div9, file, 126, 5, 4049);
+    			attr_dev(input4, "class", "invisible-input svelte-1ccc17b");
     			attr_dev(input4, "type", "radio");
     			attr_dev(input4, "id", "question-4");
     			attr_dev(input4, "name", "question");
-    			add_location(input4, file, 135, 6, 4416);
-    			attr_dev(div10, "class", "svelte-13ahd8r");
-    			add_location(div10, file, 136, 30, 4523);
-    			attr_dev(div11, "class", "cross svelte-13ahd8r");
-    			add_location(div11, file, 136, 58, 4551);
+    			add_location(input4, file, 134, 6, 4415);
+    			attr_dev(div10, "class", "svelte-1ccc17b");
+    			add_location(div10, file, 135, 30, 4522);
+    			attr_dev(div11, "class", "cross svelte-1ccc17b");
+    			add_location(div11, file, 135, 58, 4550);
     			attr_dev(label3, "for", "question-4");
-    			attr_dev(label3, "class", "svelte-13ahd8r");
-    			add_location(label3, file, 136, 6, 4499);
-    			attr_dev(div12, "class", "content svelte-13ahd8r");
-    			add_location(div12, file, 137, 6, 4591);
-    			attr_dev(div13, "class", "question-wrap svelte-13ahd8r");
-    			add_location(div13, file, 134, 5, 4382);
-    			attr_dev(div14, "class", "questions svelte-13ahd8r");
-    			add_location(div14, file, 126, 4, 4021);
-    			attr_dev(div15, "class", "wrap-2 svelte-13ahd8r");
+    			attr_dev(label3, "class", "svelte-1ccc17b");
+    			add_location(label3, file, 135, 6, 4498);
+    			attr_dev(div12, "class", "content svelte-1ccc17b");
+    			add_location(div12, file, 136, 6, 4590);
+    			attr_dev(div13, "class", "question-wrap svelte-1ccc17b");
+    			add_location(div13, file, 133, 5, 4381);
+    			attr_dev(div14, "class", "questions svelte-1ccc17b");
+    			add_location(div14, file, 125, 4, 4020);
+    			attr_dev(div15, "class", "wrap-2 svelte-1ccc17b");
     			add_location(div15, file, 122, 3, 3849);
-    			attr_dev(input5, "class", "invisible-input svelte-13ahd8r");
+    			attr_dev(input5, "class", "invisible-input svelte-1ccc17b");
     			attr_dev(input5, "type", "radio");
     			attr_dev(input5, "id", "tab-3");
     			attr_dev(input5, "name", "tabs");
-    			add_location(input5, file, 145, 4, 4765);
-    			attr_dev(div16, "class", "svelte-13ahd8r");
-    			add_location(div16, file, 146, 23, 4856);
-    			attr_dev(div17, "class", "cross svelte-13ahd8r");
-    			add_location(div17, file, 146, 43, 4876);
+    			add_location(input5, file, 143, 4, 4706);
+    			attr_dev(div16, "class", "svelte-1ccc17b");
+    			add_location(div16, file, 144, 23, 4797);
+    			attr_dev(div17, "class", "cross svelte-1ccc17b");
+    			add_location(div17, file, 144, 40, 4814);
     			attr_dev(label4, "for", "tab-3");
-    			attr_dev(label4, "class", "svelte-13ahd8r");
-    			add_location(label4, file, 146, 4, 4837);
-    			attr_dev(input6, "class", "invisible-input svelte-13ahd8r");
-    			attr_dev(input6, "type", "radio");
-    			attr_dev(input6, "id", "question-1");
-    			attr_dev(input6, "name", "question");
-    			add_location(input6, file, 149, 6, 4977);
-    			attr_dev(div18, "class", "svelte-13ahd8r");
-    			add_location(div18, file, 150, 30, 5084);
-    			attr_dev(div19, "class", "cross svelte-13ahd8r");
-    			add_location(div19, file, 150, 54, 5108);
-    			attr_dev(label5, "for", "question-1");
-    			attr_dev(label5, "class", "svelte-13ahd8r");
-    			add_location(label5, file, 150, 6, 5060);
-    			attr_dev(div20, "class", "content svelte-13ahd8r");
-    			add_location(div20, file, 151, 6, 5148);
-    			attr_dev(div21, "class", "question-wrap svelte-13ahd8r");
-    			add_location(div21, file, 148, 5, 4943);
-    			attr_dev(input7, "class", "invisible-input svelte-13ahd8r");
-    			attr_dev(input7, "type", "radio");
-    			attr_dev(input7, "id", "question-2");
-    			attr_dev(input7, "name", "question");
-    			add_location(input7, file, 156, 6, 5478);
-    			attr_dev(div22, "class", "svelte-13ahd8r");
-    			add_location(div22, file, 157, 30, 5585);
-    			attr_dev(div23, "class", "cross svelte-13ahd8r");
-    			add_location(div23, file, 157, 54, 5609);
-    			attr_dev(label6, "for", "question-2");
-    			attr_dev(label6, "class", "svelte-13ahd8r");
-    			add_location(label6, file, 157, 6, 5561);
-    			attr_dev(div24, "class", "content svelte-13ahd8r");
-    			add_location(div24, file, 158, 6, 5649);
-    			attr_dev(div25, "class", "question-wrap svelte-13ahd8r");
-    			add_location(div25, file, 155, 5, 5444);
-    			attr_dev(div26, "class", "questions svelte-13ahd8r");
-    			add_location(div26, file, 147, 4, 4914);
-    			attr_dev(div27, "class", "wrap-3 svelte-13ahd8r");
-    			add_location(div27, file, 144, 3, 4740);
+    			attr_dev(label4, "class", "svelte-1ccc17b");
+    			add_location(label4, file, 144, 4, 4778);
+    			attr_dev(div18, "class", "questions svelte-1ccc17b");
+    			add_location(div18, file, 145, 4, 4852);
+    			attr_dev(div19, "class", "wrap-3 svelte-1ccc17b");
+    			add_location(div19, file, 142, 3, 4681);
     			attr_dev(button1, "id", "buttonid");
     			attr_dev(button1, "type", "submit");
-    			button1.disabled = button1_disabled_value = !/*eggNumber*/ ctx[4];
-    			attr_dev(button1, "class", "btn btn__primary btn__lg svelte-13ahd8r");
-    			add_location(button1, file, 165, 4, 5956);
-    			attr_dev(form1, "class", "svelte-13ahd8r");
-    			add_location(form1, file, 164, 3, 5906);
-    			attr_dev(div28, "class", "wrapper svelte-13ahd8r");
-    			add_location(div28, file, 99, 2, 3066);
-    			attr_dev(input8, "id", "textboxid");
-    			attr_dev(input8, "type", "number");
-    			attr_dev(input8, "placeholder", "#");
-    			attr_dev(input8, "autocomplete", "off");
-    			attr_dev(input8, "class", "svelte-13ahd8r");
-    			add_location(input8, file, 171, 5, 6191);
-    			attr_dev(button2, "id", "buttonid");
-    			attr_dev(button2, "type", "submit");
-    			button2.disabled = button2_disabled_value = !/*eggNumber*/ ctx[4];
-    			attr_dev(button2, "class", "btn btn__primary btn__lg svelte-13ahd8r");
-    			add_location(button2, file, 172, 5, 6290);
-    			attr_dev(form2, "class", "svelte-13ahd8r");
-    			add_location(form2, file, 170, 4, 6140);
-    			attr_dev(br0, "class", "svelte-13ahd8r");
-    			add_location(br0, file, 177, 5, 6533);
-    			attr_dev(br1, "class", "svelte-13ahd8r");
-    			add_location(br1, file, 177, 9, 6537);
-    			attr_dev(br2, "class", "svelte-13ahd8r");
-    			add_location(br2, file, 179, 5, 6595);
-    			attr_dev(br3, "class", "svelte-13ahd8r");
-    			add_location(br3, file, 181, 5, 6671);
-    			attr_dev(br4, "class", "svelte-13ahd8r");
-    			add_location(br4, file, 181, 9, 6675);
-    			attr_dev(br5, "class", "svelte-13ahd8r");
-    			add_location(br5, file, 183, 5, 6746);
-    			attr_dev(div29, "class", "howto svelte-13ahd8r");
-    			add_location(div29, file, 175, 4, 6489);
-    			attr_dev(div30, "class", "shilllinefirst svelte-13ahd8r");
-    			add_location(div30, file, 187, 5, 6852);
-    			attr_dev(div31, "class", "shillline svelte-13ahd8r");
-    			add_location(div31, file, 188, 5, 6930);
-    			attr_dev(div32, "class", "shillline svelte-13ahd8r");
-    			add_location(div32, file, 189, 5, 6978);
+    			button1.disabled = !/*eggNumber*/ ctx[12];
+    			attr_dev(button1, "class", "btn btn__primary btn__lg svelte-1ccc17b");
+    			add_location(button1, file, 150, 4, 4968);
+    			attr_dev(form1, "class", "svelte-1ccc17b");
+    			add_location(form1, file, 149, 3, 4918);
+    			attr_dev(div20, "class", "shilllinefirst svelte-1ccc17b");
+    			add_location(div20, file, 153, 4, 5115);
+    			attr_dev(div21, "class", "shillline svelte-1ccc17b");
+    			add_location(div21, file, 154, 4, 5192);
+    			attr_dev(div22, "class", "shillline svelte-1ccc17b");
+    			add_location(div22, file, 155, 4, 5239);
     			attr_dev(a, "href", "https://twitter.com/acuriousother?ref_src=twsrc%5Etfw");
-    			attr_dev(a, "class", "twitter-follow-button svelte-13ahd8r");
+    			attr_dev(a, "class", "twitter-follow-button svelte-1ccc17b");
     			attr_dev(a, "data-show-count", "false");
-    			add_location(a, file, 190, 5, 7025);
+    			add_location(a, file, 156, 4, 5285);
     			script.async = true;
     			if (!src_url_equal(script.src, script_src_value = "https://platform.twitter.com/widgets.js")) attr_dev(script, "src", script_src_value);
     			attr_dev(script, "charset", "utf-8");
-    			attr_dev(script, "class", "svelte-13ahd8r");
-    			add_location(script, file, 190, 148, 7168);
-    			attr_dev(div33, "class", "shill svelte-13ahd8r");
-    			add_location(div33, file, 186, 4, 6827);
-    			attr_dev(div34, "class", "topSection svelte-13ahd8r");
-    			add_location(div34, file, 169, 3, 6111);
-    			attr_dev(div35, "class", "hidden svelte-13ahd8r");
-    			add_location(div35, file, 168, 2, 6087);
-    			attr_dev(div36, "id", "left-side");
-    			attr_dev(div36, "class", "svelte-13ahd8r");
-    			add_location(div36, file, 98, 1, 3043);
-    			attr_dev(div37, "id", "preview-title");
-    			attr_dev(div37, "class", "svelte-13ahd8r");
-    			add_location(div37, file, 197, 2, 7342);
-    			attr_dev(img, "class", "egg-image svelte-13ahd8r");
+    			attr_dev(script, "class", "svelte-1ccc17b");
+    			add_location(script, file, 156, 147, 5428);
+    			attr_dev(div23, "class", "shill svelte-1ccc17b");
+    			add_location(div23, file, 152, 3, 5091);
+    			attr_dev(div24, "class", "wrapper svelte-1ccc17b");
+    			add_location(div24, file, 99, 2, 3066);
+    			attr_dev(div25, "id", "left-side");
+    			attr_dev(div25, "class", "svelte-1ccc17b");
+    			add_location(div25, file, 98, 1, 3043);
+    			attr_dev(div26, "id", "preview-title");
+    			attr_dev(div26, "class", "svelte-1ccc17b");
+    			add_location(div26, file, 161, 2, 5566);
+    			attr_dev(img, "class", "egg-image svelte-1ccc17b");
     			if (!src_url_equal(img.src, img_src_value = /*imgSrc*/ ctx[3])) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "galaxy egg");
-    			add_location(img, file, 202, 8, 7613);
-    			attr_dev(div38, "class", "svelte-13ahd8r");
-    			add_location(div38, file, 202, 3, 7608);
-    			attr_dev(div39, "class", "qr-code svelte-13ahd8r");
-    			add_location(div39, file, 205, 5, 7772);
-    			attr_dev(div40, "class", "collectionName svelte-13ahd8r");
-    			add_location(div40, file, 209, 6, 7963);
-    			attr_dev(div41, "class", "series svelte-13ahd8r");
-    			add_location(div41, file, 210, 6, 8012);
-    			attr_dev(div42, "class", "collectionSeries svelte-13ahd8r");
-    			set_style(div42, "--coll-seriesborder", /*collSeriesBorder*/ ctx[2]);
-    			add_location(div42, file, 208, 5, 7878);
-    			attr_dev(div43, "class", "eggNum svelte-13ahd8r");
-    			set_style(div43, "--egg-num-size", /*eggNumSize*/ ctx[0]);
-    			add_location(div43, file, 212, 5, 8072);
-    			attr_dev(div44, "class", "row1 svelte-13ahd8r");
-    			add_location(div44, file, 204, 4, 7748);
-    			attr_dev(p, "class", "svelte-13ahd8r");
-    			add_location(p, file, 218, 6, 8237);
-    			attr_dev(div45, "class", "description svelte-13ahd8r");
-    			add_location(div45, file, 217, 5, 8205);
-    			attr_dev(th0, "class", "svelte-13ahd8r");
-    			add_location(th0, file, 223, 8, 8368);
-    			attr_dev(td0, "class", "svelte-13ahd8r");
-    			add_location(td0, file, 224, 8, 8396);
-    			attr_dev(tr0, "class", "svelte-13ahd8r");
-    			add_location(tr0, file, 222, 7, 8355);
-    			attr_dev(th1, "class", "svelte-13ahd8r");
-    			add_location(th1, file, 227, 8, 8461);
-    			attr_dev(td1, "class", "svelte-13ahd8r");
-    			add_location(td1, file, 228, 8, 8485);
-    			attr_dev(tr1, "class", "svelte-13ahd8r");
-    			add_location(tr1, file, 226, 7, 8448);
-    			attr_dev(th2, "class", "svelte-13ahd8r");
-    			add_location(th2, file, 231, 8, 8536);
-    			attr_dev(td2, "class", "svelte-13ahd8r");
-    			add_location(td2, file, 232, 8, 8562);
-    			attr_dev(tr2, "class", "svelte-13ahd8r");
-    			add_location(tr2, file, 230, 7, 8523);
-    			attr_dev(th3, "class", "svelte-13ahd8r");
-    			add_location(th3, file, 235, 8, 8621);
-    			attr_dev(td3, "class", "svelte-13ahd8r");
-    			add_location(td3, file, 236, 8, 8653);
-    			attr_dev(tr3, "class", "svelte-13ahd8r");
-    			add_location(tr3, file, 234, 7, 8608);
-    			attr_dev(th4, "class", "svelte-13ahd8r");
-    			add_location(th4, file, 239, 8, 8703);
-    			attr_dev(td4, "class", "svelte-13ahd8r");
-    			add_location(td4, file, 240, 8, 8731);
-    			attr_dev(tr4, "class", "svelte-13ahd8r");
-    			add_location(tr4, file, 238, 7, 8690);
+    			add_location(img, file, 166, 8, 5837);
+    			attr_dev(div27, "class", "svelte-1ccc17b");
+    			add_location(div27, file, 166, 3, 5832);
+    			attr_dev(div28, "class", "qr-code svelte-1ccc17b");
+    			add_location(div28, file, 169, 5, 5996);
+    			attr_dev(div29, "class", "collectionName svelte-1ccc17b");
+    			add_location(div29, file, 173, 6, 6187);
+    			attr_dev(div30, "class", "series svelte-1ccc17b");
+    			add_location(div30, file, 174, 6, 6236);
+    			attr_dev(div31, "class", "collectionSeries svelte-1ccc17b");
+    			set_style(div31, "--coll-seriesborder", /*collSeriesBorder*/ ctx[2]);
+    			add_location(div31, file, 172, 5, 6102);
+    			attr_dev(div32, "class", "eggNum svelte-1ccc17b");
+    			set_style(div32, "--egg-num-size", /*eggNumSize*/ ctx[0]);
+    			add_location(div32, file, 176, 5, 6296);
+    			attr_dev(div33, "class", "row1 svelte-1ccc17b");
+    			add_location(div33, file, 168, 4, 5972);
+    			attr_dev(p, "class", "svelte-1ccc17b");
+    			add_location(p, file, 182, 6, 6461);
+    			attr_dev(div34, "class", "description svelte-1ccc17b");
+    			add_location(div34, file, 181, 5, 6429);
+    			attr_dev(th0, "class", "svelte-1ccc17b");
+    			add_location(th0, file, 187, 8, 6592);
+    			attr_dev(td0, "class", "svelte-1ccc17b");
+    			add_location(td0, file, 188, 8, 6620);
+    			attr_dev(tr0, "class", "svelte-1ccc17b");
+    			add_location(tr0, file, 186, 7, 6579);
+    			attr_dev(th1, "class", "svelte-1ccc17b");
+    			add_location(th1, file, 191, 8, 6685);
+    			attr_dev(td1, "class", "svelte-1ccc17b");
+    			add_location(td1, file, 192, 8, 6709);
+    			attr_dev(tr1, "class", "svelte-1ccc17b");
+    			add_location(tr1, file, 190, 7, 6672);
+    			attr_dev(th2, "class", "svelte-1ccc17b");
+    			add_location(th2, file, 195, 8, 6760);
+    			attr_dev(td2, "class", "svelte-1ccc17b");
+    			add_location(td2, file, 196, 8, 6786);
+    			attr_dev(tr2, "class", "svelte-1ccc17b");
+    			add_location(tr2, file, 194, 7, 6747);
+    			attr_dev(th3, "class", "svelte-1ccc17b");
+    			add_location(th3, file, 199, 8, 6845);
+    			attr_dev(td3, "class", "svelte-1ccc17b");
+    			add_location(td3, file, 200, 8, 6877);
+    			attr_dev(tr3, "class", "svelte-1ccc17b");
+    			add_location(tr3, file, 198, 7, 6832);
+    			attr_dev(th4, "class", "svelte-1ccc17b");
+    			add_location(th4, file, 203, 8, 6927);
+    			attr_dev(td4, "class", "svelte-1ccc17b");
+    			add_location(td4, file, 204, 8, 6955);
+    			attr_dev(tr4, "class", "svelte-1ccc17b");
+    			add_location(tr4, file, 202, 7, 6914);
     			attr_dev(table, "border", "1");
     			attr_dev(table, "frame", "void");
     			attr_dev(table, "rules", "rows");
-    			attr_dev(table, "class", "svelte-13ahd8r");
-    			add_location(table, file, 221, 6, 8309);
-    			attr_dev(div46, "class", "tableData svelte-13ahd8r");
-    			add_location(div46, file, 220, 5, 8279);
-    			attr_dev(div47, "class", "row2 svelte-13ahd8r");
-    			add_location(div47, file, 216, 4, 8181);
-    			attr_dev(div48, "class", "descriptionSection svelte-13ahd8r");
-    			set_style(div48, "--main-width", /*mainWidth*/ ctx[9]);
-    			add_location(div48, file, 203, 3, 7677);
-    			attr_dev(div49, "id", "display-box");
-    			attr_dev(div49, "class", "shrink svelte-13ahd8r");
-    			set_style(div49, "--main-width", /*mainWidth*/ ctx[9]);
-    			set_style(div49, "--txt-color", /*txtColor*/ ctx[1]);
-    			add_location(div49, file, 201, 2, 7509);
-    			attr_dev(div50, "id", "right-side");
-    			attr_dev(div50, "class", "svelte-13ahd8r");
-    			add_location(div50, file, 196, 1, 7318);
-    			attr_dev(div51, "class", "top-container svelte-13ahd8r");
-    			add_location(div51, file, 97, 0, 3014);
-    			attr_dev(main, "class", "svelte-13ahd8r");
+    			attr_dev(table, "class", "svelte-1ccc17b");
+    			add_location(table, file, 185, 6, 6533);
+    			attr_dev(div35, "class", "tableData svelte-1ccc17b");
+    			add_location(div35, file, 184, 5, 6503);
+    			attr_dev(div36, "class", "row2 svelte-1ccc17b");
+    			add_location(div36, file, 180, 4, 6405);
+    			attr_dev(div37, "class", "descriptionSection svelte-1ccc17b");
+    			set_style(div37, "--main-width", /*mainWidth*/ ctx[8]);
+    			add_location(div37, file, 167, 3, 5901);
+    			attr_dev(div38, "id", "display-box");
+    			attr_dev(div38, "class", "shrink svelte-1ccc17b");
+    			set_style(div38, "--main-width", /*mainWidth*/ ctx[8]);
+    			set_style(div38, "--txt-color", /*txtColor*/ ctx[1]);
+    			add_location(div38, file, 165, 2, 5733);
+    			attr_dev(div39, "id", "right-side");
+    			attr_dev(div39, "class", "svelte-1ccc17b");
+    			add_location(div39, file, 160, 1, 5542);
+    			attr_dev(div40, "class", "top-container svelte-1ccc17b");
+    			add_location(div40, file, 97, 0, 3014);
+    			attr_dev(main, "class", "svelte-1ccc17b");
     			add_location(main, file, 96, 0, 3007);
     		},
     		l: function claim(nodes) {
@@ -2117,12 +1948,12 @@ var app = (function () {
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, main, anchor);
-    			append_dev(main, div51);
-    			append_dev(div51, div36);
-    			append_dev(div36, div28);
-    			append_dev(div28, h1);
-    			append_dev(div28, t1);
-    			append_dev(div28, div3);
+    			append_dev(main, div40);
+    			append_dev(div40, div25);
+    			append_dev(div25, div24);
+    			append_dev(div24, h1);
+    			append_dev(div24, t1);
+    			append_dev(div24, div3);
     			append_dev(div3, input0);
     			append_dev(div3, t2);
     			append_dev(div3, label0);
@@ -2133,7 +1964,7 @@ var app = (function () {
     			append_dev(div3, div2);
     			append_dev(div2, form0);
     			append_dev(form0, input1);
-    			set_input_value(input1, /*name*/ ctx[8]);
+    			set_input_value(input1, /*name*/ ctx[7]);
     			append_dev(form0, t6);
     			append_dev(form0, button0);
     			append_dev(button0, t7);
@@ -2144,8 +1975,8 @@ var app = (function () {
     				each_blocks[i].m(ul, null);
     			}
 
-    			append_dev(div28, t9);
-    			append_dev(div28, div15);
+    			append_dev(div24, t9);
+    			append_dev(div24, div15);
     			append_dev(div15, input2);
     			append_dev(div15, t10);
     			append_dev(div15, label1);
@@ -2162,7 +1993,7 @@ var app = (function () {
     			append_dev(label2, div7);
     			append_dev(div9, t16);
     			append_dev(div9, div8);
-    			mount_component(hsvpicker0, div8, null);
+    			mount_component(hsvpicker, div8, null);
     			append_dev(div14, t17);
     			append_dev(div14, div13);
     			append_dev(div13, input4);
@@ -2173,127 +2004,82 @@ var app = (function () {
     			append_dev(label3, div11);
     			append_dev(div13, t21);
     			append_dev(div13, div12);
-    			mount_component(hsvpicker1, div12, null);
-    			append_dev(div28, t22);
-    			append_dev(div28, div27);
-    			append_dev(div27, input5);
-    			append_dev(div27, t23);
-    			append_dev(div27, label4);
+    			append_dev(div24, t23);
+    			append_dev(div24, div19);
+    			append_dev(div19, input5);
+    			append_dev(div19, t24);
+    			append_dev(div19, label4);
     			append_dev(label4, div16);
     			append_dev(label4, div17);
-    			append_dev(div27, t25);
-    			append_dev(div27, div26);
-    			append_dev(div26, div21);
-    			append_dev(div21, input6);
-    			append_dev(div21, t26);
-    			append_dev(div21, label5);
-    			append_dev(label5, div18);
-    			append_dev(label5, t28);
-    			append_dev(label5, div19);
-    			append_dev(div21, t29);
-    			append_dev(div21, div20);
-    			append_dev(div26, t31);
-    			append_dev(div26, div25);
-    			append_dev(div25, input7);
-    			append_dev(div25, t32);
-    			append_dev(div25, label6);
-    			append_dev(label6, div22);
-    			append_dev(label6, t34);
-    			append_dev(label6, div23);
-    			append_dev(div25, t35);
-    			append_dev(div25, div24);
-    			append_dev(div28, t37);
-    			append_dev(div28, form1);
+    			append_dev(div19, t26);
+    			append_dev(div19, div18);
+    			append_dev(div24, t28);
+    			append_dev(div24, form1);
     			append_dev(form1, button1);
-    			append_dev(button1, t38);
-    			append_dev(div36, t39);
-    			append_dev(div36, div35);
-    			append_dev(div35, div34);
-    			append_dev(div34, form2);
-    			append_dev(form2, input8);
-    			set_input_value(input8, /*eggNumber*/ ctx[4]);
-    			append_dev(form2, t40);
-    			append_dev(form2, button2);
-    			append_dev(button2, t41);
-    			append_dev(div34, t42);
-    			mount_component(hsvpicker2, div34, null);
-    			append_dev(div34, t43);
-    			append_dev(div34, div29);
-    			append_dev(div29, t44);
-    			append_dev(div29, br0);
-    			append_dev(div29, br1);
-    			append_dev(div29, t45);
-    			append_dev(div29, br2);
-    			append_dev(div29, t46);
-    			append_dev(div29, br3);
-    			append_dev(div29, br4);
-    			append_dev(div29, t47);
-    			append_dev(div29, br5);
-    			append_dev(div29, t48);
-    			append_dev(div34, t49);
-    			append_dev(div34, div33);
-    			append_dev(div33, div30);
-    			append_dev(div33, t51);
+    			append_dev(button1, t29);
+    			append_dev(div24, t30);
+    			append_dev(div24, div23);
+    			append_dev(div23, div20);
+    			append_dev(div23, t32);
+    			append_dev(div23, div21);
+    			append_dev(div23, t34);
+    			append_dev(div23, div22);
+    			append_dev(div23, t36);
+    			append_dev(div23, a);
+    			append_dev(div23, script);
+    			append_dev(div40, t38);
+    			append_dev(div40, div39);
+    			append_dev(div39, div26);
+    			append_dev(div39, t40);
+    			append_dev(div39, div38);
+    			append_dev(div38, div27);
+    			append_dev(div27, img);
+    			append_dev(div38, t41);
+    			append_dev(div38, div37);
+    			append_dev(div37, div33);
+    			append_dev(div33, div28);
+    			mount_component(qrcode, div28, null);
+    			append_dev(div33, t42);
     			append_dev(div33, div31);
-    			append_dev(div33, t53);
+    			append_dev(div31, div29);
+    			append_dev(div29, t43);
+    			append_dev(div31, t44);
+    			append_dev(div31, div30);
+    			append_dev(div33, t46);
     			append_dev(div33, div32);
-    			append_dev(div33, t55);
-    			append_dev(div33, a);
-    			append_dev(div33, script);
-    			append_dev(div51, t57);
-    			append_dev(div51, div50);
-    			append_dev(div50, div37);
-    			append_dev(div50, t59);
-    			append_dev(div50, div49);
-    			append_dev(div49, div38);
-    			append_dev(div38, img);
-    			append_dev(div49, t60);
-    			append_dev(div49, div48);
-    			append_dev(div48, div44);
-    			append_dev(div44, div39);
-    			mount_component(qrcode, div39, null);
-    			append_dev(div44, t61);
-    			append_dev(div44, div42);
-    			append_dev(div42, div40);
-    			append_dev(div40, t62);
-    			append_dev(div42, t63);
-    			append_dev(div42, div41);
-    			append_dev(div44, t65);
-    			append_dev(div44, div43);
-    			append_dev(div43, t66);
-    			append_dev(div43, t67);
-    			append_dev(div48, t68);
-    			append_dev(div48, div47);
-    			append_dev(div47, div45);
-    			append_dev(div45, p);
-    			append_dev(div47, t70);
-    			append_dev(div47, div46);
-    			append_dev(div46, table);
+    			append_dev(div32, t47);
+    			append_dev(div32, t48);
+    			append_dev(div37, t49);
+    			append_dev(div37, div36);
+    			append_dev(div36, div34);
+    			append_dev(div34, p);
+    			append_dev(div36, t51);
+    			append_dev(div36, div35);
+    			append_dev(div35, table);
     			append_dev(table, tr0);
     			append_dev(tr0, th0);
-    			append_dev(tr0, t72);
+    			append_dev(tr0, t53);
     			append_dev(tr0, td0);
-    			append_dev(table, t74);
+    			append_dev(table, t55);
     			append_dev(table, tr1);
     			append_dev(tr1, th1);
-    			append_dev(tr1, t76);
+    			append_dev(tr1, t57);
     			append_dev(tr1, td1);
-    			append_dev(td1, t77);
-    			append_dev(table, t78);
+    			append_dev(td1, t58);
+    			append_dev(table, t59);
     			append_dev(table, tr2);
     			append_dev(tr2, th2);
-    			append_dev(tr2, t80);
+    			append_dev(tr2, t61);
     			append_dev(tr2, td2);
-    			append_dev(td2, t81);
-    			append_dev(table, t82);
+    			append_dev(table, t63);
     			append_dev(table, tr3);
     			append_dev(tr3, th3);
-    			append_dev(tr3, t84);
+    			append_dev(tr3, t65);
     			append_dev(tr3, td3);
-    			append_dev(table, t86);
+    			append_dev(table, t67);
     			append_dev(table, tr4);
     			append_dev(tr4, th4);
-    			append_dev(tr4, t88);
+    			append_dev(tr4, t69);
     			append_dev(tr4, td4);
     			current = true;
 
@@ -2301,25 +2087,23 @@ var app = (function () {
     				dispose = [
     					listen_dev(input1, "input", /*input1_input_handler*/ ctx[20]),
     					listen_dev(form0, "submit", prevent_default(/*addItem*/ ctx[16]), false, true, false),
-    					listen_dev(form1, "submit", prevent_default(/*generateEgg*/ ctx[18]), false, true, false),
-    					listen_dev(input8, "input", /*input8_input_handler*/ ctx[22]),
-    					listen_dev(form2, "submit", prevent_default(/*generateEgg*/ ctx[18]), false, true, false)
+    					listen_dev(form1, "submit", prevent_default(/*generateEgg*/ ctx[18]), false, true, false)
     				];
 
     				mounted = true;
     			}
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*name*/ 256 && to_number(input1.value) !== /*name*/ ctx[8]) {
-    				set_input_value(input1, /*name*/ ctx[8]);
+    			if (dirty[0] & /*name*/ 128 && to_number(input1.value) !== /*name*/ ctx[7]) {
+    				set_input_value(input1, /*name*/ ctx[7]);
     			}
 
-    			if (!current || dirty[0] & /*name*/ 256 && button0_disabled_value !== (button0_disabled_value = !/*name*/ ctx[8])) {
+    			if (!current || dirty[0] & /*name*/ 128 && button0_disabled_value !== (button0_disabled_value = !/*name*/ ctx[7])) {
     				prop_dev(button0, "disabled", button0_disabled_value);
     			}
 
-    			if (dirty[0] & /*items, remove*/ 131200) {
-    				each_value = /*items*/ ctx[7];
+    			if (dirty[0] & /*items, remove*/ 131136) {
+    				each_value = /*items*/ ctx[6];
     				validate_each_argument(each_value);
     				let i;
 
@@ -2342,66 +2126,45 @@ var app = (function () {
     				each_blocks.length = each_value.length;
     			}
 
-    			if (!current || dirty[0] & /*eggNumber*/ 16 && button1_disabled_value !== (button1_disabled_value = !/*eggNumber*/ ctx[4])) {
-    				prop_dev(button1, "disabled", button1_disabled_value);
-    			}
-
-    			if (dirty[0] & /*eggNumber*/ 16 && to_number(input8.value) !== /*eggNumber*/ ctx[4]) {
-    				set_input_value(input8, /*eggNumber*/ ctx[4]);
-    			}
-
-    			if (!current || dirty[0] & /*eggNumber*/ 16 && button2_disabled_value !== (button2_disabled_value = !/*eggNumber*/ ctx[4])) {
-    				prop_dev(button2, "disabled", button2_disabled_value);
-    			}
-
     			if (!current || dirty[0] & /*imgSrc*/ 8 && !src_url_equal(img.src, img_src_value = /*imgSrc*/ ctx[3])) {
     				attr_dev(img, "src", img_src_value);
     			}
 
     			const qrcode_changes = {};
-    			if (dirty[0] & /*qrSrc*/ 64) qrcode_changes.codeValue = /*qrSrc*/ ctx[6];
+    			if (dirty[0] & /*qrSrc*/ 32) qrcode_changes.codeValue = /*qrSrc*/ ctx[5];
     			if (dirty[0] & /*txtColor*/ 2) qrcode_changes.color = /*txtColor*/ ctx[1];
     			qrcode.$set(qrcode_changes);
-    			if (!current || dirty[0] & /*series*/ 32) set_data_dev(t62, /*series*/ ctx[5]);
+    			if (!current || dirty[0] & /*series*/ 16) set_data_dev(t43, /*series*/ ctx[4]);
 
     			if (!current || dirty[0] & /*collSeriesBorder*/ 4) {
-    				set_style(div42, "--coll-seriesborder", /*collSeriesBorder*/ ctx[2]);
+    				set_style(div31, "--coll-seriesborder", /*collSeriesBorder*/ ctx[2]);
     			}
-
-    			if ((!current || dirty[0] & /*eggNumber*/ 16) && t67_value !== (t67_value = /*pad*/ ctx[19](/*eggNumber*/ ctx[4]) + "")) set_data_dev(t67, t67_value);
 
     			if (!current || dirty[0] & /*eggNumSize*/ 1) {
-    				set_style(div43, "--egg-num-size", /*eggNumSize*/ ctx[0]);
+    				set_style(div32, "--egg-num-size", /*eggNumSize*/ ctx[0]);
     			}
 
-    			if (!current || dirty[0] & /*series*/ 32) set_data_dev(t77, /*series*/ ctx[5]);
-    			if ((!current || dirty[0] & /*eggNumber*/ 16) && t81_value !== (t81_value = /*pad*/ ctx[19](/*eggNumber*/ ctx[4]) + "")) set_data_dev(t81, t81_value);
+    			if (!current || dirty[0] & /*series*/ 16) set_data_dev(t58, /*series*/ ctx[4]);
 
     			if (!current || dirty[0] & /*txtColor*/ 2) {
-    				set_style(div49, "--txt-color", /*txtColor*/ ctx[1]);
+    				set_style(div38, "--txt-color", /*txtColor*/ ctx[1]);
     			}
     		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(hsvpicker0.$$.fragment, local);
-    			transition_in(hsvpicker1.$$.fragment, local);
-    			transition_in(hsvpicker2.$$.fragment, local);
+    			transition_in(hsvpicker.$$.fragment, local);
     			transition_in(qrcode.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(hsvpicker0.$$.fragment, local);
-    			transition_out(hsvpicker1.$$.fragment, local);
-    			transition_out(hsvpicker2.$$.fragment, local);
+    			transition_out(hsvpicker.$$.fragment, local);
     			transition_out(qrcode.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(main);
     			destroy_each(each_blocks, detaching);
-    			destroy_component(hsvpicker0);
-    			destroy_component(hsvpicker1);
-    			destroy_component(hsvpicker2);
+    			destroy_component(hsvpicker);
     			destroy_component(qrcode);
     			mounted = false;
     			run_all(dispose);
@@ -2472,7 +2235,7 @@ var app = (function () {
     	let name = "";
 
     	const addItem = () => {
-    		$$invalidate(7, items = [
+    		$$invalidate(6, items = [
     			...items,
     			{
     				id: Math.random(),
@@ -2481,21 +2244,21 @@ var app = (function () {
     			}
     		]);
 
-    		$$invalidate(8, name = "");
+    		$$invalidate(7, name = "");
     	};
 
     	const remove = item => {
-    		$$invalidate(7, items = items.filter(i => i !== item));
+    		$$invalidate(6, items = items.filter(i => i !== item));
     	};
 
     	// When generate button clicked, call the opensea API for details on the egg
     	const generateEgg = async () => {
     		fetch(`https://api.opensea.io/api/v1/assets?token_ids=${eggNumber}&order_direction=desc&offset=0&limit=1&collection=galaxyeggs9999`).then(response => response.json()).then(data => {
     			document.title = pad(eggNumber);
-    			$$invalidate(6, qrSrc += eggNumber);
+    			$$invalidate(5, qrSrc += eggNumber);
     			$$invalidate(3, imgSrc = data.assets[0].image_original_url);
     			description = data.assets[0].collection.description;
-    			$$invalidate(5, series = data.assets[0].traits[0].value);
+    			$$invalidate(4, series = data.assets[0].traits[0].value);
     			generate = true;
     		}).catch(error => {
     			console.log(error);
@@ -2517,15 +2280,10 @@ var app = (function () {
 
     	function input1_input_handler() {
     		name = to_number(this.value);
-    		$$invalidate(8, name);
+    		$$invalidate(7, name);
     	}
 
     	const click_handler = item => remove(item);
-
-    	function input8_input_handler() {
-    		eggNumber = to_number(this.value);
-    		$$invalidate(4, eggNumber);
-    	}
 
     	$$self.$capture_state = () => ({
     		onMount,
@@ -2562,7 +2320,7 @@ var app = (function () {
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ('mainWidth' in $$props) $$invalidate(9, mainWidth = $$props.mainWidth);
+    		if ('mainWidth' in $$props) $$invalidate(8, mainWidth = $$props.mainWidth);
     		if ('eggNumSize' in $$props) $$invalidate(0, eggNumSize = $$props.eggNumSize);
     		if ('txtColor' in $$props) $$invalidate(1, txtColor = $$props.txtColor);
     		if ('newTextColor' in $$props) newTextColor = $$props.newTextColor;
@@ -2572,19 +2330,19 @@ var app = (function () {
     		if ('appV' in $$props) appV = $$props.appV;
     		if ('imgSrc' in $$props) $$invalidate(3, imgSrc = $$props.imgSrc);
     		if ('description' in $$props) description = $$props.description;
-    		if ('longDescription' in $$props) $$invalidate(10, longDescription = $$props.longDescription);
-    		if ('collectionName' in $$props) $$invalidate(11, collectionName = $$props.collectionName);
-    		if ('collectionNamePlural' in $$props) $$invalidate(12, collectionNamePlural = $$props.collectionNamePlural);
-    		if ('eggNumber' in $$props) $$invalidate(4, eggNumber = $$props.eggNumber);
-    		if ('series' in $$props) $$invalidate(5, series = $$props.series);
-    		if ('qrSrc' in $$props) $$invalidate(6, qrSrc = $$props.qrSrc);
+    		if ('longDescription' in $$props) $$invalidate(9, longDescription = $$props.longDescription);
+    		if ('collectionName' in $$props) $$invalidate(10, collectionName = $$props.collectionName);
+    		if ('collectionNamePlural' in $$props) $$invalidate(11, collectionNamePlural = $$props.collectionNamePlural);
+    		if ('eggNumber' in $$props) $$invalidate(12, eggNumber = $$props.eggNumber);
+    		if ('series' in $$props) $$invalidate(4, series = $$props.series);
+    		if ('qrSrc' in $$props) $$invalidate(5, qrSrc = $$props.qrSrc);
     		if ('generate' in $$props) generate = $$props.generate;
     		if ('nftIdentifierLength' in $$props) nftIdentifierLength = $$props.nftIdentifierLength;
     		if ('web3Address' in $$props) $$invalidate(13, web3Address = $$props.web3Address);
     		if ('ethAddress' in $$props) $$invalidate(14, ethAddress = $$props.ethAddress);
     		if ('addEgg' in $$props) addEgg = $$props.addEgg;
-    		if ('items' in $$props) $$invalidate(7, items = $$props.items);
-    		if ('name' in $$props) $$invalidate(8, name = $$props.name);
+    		if ('items' in $$props) $$invalidate(6, items = $$props.items);
+    		if ('name' in $$props) $$invalidate(7, name = $$props.name);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -2596,7 +2354,6 @@ var app = (function () {
     		txtColor,
     		collSeriesBorder,
     		imgSrc,
-    		eggNumber,
     		series,
     		qrSrc,
     		items,
@@ -2605,6 +2362,7 @@ var app = (function () {
     		longDescription,
     		collectionName,
     		collectionNamePlural,
+    		eggNumber,
     		web3Address,
     		ethAddress,
     		txtColorCallback,
@@ -2613,8 +2371,7 @@ var app = (function () {
     		generateEgg,
     		pad,
     		input1_input_handler,
-    		click_handler,
-    		input8_input_handler
+    		click_handler
     	];
     }
 
