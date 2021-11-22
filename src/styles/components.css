@@ -1,0 +1,106 @@
+@media print {
+    @page {
+	size: auto;
+	margin-top: 160;
+	margin-bottom: 0;
+    }
+}
+
+
+
+
+.container {
+	display: flex;
+	justify-content: center;
+}
+
+
+.topSection {
+	height: 5em;
+	margin-top: 5em;
+}
+
+
+.intro {
+	font-weight: 400;
+	font-size: 1.2em;
+	border-bottom: 1px solid #AFAFAF;
+	margin-bottom: 1em;
+
+}
+
+#textboxid {
+    height:100px;
+	  width: 240px;
+    font-size:2em;
+}
+
+#buttonid {
+    height:100px;
+	width: 160px;
+    font-size:2em;
+}
+
+.shill {
+	margin-top: 7em;
+}
+.shilllinefirst {
+	padding-bottom: 8px;
+	font-weight: 400;
+}
+.shillline {
+	padding-bottom: 8px;
+	font-weight: 600;
+}
+.displaybox {
+	height: 842px;
+	width: var(--main-width);
+}
+.eggImage {
+	max-width:100%;
+	max-height:100%;
+}
+.descriptionSection {
+	height: 247px;
+	width: var(--main-width);
+}
+.row1 {
+	display: flex;
+}
+.row2 {
+	display: flex;
+	padding-top: 4px;
+}
+.collectionSeries {
+	border-left: 4px solid #AFAFAF;
+	flex: 1.33;
+	margin-top: 25px;
+}
+
+.collectionSeries > .collectionName {
+	padding-left: 12px;
+	font-weight: 400;
+	font-size: 1.2em;
+}
+.collectionSeries > .series {
+	padding-left: 12px;
+	font-weight: 600;
+	font-size: 2.5em;
+}
+.qrCode {
+	flex: 0.4;
+	margin-top: 25px;
+
+}
+.eggNum {
+	margin-top: 12px;
+	flex: 0.4;
+	font-weight: 550;
+	font-size: var(--egg-num-size);
+	font-family: Monaco, sans-serif;
+
+}
+.description {
+	margin-top: 2px;
+	flex: 1.32
+}

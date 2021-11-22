@@ -1,0 +1,35 @@
+
+
+body {
+  margin: 0;
+  padding: 0;
+
+
+}
+
+p {
+.tableData {
+	flex: 0.6;
+	margin-left: 45px;
+
+}
+table {
+	margin-top: 12px;
+	font-size: 0.8em;
+
+
+}
+table td {
+    padding: 5px 0;
+}
+th {
+	text-align: left;
+	width: 125px;
+	padding-top: 2px;
+}
+
+
+.teststyle {
+  overflow: hidden;
+	background-color:blue
+}
