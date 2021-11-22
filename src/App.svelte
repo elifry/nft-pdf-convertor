@@ -6,6 +6,8 @@ import BackButton from "./BackButton.svelte";
 import ForwardButton from "./ForwardButton.svelte";
 import QrCode from "svelte-qrcode";
 
+import "./styles/globals.css";
+import "./styles/components.css";
 // Default styles (macOS)
 let mainWidth = '718px';
 let eggNumSize = '4.35em';
