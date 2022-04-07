@@ -37,8 +37,20 @@ let web3Address = 'elifry.eth';
 let ethAddress = '0x51f01329d318ED23b78E47eFa336C943BFC7Bf22';
 
 // When generate button clicked, call the opensea API for details on the egg
+// let headers = new Headers();
+// headers.append('Access-Control-Allow-Origin', 'http://localhost:5000/');
+// headers.append('Access-Control-Allow-Origin', 'https://api.opensea.io');
+// headers.append('Content-Type', 'application/json');
+const proxy = 'https://cors-proxy-share.vercel.app/'
+const url = `https://api.opensea.io/api/v1/assets?token_ids=${eggNumber}&order_direction=desc&offset=0&limit=1&collection=galaxyeggs9999`
+
 const generateEgg = (async () => {
-	fetch(`https://api.opensea.io/api/v1/assets?token_ids=${eggNumber}&order_direction=desc&offset=0&limit=1&collection=galaxyeggs9999`)
+	fetch(proxy, {
+		method: 'POST',
+		body: {
+			'my-url': url
+		}
+	})
 	.then(response => response.json())
 	.then(data => {
 		document.title = pad(eggNumber);
